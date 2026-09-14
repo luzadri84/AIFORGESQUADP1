@@ -2,11 +2,13 @@
 @if(message()){<p role="status" class="success">{{message()}}</p>}
 @if(error()){<p role="alert" class="error">{{error()}}</p>}
 @if(loading()){<p role="status">Cargando espacios y reservas…</p>}
+@if(rejected().length){<section class="panel mb-6" aria-label="Ocurrencias rechazadas"><h2>Horarios no disponibles</h2><ul>@for(item of rejected();track item.startsAt){<li>{{item.startsAt | date:'dd/MM/yyyy, HH:mm':'-0500'}} — {{item.endsAt | date:'dd/MM/yyyy, HH:mm':'-0500'}} · {{item.reason}}</li>}</ul></section>}
 <div class="workspace"><section class="panel"><h2>Nueva reserva</h2><p class="muted">Los horarios consecutivos están permitidos.</p>
 <form [formGroup]="form" (ngSubmit)="create()" class="grid gap-4 mt-6">
 <label for="space">Espacio</label><select id="space" formControlName="spaceId">@for(space of spaces();track space.id){<option [ngValue]="space.id">{{space.name}} · {{space.capacity}} personas</option>}</select>
 <label for="start">Inicio</label><input id="start" type="datetime-local" formControlName="startsAt">
 <label for="end">Fin</label><input id="end" type="datetime-local" formControlName="endsAt">
+<label for="occurrences">Ocurrencias semanales</label><input id="occurrences" type="number" min="1" max="12" formControlName="occurrences"><small class="muted">1 = reserva individual. Hasta 12 semanas, incluida la primera; conservamos los horarios disponibles.</small>
 <p-button type="submit" label="Reservar espacio" [loading]="busy()" [disabled]="form.invalid||busy()||loading()" />
 </form></section>
 <section class="panel"><div class="section-heading"><h2>Mis reservas activas</h2><p-button label="Actualizar" severity="secondary" [text]="true" (onClick)="refresh()" [disabled]="busy()||loading()" /></div>

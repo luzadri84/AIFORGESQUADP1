@@ -251,3 +251,7 @@ solo /api/; BookingApi → BookingController → transacción Oracle. Formulario
 listado propio y cancelación verificados en navegador con #55. UI no guarda Basic
 en almacenamiento persistente. HttpSecurityTest cubre el fallo real de cookies
 tras consultas paralelas; estado Security STATELESS, sesión exclusivamente CSRF.
+
+## Evolución H005
+
+WeeklyRecurrence y BookingResult extienden POST con occurrences 1–12. BookingService conserva válidas y reporta rechazadas bajo el mismo bloqueo; excepción técnica revierte. UI presenta fechas rechazadas sin propietario. 35/35 tests, recorrido de dos usuarios y aceptación 3/4 en navegador. Datos visuales cancelados tras prueba, no borrados. DEC-011.

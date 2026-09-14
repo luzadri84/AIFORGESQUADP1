@@ -98,23 +98,23 @@ No duplicar estados en índices de handoffs. Conservar IDs y añadir los nuevos 
 
 ## T009 Expandir recurrencia semanal finita y probar límites
 
-- [ ] T009 [US3] Expandir recurrencia semanal finita y probar límites en backend: generador y tests de fechas.
+- [x] T009 [US3] Expandir recurrencia semanal finita y probar límites en backend: generador y tests de fechas.
 
 - Dependencias: T006.
 - Handoff: H005.
 - Aceptación: Count incluye primera fecha; 4 genera 4; límites 0/13 rechazan; hora Bogotá preservada y conflicto interno previsto.
-- Situación: pendiente; inspección H001 confirma que esta funcionalidad no existe.
-- Evidencia: sin prueba funcional ejecutada; ver alcance real de H001.
+- Situación: completada; DEC-011.
+- Evidencia: verify 35/35, WeeklyRecurrenceTest y BookingApiTest; Angular build/test correctos; navegador Ana #72 segunda semana, Bruno #73–75 (3 creadas/1 rechazada), canceladas luego por sus propietarios.
 
 ## T010 Integrar aceptación parcial en API y pantalla
 
-- [ ] T010 [US3] Integrar aceptación parcial en API y pantalla en backend: servicio/DTO/tests; frontend: opciones semanales y resultado.
+- [x] T010 [US3] Integrar aceptación parcial en API y pantalla en backend: servicio/DTO/tests; frontend: opciones semanales y resultado.
 
 - Dependencias: T007, T008, T009.
 - Handoff: H005.
 - Aceptación: Conflicto solo en segunda de cuatro deja tres filas; ninguna válida 409; UI identifica ocurrencias sin datos ajenos y refresca lista.
-- Situación: pendiente; inspección H001 confirma que esta funcionalidad no existe.
-- Evidencia: sin prueba funcional ejecutada; ver alcance real de H001.
+- Situación: completada; DEC-011.
+- Evidencia: verify 35/35, WeeklyRecurrenceTest y BookingApiTest; Angular build/test correctos; navegador Ana #72 segunda semana, Bruno #73–75 (3 creadas/1 rechazada), canceladas luego por sus propietarios.
 
 ## T011 Verificar concurrencia, rollback técnico y seguridad con Oracle real
 

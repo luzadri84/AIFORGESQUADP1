@@ -32,7 +32,7 @@ class BookingApiTest {
     @Test void ownCycleAndCollisionAndCancellation() throws Exception {
         var c=csrf();long before=bookings.count();
         var r=create(c,"api-a",10,11,1).andExpect(status().isCreated()).andReturn();
-        long id=json.readTree(r.getResponse().getContentAsString()).get("id").asLong();
+        long id=json.readTree(r.getResponse().getContentAsString()).get("created").get(0).get("id").asLong();
         assertThat(bookings.findById(id).orElseThrow().getOwnerId()).isEqualTo("api-a");
         create(c,"api-b",10,11,1).andExpect(status().isConflict());
         create(c,"api-a",11,12,1).andExpect(status().isCreated());
@@ -51,5 +51,24 @@ class BookingApiTest {
         mvc.perform(post("/api/bookings").header("Authorization",auth("api-a")).contentType("application/json").content(body(10,11,1))).andExpect(status().isForbidden());
         mvc.perform(get("/api/bookings")).andExpect(status().isUnauthorized());
         assertThat(bookings.count()).isEqualTo(before);
+    }
+
+    @Test void secondOccurrenceConflictPreservesThreeAndReportsNoOtherOwner() throws Exception {
+        var c=csrf();long before=bookings.count();
+        String second=body(10,11,2).replace("2035-01-01","2035-02-12");
+        mvc.perform(post("/api/bookings").session(c.session()).header("X-CSRF-TOKEN",c.token()).header("Authorization",auth("api-b")).contentType("application/json").content(second)).andExpect(status().isCreated());
+        String series=body(10,11,2).replace("2035-01-01","2035-02-05").replace("}",",\"occurrences\":4}");
+        var result=mvc.perform(post("/api/bookings").session(c.session()).header("X-CSRF-TOKEN",c.token()).header("Authorization",auth("api-a")).contentType("application/json").content(series)).andExpect(status().isOk()).andExpect(jsonPath("$.created.length()").value(3)).andExpect(jsonPath("$.rejected.length()").value(1)).andReturn();
+        assertThat(result.getResponse().getContentAsString()).doesNotContain("api-b");
+        assertThat(bookings.count()).isEqualTo(before+4);
+        mvc.perform(post("/api/bookings").session(c.session()).header("X-CSRF-TOKEN",c.token()).header("Authorization",auth("api-a")).contentType("application/json").content(series)).andExpect(status().isConflict()).andExpect(jsonPath("$.created.length()").value(0)).andExpect(jsonPath("$.rejected.length()").value(4));
+        assertThat(bookings.count()).isEqualTo(before+4);
+    }
+    @Test void recurrenceBoundsAndInternalOverlap() throws Exception {
+        var c=csrf();long before=bookings.count();
+        for(int count:new int[]{0,13}) mvc.perform(post("/api/bookings").session(c.session()).header("X-CSRF-TOKEN",c.token()).header("Authorization",auth("api-a")).contentType("application/json").content(body(10,11,3).replace("}",",\"occurrences\":"+count+"}"))).andExpect(status().isBadRequest());
+        assertThat(bookings.count()).isEqualTo(before);
+        String internal="{\"spaceId\":3,\"startsAt\":\"2035-03-01T10:00:00-05:00\",\"endsAt\":\"2035-03-09T10:00:00-05:00\",\"occurrences\":2}";
+        mvc.perform(post("/api/bookings").session(c.session()).header("X-CSRF-TOKEN",c.token()).header("Authorization",auth("api-a")).contentType("application/json").content(internal)).andExpect(status().isOk()).andExpect(jsonPath("$.created.length()").value(1)).andExpect(jsonPath("$.rejected.length()").value(1));
     }
 }

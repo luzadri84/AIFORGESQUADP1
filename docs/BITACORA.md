@@ -388,3 +388,16 @@ conservando sesión explícita exclusivamente del repositorio CSRF. Se repiten p
 y flujo HTTP/navegador; no se desactiva la protección CSRF.
 
 H004 final: regresión 27/27, HttpSecurityTest adicional 1/1, Angular strict y npm test 1/1. Navegador real creó/listó/rechazó duplicado/canceló #55. Estado Security STATELESS corrigió rotación de sesión; CSRF sigue exigido. npm avisó de deprecación de animations/themes de versiones fijadas; no se alteró unilateralmente el stack.
+
+## DEC-011 — Recurrencia finita y resultado explícito por ocurrencia
+
+2026-09-14, America/Bogota. Codex concreta criterios T009/T010 autorizados: occurrences
+opcional (ausente=1), 1–12, semanas en America/Bogota, primera incluida. Una transacción
+con un bloqueo de espacio para todo el pedido. Conflictos esperados generan resultados
+rechazados sin datos ajenos; cualquier excepción técnica propaga y revierte todo.
+Contrato uniforme {created,rejected}: 201 todas, 200 algunas, 409 ninguna. Alternativa
+all-or-nothing para conflictos descartada porque contradice aceptación parcial del
+criterio. No entidad Serie ni cron ni nuevas tablas. Se prueban límites, horarios,
+conflicto no inicial/interno y UI. Rollback técnico/concurrencia se profundizan T011.
+
+H005 final: 35/35 tests backend, frontend build/test correctos. Navegador: conflicto segunda semana de otro usuario, tres creadas y una rechazada (#72–75); luego canceladas. Se corrigió lectura de archivos Windows a UTF-8 explícito y vigilancia --poll 1000. No se ocultaron estos fallos de integración ni se asociaron al starter.
