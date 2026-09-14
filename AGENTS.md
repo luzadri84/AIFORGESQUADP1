@@ -217,3 +217,13 @@ ni resetear datos/marker; ver docs/VERIFICACION_T003.md y scripts/booking-db.ps1
 No existen todavía controladores, servicios de reservas, configuración Basic/CSRF
 propia ni UI. Security en el POM no completa T004; el WAR base no completa T013/T015.
 La primera tarea pendiente es T004. Mantener todos los estados en tasks.md.
+
+## Continuación integral local — DEC-007, 2026-09-14
+
+La instrucción adjunta del usuario autoriza T004–T013 sin pausas entre handoffs;
+supera el límite anterior de ejecutar solo T003. Mantener el monolito por funciones,
+criterios existentes y Spec Kit sin regenerarlo. Implementar la recurrencia semanal
+finita/aceptación parcial de las tareas existentes; registrar elecciones de detalle
+como decisiones del agente, no aprobaciones individuales del usuario. Ejecución local
+con WAR ejecutable y Tomcat administrado por Boot, sin afirmar WebLogic. T014 no aplica,
+T015 permanece independiente. No push, publicación, agentes paralelos ni funciones extra.

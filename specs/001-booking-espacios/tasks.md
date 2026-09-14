@@ -7,9 +7,8 @@ sin API ni UI Booking. Una sola feature, mismos IDs T001–T015 de las semillas.
 **Alcance vigente (DEC-004):** repositorio actual como base definitiva; la continuación
 autorizada se concretó en T003. Primera pendiente: T004. Arquitectura decidida por el usuario en DEC-005: monolito
 por funcionalidades; DEC-003 se conserva como propuesta previa.
-T014 no aplica; T015 permanece independiente. No se autorizan todas las tareas
-del backlog por este cambio.
-No inferir esa aceptación de este backlog ni del silencio del usuario.
+DEC-007 amplía expresamente la autorización a T004–T013 hasta completar solución local.
+T014 no aplica; T015 conserva bloqueo independiente. No esperar aprobación entre handoffs.
 
 ## Convención de estado
 
@@ -49,23 +48,23 @@ No duplicar estados en índices de handoffs. Conservar IDs y añadir los nuevos 
 
 ## T004 Implementar identidad Basic, CSRF y manejo seguro de credenciales
 
-- [ ] T004 Implementar identidad Basic, CSRF y manejo seguro de credenciales en backend: security; frontend: configuración proxy si existe.
+- [x] T004 Implementar identidad Basic, CSRF y manejo seguro de credenciales en backend: security; frontend: configuración proxy si existe.
 
 - Dependencias: T002.
 - Handoff: H002.
 - Aceptación: Dos identidades, GET protegido 401, escritura sin CSRF 403, credenciales externas y respuesta de identidad sin secretos.
-- Situación: pendiente; inspección H001 confirma que esta funcionalidad no existe.
-- Evidencia: sin prueba funcional ejecutada; ver alcance real de H001.
+- Situación: completada; DEC-008.
+- Evidencia: SecurityContractTest (3 escenarios, validación MVC en ruta exclusiva de test), 15 tests totales correctos y WAR ejecutable. docs/CONTRATO_API.md; reservas reales se integran en H003.
 
 ## T005 Fijar DTO, validación, errores y documentación del contrato
 
-- [ ] T005 Fijar DTO, validación, errores y documentación del contrato en backend: DTO/controller/advice y configuración SpringDoc.
+- [x] T005 Fijar DTO, validación, errores y documentación del contrato en backend: DTO/controller/advice y configuración SpringDoc.
 
 - Dependencias: T003, T004.
 - Handoff: H002.
 - Aceptación: Campos obligatorios, offset y rango inválidos 400, userId/state no aceptados, errores sin datos ajenos; ejemplos API incluidos.
-- Situación: pendiente; inspección H001 confirma que esta funcionalidad no existe.
-- Evidencia: sin prueba funcional ejecutada; ver alcance real de H001.
+- Situación: completada; DEC-008.
+- Evidencia: SecurityContractTest (3 escenarios, validación MVC en ruta exclusiva de test), 15 tests totales correctos y WAR ejecutable. docs/CONTRATO_API.md; reservas reales se integran en H003.
 
 ## T006 Implementar regla de intervalos y pruebas parametrizadas
 

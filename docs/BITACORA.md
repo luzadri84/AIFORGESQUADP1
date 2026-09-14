@@ -324,3 +324,35 @@ la narración y su estado en el momento en que se escribió.
   [explicación](EXPLICACION_IMPLEMENTACION.md) y tests reales en backend/.
 - Git: cambio de alcance/arquitectura confirmado en 75af194 antes de implementar;
   código/evidencia T003 se registra en commit incremental con DEC-006. Sin publicación.
+
+## DEC-007 — Continuación hasta la solución local
+
+2026-09-14, America/Bogota. Origen/decisor del alcance: instrucción adjunta del usuario,
+completar T004–T013 con los criterios existentes, continuar entre handoffs sin consultar.
+T014 no aplica, T015 externo independiente. Se conserva main/992bc41 limpio al comenzar.
+Codex verifica precondiciones de speckit-implement, sin hooks ni checklists adicionales,
+y reutiliza la integración. Las propuestas de detalle existentes (semanal 1–12,
+aceptación parcial, activas futuras/en curso, Bogotá) se aplicarán para concretar
+estos criterios; no se atribuye al usuario una aprobación separada de cada parámetro.
+Arquitectura sin cambio. Tomcat incluido por Boot ejecutará localmente el WAR; no
+certifica ni sustituye la obligación externa de WebLogic. No reinstalación ni push.
+
+## DEC-008 — Basic por petición y CSRF de sesión
+
+2026-09-14, America/Bogota. Decisión técnica de Codex para T004/T005: Basic con dos
+usuarios externos, BCrypt y contexto de seguridad no persistido; sesión solo para
+CSRF, token enmascarado obtenido de /api/csrf. Alternativa cookie legible automática:
+se prefiere token explícito en memoria para controlar su ciclo y no desactivar CSRF.
+UI enviará Basic solo a /api/ propio. Passwords generadas solo si no existen, archivo
+.local/runtime/booking.properties ignorado, sin cambiar credenciales Oracle.
+DTO estricto rechaza campos desconocidos y fechas sin offset; errores genéricos sin
+SQL/credenciales. Documentación OpenAPI autenticada. Pruebas y resultado se registran
+al completar H002; no se atribuye al usuario revisión de esta configuración.
+
+H002, primer resultado: 15 tests, un fallo. Autenticar Basic en cada petición
+invalidaba el token CSRF entre escrituras. Se conserva validación XOR/repositorio de
+sesión y se evita exclusivamente la rotación por cada autenticación Basic (la sesión
+no guarda identidad). La prueba de múltiples escrituras valida esta corrección;
+no se desactiva CSRF ni se aceptan tokens ajenos.
+
+H002 final: Maven verify BUILD SUCCESS, 15 tests correctos (12 persistencia + 3 seguridad/contrato), WAR ejecutable. Sin endpoints de reservas aún; siguiente H003.

@@ -231,3 +231,11 @@ T013 sigue pendiente aunque exista WAR y este texto tenga preguntas/retos: falta
 recorrido completo, pruebas de entrega y ejecución de aplicación. T015 continúa
 bloqueada por aclaración del runtime; no hay despliegue público ni certificación de
 producción. T014 no aplica y no es un bloqueo. Consultar tareas antes de continuar.
+
+## Evolución H002 (supera el estado T003 anterior)
+
+IdentityController/SecurityConfig implementan /api/me y /api/csrf; SpaceController
+consulta catálogo. BookingRequest y ApiErrors validan contrato sin confiar campos
+extra. SecurityContractTest verifica dos identidades, CSRF y contrato MVC; 15 tests
+totales correctos. WAR ahora ejecutable con plugin Boot para uso local. DEC-008
+registra el fallo de renovación CSRF y corrección. Reservas/UI aún pendientes H003/H004.

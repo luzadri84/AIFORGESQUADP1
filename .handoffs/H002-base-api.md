@@ -34,3 +34,14 @@ no inferir que la dependencia Security del POM acredita su aceptación. T005 sig
 al contrato. T003 no arrancó HTTP, añadió UI ni implementó servicios de reservas.
 Los estados se actualizan exclusivamente en tasks.md; no ejecutar todo el handoff
 por disponer de este contexto. H003 continúa después de dependencias y autorización.
+
+## Cierre restante H002 — 2026-09-14, DEC-007/008
+
+T004/T005 incorporan Basic externo, CSRF de sesión, DTO estricto, errores y catálogo
+HTTP. T003 se conserva. Maven verify: 15 tests, 0 fallos/errores; primer fallo de
+renovación CSRF corregido y registrado en bitácora. SecurityContractTest verifica
+HTTP con MockMvc y ruta de validación exclusiva de tests, no crea reservas reales.
+Comando: docker compose -f compose.yaml -f .local/transfer/compose.images.yaml exec -T dev bash mvnw -B -ntp -f backend/pom.xml verify
+WAR ejecutable generado; no iniciado todavía. Commit con T004 T005 DEC-008.
+Siguiente H003: motor individual, propiedad y transacciones Oracle. DEC-007 autoriza
+continuar sin otra confirmación; estado canónico siempre tasks.md.
