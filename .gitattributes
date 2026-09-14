@@ -6,3 +6,6 @@ mvnw text eol=lf
 *.json text eol=lf
 *.yaml text eol=lf
 Dockerfile text eol=lf
+# Conservar hashes de los recursos oficiales Spec Kit en clones Windows.
+.agents/skills/** text eol=lf
+.specify/templates/** text eol=lf

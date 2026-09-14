@@ -168,3 +168,63 @@ La comprobación real en el otro Windows todavía corresponde al paso de importa
 - Límite: estas comprobaciones no ejecutan negocio ni demuestran la UI del selector
   de skills; no se atribuye al usuario la ejecución de estas comprobaciones.
 - Vinculación: T001 y DEC-001 en el mensaje del commit, sin hash futuro inventado.
+
+
+## DEC-002 — Reconciliar el estado real y conservar una sola fuente de tareas
+
+- Registro: 2026-09-14, America/Bogota; H001/T001–T002. Origen mixto: integración
+  contemporánea y reconstrucción retrospectiva de infraestructura explícitamente indicada.
+- Problema: las semillas describen trabajo propuesto y tres commits; no deben borrar
+  la bitácora anterior ni acreditar funciones inexistentes por usar Spec Kit.
+- Origen/propuesta: Prompt A/reglas 05/semillas; agente propone fusión selectiva,
+  feature 001-booking-espacios, mismos T001–T015 y bitácora docs/BITACORA.md.
+- Intervención humana: conservar entorno/historial y ejecutar únicamente H001.
+  No hubo aprobación específica de cada ajuste documental.
+- Decisión/responsable: fusión y rutas elegidas por el agente dentro del alcance
+  humano; aceptada e implementada en AGENTS, constitution/spec/plan/tasks/handoffs,
+  README y criterios autocontenidos de entrega/starter. No se duplica backlog.
+- Alternativa: overlay completo/segunda bitácora; no aplicada por duplicar y sobrescribir.
+- Evidencia retrospectiva: Git inicial main/5dcdb7c contiene siete commits; los tres
+  iniciales son 552db96 (12:12:26 -05), b219204 (12:20:21 -05), 4b66e6d (12:33:06 -05),
+  todos del 2026-09-14. Respaldan documentos, infraestructura y corrección Angular.
+  Los 37 minutos son reporte previo: no hay cronometraje auditable; el intervalo
+  entre commits tampoco mide trabajo efectivo. No se cambian fechas ni se inventa historia.
+- Alcance retrospectivo: docs/VERIFICACION_LOCAL.md y entradas anteriores describen
+  otro equipo. La restauración Windows 10 se verificó en el turno previo de esta sesión
+  (informe local .local/RESTAURACION_VERIFICADA.md); no se atribuye al usuario su ejecución.
+  Clave actual en .local/restore-key.pem, credenciales en .local/secrets; las rutas
+  de las entradas anteriores se conservan como hechos del equipo origen.
+- Motivo/compensación: trazabilidad sin rehacer entorno. Se amplían T013/H007 y
+  T014/H008 con criterios locales, sin fabricar explicación de código inexistente.
+- Verificación aprobada por Codex el 2026-09-14 en Windows 10: 20 documentos y 100
+  enlaces locales revisados; 15 IDs únicos, referencias T/FR/H válidas, cuatro scripts
+  PowerShell parseados sin errores, precondiciones Spec Kit correctas con selector de
+  feature. Compose config, JDBC read original y ngc correctos. Infraestructura sin diff
+  frente a 5dcdb7c; prefijos originales AGENTS/bitácora intactos, secretos/marcador
+  conservados e ignorados. Detalle en INTEGRACION_H001.md.
+- Límites: las sondas no acreditan seguridad, reservas, WAR, E2E ni el defecto del starter.
+  No se ejecutan write, prepare, npm ci, instalaciones, reinicios ni cambios de volumen en H001.
+- Vinculación Git: T002/DEC-002 en commit de fusión posterior al commit b977ca3.
+
+## DEC-003 — Arquitectura propuesta para la siguiente fase, sin aprobación atribuida
+
+- Registro/hecho: 2026-09-14, America/Bogota, contemporáneo H001/T002.
+- Problema: elegir estructura sencilla para negocio futuro sin reformar infraestructura válida.
+- Origen: monolito propuesto en plan previo de ChatGPT; Codex lo contrasta ahora con
+  el repositorio, que solo contiene infraestructura y sondas.
+- Propuesta de Codex: controlador HTTP, servicio transaccional, Spring Data JPA,
+  DTO/validadores y funciones pequeñas de intervalos/recurrencias; Angular por función.
+- Alternativa razonable: dominio con puertos/adaptadores dentro del monolito. Aísla
+  detalles de persistencia, pero añade interfaces, mapeos y pruebas; no existe aún
+  una segunda persistencia o requisito que justifique ese coste.
+- Intervención humana real: solicitud de recomendación y simplicidad; ninguna elección
+  concreta de arquitectura registrada. No hubo un rechazo humano de capas ni revisión de clases.
+- Decisión: recomendación del agente; aceptación humana PENDIENTE. Implementación
+  solo documental en plan/README/spec; no hay clases ni carpetas backend/frontend nuevas.
+- Garantías que ambas opciones deben mantener: propiedad, CSRF, validación, protocolo
+  concurrente en Oracle, recurrencias y pruebas reales. No se promete rendimiento medido.
+- Verificación: inspección de código y configuración, sin pruebas de arquitectura funcional
+  porque todavía no existe. T003/H002 empieza después de la decisión y autorización.
+- Pendientes: arquitectura, refinamientos producto/contrato explícitos de spec/plan;
+  starter (T014) y aclaración WebLogic (T015), sin cambiar unilateralmente el stack.
+- Vinculación: T002/DEC-003 en el commit real de planificación; sin hash futuro.

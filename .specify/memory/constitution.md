@@ -1,0 +1,55 @@
+# Constitución de Booking
+
+## Core Principles
+
+### I. Requisitos y alcance explícitos
+[AGENTS.md](../../AGENTS.md), los requisitos originales y las aclaraciones humanas
+prevalecen. Los documentos de apoyo son propuestas, no prueba de aceptación.
+En esta fase solo H001/T001–T002; las funcionalidades requieren una orden posterior.
+
+### II. Simplicidad con garantías
+Resolver necesidades actuales con la menor complejidad suficiente. No añadir
+microservicios, CQRS, repositorios genéricos, orquestadores o dependencias sin una
+necesidad demostrable. La arquitectura concreta de [plan.md](../../specs/001-booking-espacios/plan.md)
+es recomendación del agente pendiente de decisión humana (DEC-003).
+
+### III. Seguridad en el servidor
+Preservar identidad autenticada, autorización por propietario, validación,
+CSRF para Basic en navegador y secretos externos. No confiar userId/estado del
+cliente ni revelar datos ajenos. Estas son garantías exigidas, todavía sin API.
+
+### IV. Datos y concurrencia reales
+Preservar Oracle y sus datos actuales. La solución futura debe impedir solapamientos
+incluso ante peticiones concurrentes y verificar recurrencias. El bloqueo de Espacio,
+intervalos semiabiertos, aceptación parcial y rollback del pedido son propuestas
+técnicas/producto del plan que deben contrastarse antes de implementarlas.
+
+### V. Evidencia y continuidad
+Probar riesgos reales con herramientas existentes. Una sonda JDBC/ngc no acredita
+Booking, seguridad ni concurrencia. La bitácora distingue propuesta, decisor,
+aceptación, implementación y prueba; los commits conservan historia real.
+
+## Restricciones estables
+
+Conservar Java 21, Boot 3 permitido, Angular 20 standalone/strict, Oracle 19+ y
+objetivo WAR. Las versiones resueltas están en el plan; no degradarlas por semillas
+antiguas. No certificar WebLogic 12.2.1.4 por producir un WAR, ni Azure por resolver
+MSAL. Starter y aclaración del runtime son dependencias externas independientes.
+
+## Flujo de desarrollo
+
+Una feature Booking y una lista de tareas/estados en
+[tasks.md](../../specs/001-booking-espacios/tasks.md). [.handoffs](../../.handoffs/README.md)
+solo conserva contexto, evidencia y siguiente paso. Leer AGENTS y documentos
+canónicos, ejecutar exclusivamente el bloque autorizado, verificar lo pertinente
+y registrar decisiones/commits reales. No crear agentes ni servicios adicionales.
+
+## Governance
+
+Reglas operativas adoptadas por solicitud humana de Prompt A; fusión de redacción
+a cargo del agente. No implica ratificación humana de arquitectura ni propuestas
+funcionales. Cambiar un principio exige registrar DEC y revisar spec/plan/tasks
+más pruebas afectadas; conservar la justificación anterior. Las instrucciones
+expresas posteriores pueden cambiar alcance, dejando su trazabilidad.
+
+**Version**: 1.0.0 | **Ratified**: 2026-09-14 (reglas operativas solicitadas) | **Last Amended**: 2026-09-14

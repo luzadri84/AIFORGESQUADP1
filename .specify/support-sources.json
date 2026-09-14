@@ -1,0 +1,23 @@
+{
+  "description": "Trazabilidad del material de apoyo recibido; nombres relativos dentro del paquete, no dependencias de ejecución.",
+  "sha256": {
+    "07_Inicio_Controlado_Booking_SpecKit.md": "0e704d0326502df5b5d05130b48843a8b878baf9d2c42df57d894c84cfcbf079",
+    "06_Integrar_Spec_Kit_y_Handoffs.md": "d2c42f7ab0d3593ceb439eb4880889903820b053ce7e46415719c70ef451aad6",
+    "referencias/05_Bitacora_y_Commits_con_Codex.md": "cdafef757b3be0964e324b6607960da6d53ef3f155998c66d0e36ff129f88784",
+    "paquete_sdd/overlay/.handoffs/H001-integracion.md": "1fa9fdeb45e9e6593544d2fdbb181658c0a226a80882463f45004b2740a219df",
+    "paquete_sdd/overlay/.handoffs/H002-base-api.md": "a5e32dd20c3356960e47c4c80de9852733601c244c8e4c56480ae7359d365d85",
+    "paquete_sdd/overlay/.handoffs/H003-reservas.md": "0c8e287e652c69a302c11f91530c1c1eb7e651c0eb3749fe42d4fd855c161dee",
+    "paquete_sdd/overlay/.handoffs/H004-frontend.md": "62a7b7bec33c213fe323d6ee2814c4ddd073448783980ae7660cb94445b7d904",
+    "paquete_sdd/overlay/.handoffs/H005-recurrencias.md": "5f254f7ea57db5c669fb575769a82fb6a7f9d9e31749a8be9b29e07059047696",
+    "paquete_sdd/overlay/.handoffs/H006-verificacion.md": "b0736cc24a9e9b791198277382f92420e53559c561f31e525db63d1d91a11b13",
+    "paquete_sdd/overlay/.handoffs/H007-entrega-local.md": "91f16c3209a05ecf0143a7f452a6dcd595256ec65c3b24f0326f0be78ec0724d",
+    "paquete_sdd/overlay/.handoffs/H008-pendientes-externos.md": "21748018692c117ffc90732627478050b5e99dfe830230927db11ed992efb798",
+    "paquete_sdd/overlay/.handoffs/README.md": "0bf880aa0b38ef63150201bd59e69512fc5049a13e0d9514e0ebfe021ef8ca51",
+    "paquete_sdd/overlay/.specify/memory/constitution.md": "16be9b13c1de714c6ad524ecea9a6bea9b1b7e498cfd84ca91c8f92b42a11b5e",
+    "paquete_sdd/overlay/docs/AGENTS_ADICION_SDD.md": "4cdef509008a50c2cb7b49a61dbe615d5cc9e41f9a8fd2abe80eaa1eb6e8a24c",
+    "paquete_sdd/overlay/specs/001-booking-espacios/plan.md": "7283c32fe95032613e48729d93ba4ef6af472387459fc595347a149087c4ec42",
+    "paquete_sdd/overlay/specs/001-booking-espacios/spec.md": "8445e991c8c78377ff7c1819313b561f156cca1bfc5d19cffabc9eff3f99a149",
+    "paquete_sdd/overlay/specs/001-booking-espacios/tasks.md": "c550eaf50d64e7af660026c83438624744195d3ae0ea7fbae0a2def882b8456d",
+    "paquete_sdd/overlay/specs/001-booking-espacios/trazabilidad.md": "88f5eb1c27e11ce560017321a8d0b70461f4f32be91422a4a1b7bd1c41de7764"
+  }
+}

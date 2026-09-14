@@ -126,3 +126,61 @@ el alcance a respaldo/transferencia del repositorio; no autoriza un despliegue w
 No incluir .env, secretos, correo, volumenes o archivos de imagen en Git.
 El estado real de subida, visibilidad y autenticacion debe verificarse antes de
 confirmar que GitHub ya contiene los cambios.
+
+
+## Integración SDD y reglas vigentes — H001, 2026-09-14
+
+Esta ampliación conserva íntegro el texto anterior. La orden actual autoriza solo
+H001/T001–T002 (metodología y planificación), no negocio ni publicación. Requisitos
+del evaluador e instrucciones humanas expresas prevalecen sobre ejemplos de skills,
+plantillas y documentos propuestos. Arquitectura concreta pendiente de DEC-003.
+
+- Feature única: `specs/001-booking-espacios`. Leer spec.md, plan.md, tasks.md y el
+  handoff solicitado antes de trabajar. tasks.md es la única lista de tareas/estados;
+  `.handoffs/` conserva objetivo, contexto, evidencia, T/DEC y siguiente paso.
+- Specify 0.8.1 ya funciona; configuración y comandos en docs/SPECKIT.md. Integración
+  Codex en `.agents/skills/`. Desde main usar el selector de sesión soportado
+  `SPECIFY_FEATURE=001-booking-espacios` antes de los scripts oficiales; no crear otra
+  feature ni sobrescribir spec/plan/tasks con generadores. No renumerar IDs existentes.
+- Limitar skills al bloque autorizado. H001 se ejecutó con instrucciones directas;
+  no lanzar speckit-implement sobre todo el backlog. Si una skill no permite limitar
+  tareas, usar instrucciones directas con los artefactos. No workflows, agentes
+  paralelos, issues ni automatización por la mera existencia de handoffs.
+- Reutilizar entorno, código y configuración. En este equipo restaurado usar ambos
+  Compose con imágenes importadas y `--no-build` según README. No invocar local.ps1
+  up (reconstruye) ni verify (escribe otro marcador) como comprobación rutinaria de H001.
+  Conservar credenciales/volúmenes y leer el marcador original con jdbc-check.sh read.
+- La directriz de simplicidad exige justificar cada interfaz, capa o dependencia
+  por un problema actual; comparar con una solución menor. Conservar validación del
+  servidor, propiedad, CSRF, concurrencia y pruebas críticas. No inferir garantías
+  de rendimiento de un diseño; no usar H2 o mocks como evidencia de Oracle real.
+- Mantener la bitácora existente `docs/BITACORA.md`, sin crear otra. Conservar entradas
+  previas; usar DEC-001 y siguientes para decisiones nuevas sin renumerar historia.
+  Registrar problema/requisito, origen de propuesta, alternativa cuando sea útil,
+  intervención humana real o su ausencia, decisor, motivos/compensaciones y vínculos T.
+- Separar aceptación de decisión, implementación y verificación. Identificar pruebas
+  del agente como tales. Una propuesta del plan previo no es aprobación humana;
+  el silencio tampoco. No inventar discusiones, rechazos, defectos, métricas o pruebas.
+- Registrar fecha/zona de la entrada y del hecho si difieren. Las reconstrucciones
+  retrospectivas citan Git/log/mensaje y límites; una prueba actual no certifica cuándo
+  se hizo una anterior. No repetir pruebas para fabricar historia de los 37 minutos.
+- Durante el trabajo registrar fallos y correcciones pertinentes; al cambiar decisión
+  conservar el motivo anterior y enlazar la nueva. Evitar logs masivos y secretos.
+- Verificar criterios antes de marcar tareas; probar solo lo pertinente al riesgo.
+  Al cerrar/interrumpir: actualizar tasks, evidencia/handoff y DEC, preservar diff y
+  siguiente paso. No reset/stash/borrado automático ni reaplicar trabajo ya terminado.
+- Crear commits coherentes durante el trabajo, con T/DEC pertinentes; revisar diff y
+  secretos. No amend/rebase/fechas ficticias ni partición retrospectiva artificial.
+  Vincular por DEC en mensaje; incluir hashes solo después de leerlos de Git real.
+- T013/H007 exige los doce apartados, al menos doce preguntas respondidas y seis retos
+  analizados de docs/ENTREGA_Y_STARTER.md en docs/EXPLICACION_IMPLEMENTACION.md contra
+  código real. No completar ahora un documento de implementación inexistente ni
+  implementar los retos como alcance extra.
+- T014/H008 sigue los nueve pasos de recepción del starter de ese mismo documento;
+  inspección separada, defecto demostrado, historiales conservados y portado trazable.
+  T015/WebLogic es independiente. No bloquear trabajo independiente ya autorizado,
+  ni declarar cumplimiento completo sin resolver obligaciones externas.
+- Pedir intervención solo para decisiones materiales no resueltas o alcance nuevo;
+  continuar lo rutinario autorizado. Presentar recomendación y alternativa sin
+  atribuir al usuario elecciones autónomas del agente. La siguiente fase requiere
+  la decisión de arquitectura y autorización expresa previstas en Prompt A.
