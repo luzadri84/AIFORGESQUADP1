@@ -25,3 +25,17 @@ Sin ejecución de este bloque durante H001. Al trabajarlo registrar fecha/entorn
 responsable, archivos/diff, evidencia, referencias T/DEC y commit real si existe;
 actualizar el estado solo en tasks.md. Conservar el punto de continuación si se interrumpe.
 Siguiente bloque orientativo: H007, sujeto a autorización y dependencias.
+
+## Ejecución H006 — 2026-09-14, DEC-012
+
+T011/T012: verify 39/39; OracleConcurrencyTest usa servidor HTTP, clientes separados
+y un lock JDBC retenido hasta observar ambas entradas: un 201, un 409 y una fila.
+Spy delega al proxy Spring Data real. Fallo técnico inyectado después de flush real
+y consulta interna de una fila; respuesta 503 y cero filas externas tras rollback.
+Fixtures aisladas en espacios de test propios, limpieza por su ID, sin tocar semillas
+ni marcador. Primer error de delegación abstracta del spy corregido; ver bitácora.
+JwtValidationTest valida claims/identidad; Nimbus configurado para firma, issuer,
+tiempo, audiencia/subject. Providers/adaptador MSAL reales compilan, modo Basic sin
+instancia Azure. No prueba de firma contra Azure ni tenant real. npm ls correcto y
+npm audit 0 vulnerabilidades; alcance frontend/lockfile, no auditoría integral Java.
+Angular build/test correctos. Siguiente H007: operación, prueba final y explicación.

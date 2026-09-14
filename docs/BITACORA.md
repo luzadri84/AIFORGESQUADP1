@@ -401,3 +401,25 @@ criterio. No entidad Serie ni cron ni nuevas tablas. Se prueban límites, horari
 conflicto no inicial/interno y UI. Rollback técnico/concurrencia se profundizan T011.
 
 H005 final: 35/35 tests backend, frontend build/test correctos. Navegador: conflicto segunda semana de otro usuario, tres creadas y una rechazada (#72–75); luego canceladas. Se corrigió lectura de archivos Windows a UTF-8 explícito y vigilancia --poll 1000. No se ocultaron estos fallos de integración ni se asociaron al starter.
+
+## DEC-012 — Evidencia concurrente y extensión empresarial desactivada
+
+2026-09-14, America/Bogota. T011: peticiones HTTP separadas, sesión/token por cliente,
+espacio de prueba propio; bloqueo JDBC externo retiene la fila hasta observar dos
+entradas en lockById. Spy solo observa entrada/delega implementación real; no simula
+Oracle. Verificar un 201/un 409/una fila. Rollback: spy inyecta fallo técnico tras
+flush real de la primera ocurrencia y consulta dentro de esa transacción; después
+se comprueba cero filas fuera. Limpieza limitada a IDs de espacios creados por el test.
+T012: configuración JWT condicionada, firma Nimbus + issuer/tiempo/audience/subject;
+identidad empresarial con prefijo/hash evita colisión con Basic y cabe en OWNER_ID.
+MSAL Angular con providers/adaptador reales y memoria; configuración ausente en modo
+Basic no crea instancia ni llama Azure. No se inventan tenant/clientId ni prueba Azure.
+Alternativa activar Azure real queda fuera de alcance; no añade bloqueo local.
+
+H006 primer verify: 39 tests, 2 fallos. El spy de repositorio intentaba callRealMethod
+sobre método abstracto de proxy Spring Data; se corrige delegando al Answer real del
+proxy, conservando SQL/locks. La excepción inesperada se redirigía a /error protegido
+y parecía 401; ApiErrors ahora da 500 genérico para excepciones no previstas.
+No se declaró concurrencia ni rollback verificados antes de corregir la prueba.
+
+H006 final: 39 tests correctos; carrera HTTP Oracle 201/409 y una fila, rollback real tras fallo inyectado y cero filas; fixtures propias limpiadas. MSAL/JWT compilan; Basic independiente. npm audit 0 en lockfile frontend, npm ls sin peers inválidos; no SCA Java integral ni Azure real. Árbol Maven obtenido tras corregir comillas de argumento PowerShell.

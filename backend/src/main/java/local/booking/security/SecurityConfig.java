@@ -13,6 +13,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.context.NullSecurityContextRepository;
 
 @Configuration
+@org.springframework.boot.autoconfigure.condition.ConditionalOnProperty(name="booking.auth.mode",havingValue="basic",matchIfMissing=true)
 public class SecurityConfig {
     @Bean UserDetailsService users(@Value("${booking.auth.first.username}") String first,
             @Value("${booking.auth.first.password}") String firstPassword,

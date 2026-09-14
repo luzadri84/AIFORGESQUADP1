@@ -255,3 +255,10 @@ tras consultas paralelas; estado Security STATELESS, sesión exclusivamente CSRF
 ## Evolución H005
 
 WeeklyRecurrence y BookingResult extienden POST con occurrences 1–12. BookingService conserva válidas y reporta rechazadas bajo el mismo bloqueo; excepción técnica revierte. UI presenta fechas rechazadas sin propietario. 35/35 tests, recorrido de dos usuarios y aceptación 3/4 en navegador. Datos visuales cancelados tras prueba, no borrados. DEC-011.
+
+## Evolución H006
+
+OracleConcurrencyTest demuestra contención real y rollback de escrituras Oracle.
+JWT condicionado y AzureIdentityAdapter/providers compilan; JwtValidationTest
+verifica claims/identidad, no Azure real. 39/39 pruebas, frontend build/test y audit
+sin vulnerabilidades reportadas en este lockfile. DEC-012; el informe final precisa límites.

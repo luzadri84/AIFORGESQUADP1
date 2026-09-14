@@ -118,23 +118,23 @@ No duplicar estados en índices de handoffs. Conservar IDs y añadir los nuevos 
 
 ## T011 Verificar concurrencia, rollback técnico y seguridad con Oracle real
 
-- [ ] T011 Verificar concurrencia, rollback técnico y seguridad con Oracle real en backend: tests integración y scripts de ejecución existentes.
+- [x] T011 Verificar concurrencia, rollback técnico y seguridad con Oracle real en backend: tests integración y scripts de ejecución existentes.
 
 - Dependencias: T010.
 - Handoff: H006.
 - Aceptación: Dos transacciones con sala vacía: un 201, un 409 y una fila; fallo técnico revierte pedido; autorización/CSRF/rangos/cancelación comprobados.
-- Situación: pendiente; inspección H001 confirma que esta funcionalidad no existe.
-- Evidencia: sin prueba funcional ejecutada; ver alcance real de H001.
+- Situación: completada; DEC-012.
+- Evidencia: verify 39/39; OracleConcurrencyTest HTTP/Oracle (201+409+1 fila y rollback tras flush), JwtValidationTest; adaptadores MSAL compilan, Basic sin Azure, npm ls correcto y audit 0. Azure real no verificado.
 
 ## T012 Preparar MSAL/Resource Server y revisar dependencias finales
 
-- [ ] T012 Preparar MSAL/Resource Server y revisar dependencias finales en frontend: adaptador/providers; backend: configuración modo JWT condicionada.
+- [x] T012 Preparar MSAL/Resource Server y revisar dependencias finales en frontend: adaptador/providers; backend: configuración modo JWT condicionada.
 
 - Dependencias: T004, T008.
 - Handoff: H006.
 - Aceptación: Adaptadores reales compilan, Basic no requiere Azure, no peers forzados, scope de revisión de dependencias declarado; Azure real no acreditado.
-- Situación: pendiente; inspección H001 confirma que esta funcionalidad no existe.
-- Evidencia: sin prueba funcional ejecutada; ver alcance real de H001.
+- Situación: completada; DEC-012.
+- Evidencia: verify 39/39; OracleConcurrencyTest HTTP/Oracle (201+409+1 fila y rollback tras flush), JwtValidationTest; adaptadores MSAL compilan, Basic sin Azure, npm ls correcto y audit 0. Azure real no verificado.
 
 ## T013 Construir WAR y cerrar verificación local y documentación candidata
 
