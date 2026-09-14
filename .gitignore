@@ -1,0 +1,10 @@
+.env
+.env.*
+!.env.example
+.local/
+**/node_modules/
+**/target/
+**/dist/
+**/.angular/
+*.eml
+*.log
