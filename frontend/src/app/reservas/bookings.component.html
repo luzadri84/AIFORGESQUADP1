@@ -7,7 +7,8 @@
 <form [formGroup]="form" (ngSubmit)="create()" class="grid gap-4 mt-6">
 <label for="space">Espacio</label><select id="space" formControlName="spaceId">@for(space of spaces();track space.id){<option [ngValue]="space.id">{{space.name}} · {{space.capacity}} personas</option>}</select>
 <label for="start">Inicio</label><input id="start" type="datetime-local" formControlName="startsAt">
-<label for="end">Fin</label><input id="end" type="datetime-local" formControlName="endsAt">
+<label for="end">Fin</label><input id="end" type="datetime-local" formControlName="endsAt" [attr.aria-invalid]="form.hasError('bookingRange')" [attr.aria-describedby]="form.hasError('bookingRange') ? 'range-error' : null">
+@if(form.hasError('bookingRange')){<p id="range-error" role="alert" class="error">La fecha y hora de fin deben ser posteriores al inicio.</p>}
 <label for="occurrences">Ocurrencias semanales</label><input id="occurrences" type="number" min="1" max="12" formControlName="occurrences"><small class="muted">1 = reserva individual. Hasta 12 semanas, incluida la primera; conservamos los horarios disponibles.</small>
 <p-button type="submit" label="Reservar espacio" [loading]="busy()" [disabled]="form.invalid||busy()||loading()" />
 </form></section>

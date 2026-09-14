@@ -2,7 +2,7 @@
 
 ## Objetivo y alcance
 
-Trabajar exclusivamente T008. Los criterios, dependencias y estados están en
+Trabajar T008 y su corrección posterior T016, según alcance solicitado. Los criterios, dependencias y estados están en
 [tasks.md](../specs/001-booking-espacios/tasks.md); no mantener otro tablero aquí.
 
 ## Contexto de entrada
@@ -39,3 +39,19 @@ El 403 real tras lecturas paralelas llevó a STATELESS para contexto de segurida
 sesión explícita solo CSRF, protección activa. Comprobación reproducible: iniciar
 backend/frontend con scripts/app-process.sh dentro de dev; URL http://localhost:4200/.
 Claves en .local/runtime/booking.properties, no impresas. Siguiente H005 T009/T010.
+
+## Corrección posterior T016 — DEC-014, 2026-09-14
+
+Reporte de captura del usuario: inicio/fin iguales y botón cargando. Se añadió
+bookingRangeValidator de FormGroup, mensaje junto a Fin y bloqueo de envío inválido;
+BookingApi limita espera a 15 s, finalize libera estado y nunca se reintenta POST.
+Favicon vacío evita el 404 accesorio. No cambiar servidor/seguridad/datos ni atribuir
+sin pruebas los mensajes de extensiones al fallo. La causa exacta de la espera
+inicial no quedó identificada; repetición instrumentada recibió error y finalizó.
+
+ngc/build y 13 tests frontend correctos; tiempo virtual para timeout, no corte de red
+real. Navegador verificó igualdad, corrección, creación #157, duplicado y cancelación
+propia; #157 quedó CANCELLED. npm test compila el servicio real antes de probarlo.
+Comando dentro de dev: cd frontend && npm test && npm run build. URL localhost:4200.
+Estado en tasks.md, evidencia en VERIFICACION_FINAL. Commit por T016/DEC-014; sin push.
+No quedan tareas locales del reporte; T015 sigue externo, T014 no aplica.

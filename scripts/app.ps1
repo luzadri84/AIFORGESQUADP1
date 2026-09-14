@@ -58,7 +58,7 @@ try {
         'verify' {
             Compose @('exec','-T','dev','bash','scripts/app-process.sh','stop')
             Run-Bash 'bash mvnw -B -ntp -f backend/pom.xml verify'
-            Run-Bash 'cd frontend && npm run check && npm run build && npm test'
+            Run-Bash 'cd frontend && npm run build && npm test'
             Run-Bash 'bash scripts/jdbc-check.sh read'
             foreach ($ignored in @('.local/restore-key.pem','.local/runtime/booking.properties','.local/secrets/app-password','.env')) {
                 & git check-ignore -q -- $ignored

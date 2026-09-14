@@ -100,3 +100,12 @@ Servlet 5+ y WebLogic documenta Java EE 7. Fuentes oficiales consultadas entonce
 La ejecución local usa Tomcat administrado por Boot dentro del WAR, autorizada en
 DEC-007. No certifica ni sustituye la obligación de aclarar el runtime externo.
 No despliegue público, push ni implementación de ejercicios de sustentación.
+
+## Corrección posterior de T016 — DEC-014
+
+Reporte del usuario: fechas iguales y botón esperando. Validación de rango en
+FormGroup, aviso junto a Fin y bloqueo de envío inválido. BookingApi aplica timeout
+RxJS de 15 segundos sin reintento automático; no implica rollback confirmado.
+Tests con FormGroup real y servicio compilado, HTTP simulado/tiempo virtual;
+navegador para igualdad, corrección, creación, conflicto y cancelación.
+No se altera API/SQL/seguridad; no atribuir sin evidencia la espera a extensiones.

@@ -77,13 +77,16 @@ Acceso: `login.component.ts` → `AuthService.login` → `/api/me` → `/api/csr
 al escribir añade el token. `api-path.ts` excluye URLs externas/absolutas. No hay
 persistencia de Basic en localStorage ni envío de usuario en el DTO de reservas.
 
-Crear: `BookingsComponent.create` valida el formulario tipado, agrega offset -05:00
+Crear: `BookingsComponent.create` valida el formulario tipado; `bookingRangeValidator`
+rechaza igualdad/rango inverso con aviso junto a Fin antes de enviar (T016/DEC-014). Agrega offset -05:00
 y llama `BookingApi.create`. `BookingController` valida `BookingRequest`; obtiene
 `Principal.getName()` y llama `BookingService.create`. La transacción expande
 semanas con `WeeklyRecurrence.expand`, bloquea Espacio con `lockById`, consulta
 `BookingRepository.collisions`, guarda con `saveAndFlush` las válidas y devuelve
 `BookingResult`. El controlador elige 201/200/409 y la pantalla muestra creadas y
-rechazos por fecha, luego actualiza la lista. No se reintenta POST automáticamente.
+rechazos por fecha, luego actualiza la lista. BookingApi limita la espera a 15 segundos;
+finalize libera los controles. Un timeout no demuestra rollback: consultar la lista
+antes de volver a reservar. No se reintenta POST automáticamente.
 
 Consultar: `BookingApi.own` → GET `/api/bookings` → `BookingService.own` → consulta
 por propietario, ACTIVE y `endsAt > now(clock)`, ordenada. Incluye reservas iniciadas
@@ -165,6 +168,7 @@ Todas las clases Java se ubican bajo `backend/src/test/java/local/booking/`.
 | FR005 carrera y rollback técnico | `booking/OracleConcurrencyTest`, dos clientes HTTP/Oracle, fixture aislada |
 | FR010 extensión compilable y claims | `security/JwtValidationTest`, build Java/Angular; no Azure real |
 | FR008/011 UI strict y límite credenciales | `npm run check`, `npm run build`, `npm test`; navegador US1–US3 |
+| T016 fechas y recuperación de espera | `frontend/test/booking-range.test.mjs`, `booking-timeout.test.mjs`; Angular FormGroup y BookingApi reales, HTTP simulado/tiempo virtual; navegador para intervalo inválido y válido |
 | Infraestructura original | `jdbc-check.sh read`, comparación privada y ciclo stop/start |
 
 La carrera usa bloqueo JDBC externo para observar dos entradas al repositorio antes
@@ -175,7 +179,8 @@ no una caída física de Oracle ni ensayo de recuperación de desastres.
 
 En navegador: ana creó/canceló #55 y verificó rechazo duplicado. Ana reservó la segunda
 semana #72; bruno obtuvo #73–75 y rechazo solo de esa segunda fecha; cada propietario
-canceló sus reservas. Quedaron cinco registros CANCELLED de verificación, sin borrar
+canceló sus reservas. Quedaron cinco registros CANCELLED en H007 y se añadió #157 CANCELLED al comprobar
+la corrección T016; se conserva esa historia sin borrar
 historia. Las pruebas automatizadas revierten transacciones o limpian exclusivamente
 sus espacios de fixture; las secuencias avanzan aunque haya rollback.
 
@@ -187,6 +192,8 @@ funcionalidades frente a agrupar capas globalmente. DEC-007 autorizó completar 
 tareas locales; Codex concretó seguridad (008), lock/transacción (009), UI y corrección
 CSRF (010), recurrencia (011), prueba concurrente y extensión (012), operación (013).
 Los fallos reales de CSRF, codificación UTF-8, polling y spy se conservan allí.
+DEC-014 registra el reporte posterior de fechas iguales, el diagnóstico limitado de
+la espera inicial y la corrección de validación cliente/timeout, sin inventar su causa.
 
 | Hito | Commit real |
 |---|---|

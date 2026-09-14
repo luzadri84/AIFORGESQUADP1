@@ -450,3 +450,34 @@ quince preguntas y seis ejercicios analíticos no implementados. Constitución 1
 solo corrección editorial de referencias a implementación, principios sin cambio.
 T015 permanece literal frente a 8ba745a, sin aclaración externa; T014 no aplica.
 No push ni despliegue. Informe: docs/VERIFICACION_FINAL.md. Próxima gestión T015.
+
+## DEC-014 — Validación visible y espera limitada tras reporte del usuario
+
+2026-09-14, America/Bogota. Origen: captura del usuario con inicio/fin iguales
+17/09/2026 17:08 y botón cargando. Codex reproduce envío y observa espera prolongada;
+HTTP directo/proxy devuelven 400. Al repetir con trazas temporales, el observable
+recibe error y finaliza; no se identifica una causa definitiva de la espera inicial.
+No atribuirla sin prueba a extensiones, Oracle o CSRF. Trazas sin secretos retiradas.
+
+Decisión del agente para T016: validator de grupo Angular con aviso junto a Fin,
+impedir rango igual/inverso antes de POST y timeout RxJS de 15 s para peticiones
+Booking. No reintentar escrituras: si vence espera, consultar lista porque Oracle
+podría haber confirmado. Servidor conserva sus validaciones y transacciones.
+Alternativa de depender solo del 400 deja mala respuesta visual y petición evitable;
+se mantiene como segunda barrera. No cambiar arquitectura ni reglas de producto.
+Favicon vacío explícito evita el 404 accesorio; no era prueba de fallo de la API.
+Resultados de pruebas y navegador se registrarán al cerrar T016.
+
+T016 verificado: npm test ejecuta ngc y 13 pruebas correctas: siete de FormGroup
+con fechas y corrección, cuatro de timeout por operación y una de HTTP 400/éxito
+sobre BookingApi compilado, más la prueba previa de rutas de credenciales. Timeout
+usa HTTP simulado/tiempo virtual; no se presenta como corte de red real en navegador.
+Build Angular correcto. Navegador: igualdad muestra aviso inmediato y botón desactivado;
+corregir fechas permite crear #157 (15/10/2038 10–11), duplicado informa conflicto y
+libera controles, cancelación propia deja lista vacía. Se conserva #157 CANCELLED.
+
+No se tocó backend, Oracle ni credenciales; sus 50 pruebas anteriores no se repitieron
+para atribuir nueva evidencia. npm test ahora compila primero el servicio real para
+la regresión; app.ps1 evita ejecutar ngc dos veces. T016 completada, no nueva funcionalidad.
+Logs ignorados .local/t016-frontend-tests.log y .local/t016-build.log. Commit T016/DEC-014,
+sin push. La causa exacta de la espera inicial sigue sin evidencia suficiente.

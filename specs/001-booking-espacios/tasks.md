@@ -2,7 +2,7 @@
 
 H001 reconcilió el repositorio main/5dcdb7c el 2026-09-14; T003 añadió persistencia y
 DEC-007 autorizó T004–T013. API/UI/Oracle y pruebas actuales en
-[VERIFICACION_FINAL](../../docs/VERIFICACION_FINAL.md). Una sola feature e IDs T001–T015.
+[VERIFICACION_FINAL](../../docs/VERIFICACION_FINAL.md). Una sola feature; IDs T001–T015 conservados, T016 añadida para el fallo reportado.
 
 **Alcance vigente:** base definitiva DEC-004; arquitectura humana DEC-005 por
 funcionalidades. DEC-007 autoriza la solución local sin pausas entre handoffs;
@@ -164,6 +164,15 @@ No duplicar estados en índices de handoffs. Conservar IDs y añadir los nuevos 
 - Aceptación: Aclaración recibida con alcance exacto, prueba del runtime acordado si se exige; no declarar WebLogic válido por tener WAR ni desplegar públicamente sin instrucción.
 - Situación: bloqueada por aclaración externa del runtime.
 - Evidencia: sin prueba funcional ejecutada; ver alcance real de H001.
+
+## T016 Corregir envío de intervalo inválido y recuperación del formulario
+
+- [x] T016 Corregir validación visible de fechas y espera sin límite en el cliente.
+- Dependencias: T008, T013.
+- Handoff: H004, seguimiento posterior a la entrega.
+- Aceptación: igualdad/rango inverso se señalan junto a Fin sin POST; corregir fechas permite reservar; errores/timeout liberan el formulario sin reintento automático; navegador y regresiones pertinentes.
+- Situación: completada; corrección y recuperación verificadas, DEC-014.
+- Evidencia: 13 tests frontend y build strict correctos; navegador muestra aviso/inhabilita igualdad, permite corregir/crear #157, rechaza duplicado y cancela #157. Timeout probado con tiempo virtual sobre BookingApi real (HTTP simulado), sin reintentos. API directa/proxy 400; causa de espera inicial no confirmada. Ver seguimiento T016 en docs/VERIFICACION_FINAL.md.
 
 ## Regla de cierre de la prueba
 

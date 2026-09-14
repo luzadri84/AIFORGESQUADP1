@@ -11,7 +11,7 @@
     "start": "ng serve --host 0.0.0.0 --port 4200",
     "build": "ng build",
     "check": "ngc -p tsconfig.app.json",
-    "test": "node --experimental-strip-types --test test/*.test.mjs"
+    "test": "npm run check && node --experimental-strip-types --test test/*.test.mjs"
   },
   "dependencies": {
     "@angular/animations": "20.3.31",

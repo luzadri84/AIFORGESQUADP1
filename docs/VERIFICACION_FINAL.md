@@ -96,3 +96,34 @@ publicación, push ni implementación de ejercicios. Logs locales ignorados:
 `.local/frontend-audit.json`, `.local/backend-dependencies.txt`; no se versionan logs masivos.
 Explicación, decisiones y pruebas rastreables en [EXPLICACION_IMPLEMENTACION](EXPLICACION_IMPLEMENTACION.md)
 y [BITACORA](BITACORA.md).
+
+## Seguimiento T016: error reportado tras la entrega (2026-09-14)
+
+La captura mostraba inicio/fin 17/09/2026 17:08. La reproducción inicial permitió
+el envío y mostró espera prolongada. HTTP directo en :8080 y proxy :4200 respondieron
+400; en la repetición con trazas temporales hubo error/finalización y aviso del servidor.
+No se identificó de forma concluyente la causa de la espera inicial; las trazas se
+retiraron y no se culpa a extensiones ni a Oracle sin evidencia.
+
+Corrección: validator de grupo para fin estrictamente posterior, aviso accesible junto
+a Fin, envío inválido desactivado y límite RxJS de 15 segundos para BookingApi. Ante
+espera agotada se liberan controles y se indica consultar antes de reintentar, sin
+reenvío automático ni promesa de rollback. Favicon vacío evita el 404 secundario.
+
+Verificado en esta corrección:
+
+- npm test: **13/13** (incluye ngc strict). FormGroup real con igualdad, inversión,
+  un minuto posterior, cambio de día, campos vacíos y valor inválido; corrección de
+  fechas devuelve formulario válido. BookingApi compilado: cuatro timeouts sin
+  reintentos, finalización, preservación de error 400 y respuesta correcta; HTTP
+  simulado y tiempo virtual. Se conserva la prueba de límite de credenciales.
+- npm run build: correcto, sin cambiar versiones ni instalar dependencias.
+- Navegador: igualdad de la captura muestra aviso/inhabilita botón; corregir permite
+  crear #157 (15/10/2038 10–11), duplicado informa rechazo y controles disponibles;
+  cancelar deja la lista propia vacía. #157 CANCELLED se suma a las cinco filas
+  históricas visuales; no se borraron ni modificaron reservas ajenas.
+- Backend y configuración Oracle sin cambios. Las 50 pruebas Java pertenecen al
+  cierre H007 anterior y no se volvieron a ejecutar en T016.
+
+Evidencia local ignorada: .local/t016-frontend-tests.log, .local/t016-build.log.
+T016/DEC-014 en tasks/bitácora/H004. Aplicación iniciada, sin push; T015 independiente.

@@ -4,6 +4,7 @@ import { DatePipe } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { forkJoin, finalize } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { bookingRangeValidator } from './booking-range.validator';
 import { BookingApi, Booking, Space, BookingResult } from './booking-api.service';
 @Component({selector:'app-bookings',standalone:true,imports:[ReactiveFormsModule,DatePipe,ButtonModule],templateUrl:'./bookings.component.html'})
 export class BookingsComponent implements OnInit {
@@ -11,10 +12,10 @@ export class BookingsComponent implements OnInit {
  readonly spaces=signal<Space[]>([]);readonly bookings=signal<Booking[]>([]);
  readonly busy=signal(false);readonly loading=signal(true);readonly error=signal('');readonly message=signal('');
  readonly rejected=signal<BookingResult['rejected']>([]);
- readonly form=this.fb.nonNullable.group({spaceId:[1,Validators.required],startsAt:['',Validators.required],endsAt:['',Validators.required],occurrences:[1,[Validators.required,Validators.min(1),Validators.max(12)]]});
+ readonly form=this.fb.nonNullable.group({spaceId:[1,Validators.required],startsAt:['',Validators.required],endsAt:['',Validators.required],occurrences:[1,[Validators.required,Validators.min(1),Validators.max(12)]]}, {validators:bookingRangeValidator});
  ngOnInit(){this.refresh();}
  refresh(){this.loading.set(true);this.error.set('');forkJoin({spaces:this.api.spaces(),bookings:this.api.own()}).pipe(finalize(()=>this.loading.set(false))).subscribe({next:r=>{this.spaces.set(r.spaces);this.bookings.set(r.bookings);},error:()=>this.error.set('No se pudo cargar la información. Puedes volver a intentar.')});}
- create(){if(this.form.invalid||this.busy())return;this.busy.set(true);this.error.set('');this.message.set('');this.rejected.set([]);const v=this.form.getRawValue();
+ create(){if(this.busy())return;if(this.form.invalid){this.form.markAllAsTouched();return;}this.busy.set(true);this.error.set('');this.message.set('');this.rejected.set([]);const v=this.form.getRawValue();
  this.api.create({spaceId:v.spaceId,startsAt:this.offset(v.startsAt),endsAt:this.offset(v.endsAt),occurrences:v.occurrences}).pipe(finalize(()=>this.busy.set(false))).subscribe({next:result=>{this.rejected.set(result.rejected);this.message.set(result.created.length+' reserva(s) creada(s). '+result.rejected.length+' rechazada(s).');this.refresh();},error:(e:HttpErrorResponse)=>this.fail(e)});}
  cancel(id:number){if(this.busy())return;this.busy.set(true);this.error.set('');this.message.set('');this.api.cancel(id).pipe(finalize(()=>this.busy.set(false))).subscribe({next:()=>{this.message.set('Reserva cancelada. El horario vuelve a estar disponible.');this.refresh();},error:(e:HttpErrorResponse)=>this.fail(e)});}
  private offset(value:string){return value+(value.length===16?':00':'')+'-05:00';}
