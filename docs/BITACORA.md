@@ -103,3 +103,27 @@ un argumento -DoutputFile que PowerShell había dividido; no fue un fallo del BO
 Resultado y límites completos en docs/VERIFICACION_LOCAL.md. El entorno queda
 local y activo. Starter, aplicación, WAR y verificación WebLogic siguen pendientes.
 No se implementaron funcionalidades de negocio ni se publicó nada.
+
+## 7. Transferencia a otro Windows 10 — 2026-09-14
+
+El usuario pidió subir el trabajo y las imágenes a luzadri84/AIFORGESQUADP1,
+conservar también los datos y cambiar el repositorio a privado antes de subir.
+El conector inicialmente autenticado como visualito no tenía permiso de escritura.
+Git Credential Manager terminó disponiendo de una sesión de luzadri84; se verificó
+esa identidad mediante API y se cambió la visibilidad a private, con push=true.
+
+Se exportaron las imágenes de desarrollo y Oracle, con SHA-256, y se comprobó
+su importación con docker load. El primer exportador tenía una función llamada
+Docker que ocultaba docker.exe; se corrigió el nombre y se repitió con éxito.
+Los bundles se limitan a ramas, tags y HEAD: no incluyen refs internas de herramientas.
+
+Se agregó respaldo consistente y restauración de Oracle con comprobación de
+volumen vacío y credenciales coherentes. El respaldo se generó con Oracle detenido,
+se verificó gzip y el listado tar, se reinició el servicio y JDBC confirmó que
+el marcador original seguía presente. No se borró ningún volumen.
+
+Para subir también datos/credenciales, se usa un sobre CMS cifrado con
+AES-256-GCM, RSA de 3072 bits y OAEP SHA-256 mediante OpenSSL 3.0.18 ya instalado.
+La clave privada queda fuera de Git y de los archivos que se envían a GitHub.
+La prueba de cifrado compara el tar descifrado con el original byte a byte.
+La restauración sobre otro equipo solo se acredita después de ejecutarla allí.

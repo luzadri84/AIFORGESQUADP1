@@ -92,7 +92,7 @@ $manifest = [ordered]@{
     images = $entries
 }
 [IO.File]::WriteAllText($manifestPath, ($manifest | ConvertTo-Json -Depth 6) + "`n")
-git bundle create (Join-Path $destination 'booking-source.bundle') --all
+git bundle create (Join-Path $destination 'booking-source.bundle') --branches --tags HEAD
 if ($LASTEXITCODE -ne 0) { throw 'No se pudo crear el bundle Git.' }
 git bundle verify (Join-Path $destination 'booking-source.bundle')
 if ($LASTEXITCODE -ne 0) { throw 'Bundle Git invalido.' }
