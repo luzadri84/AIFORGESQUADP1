@@ -356,3 +356,15 @@ no guarda identidad). La prueba de múltiples escrituras valida esta corrección
 no se desactiva CSRF ni se aceptan tokens ajenos.
 
 H002 final: Maven verify BUILD SUCCESS, 15 tests correctos (12 persistencia + 3 seguridad/contrato), WAR ejecutable. Sin endpoints de reservas aún; siguiente H003.
+
+## DEC-009 — Transacción y bloqueo por espacio
+
+2026-09-14, America/Bogota. Codex concreta T006/T007 según plan autorizado: intervalos
+semiabiertos, lectura de choques ACTIVE con desigualdades estrictas; PESSIMISTIC_WRITE
+sobre Espacio antes de consultar/crear/cancelar, en READ_COMMITTED. Alternativa de
+bloquear reservas deja sin protección una sala vacía; synchronized solo cubre una JVM.
+Propietario del principal, nunca body; listado propias ACTIVE con fin futuro; cancelación
+propia idempotente, ajena/ausente 404. Se conserva horario pasado permitido (sin requisito
+que lo prohíba). Reloj inyectable UTC. Pruebas reales y resultados al cierre H003.
+
+H003 verificado: Maven verify BUILD SUCCESS, 27 tests correctos; ciclo propio/ajeno, colisión/adyacencia y cancelación contra Oracle en transacciones revertidas. No prueba aún carrera entre peticiones, prevista T011.

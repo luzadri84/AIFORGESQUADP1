@@ -239,3 +239,7 @@ consulta catálogo. BookingRequest y ApiErrors validan contrato sin confiar camp
 extra. SecurityContractTest verifica dos identidades, CSRF y contrato MVC; 15 tests
 totales correctos. WAR ahora ejecutable con plugin Boot para uso local. DEC-008
 registra el fallo de renovación CSRF y corrección. Reservas/UI aún pendientes H003/H004.
+
+## Evolución H003
+
+BookingController → BookingService transaccional → SpaceRepository.lockById y BookingRepository implementan ciclo individual. TimeRangeTest y BookingApiTest elevan verify a 27 pruebas correctas. Propiedad del principal y filtros CSRF reales; todavía no navegador ni carrera concurrente. DEC-009.

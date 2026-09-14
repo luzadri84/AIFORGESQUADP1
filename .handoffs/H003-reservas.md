@@ -25,3 +25,12 @@ Sin ejecución de este bloque durante H001. Al trabajarlo registrar fecha/entorn
 responsable, archivos/diff, evidencia, referencias T/DEC y commit real si existe;
 actualizar el estado solo en tasks.md. Conservar el punto de continuación si se interrumpe.
 Siguiente bloque orientativo: H004, sujeto a autorización y dependencias.
+
+## Ejecución H003 — 2026-09-14, DEC-009
+
+T006/T007: creación 201, colisión 409, adyacencia permitida; listado propio y cancelación
+propia idempotente 204, ajena 404 sin cambios; hueco liberado. 27 pruebas totales
+correctas: 10 intervalos y 2 escenarios API/Oracle añadidos. MockMvc usa filtros y
+servicios reales; no se presenta como navegador. Rollback de transacciones de test.
+Comprobar con el comando Maven verify del README; código en booking y SpaceRepository.
+Commit T006 T007 DEC-009. Siguiente H004: cliente Angular y navegador real.

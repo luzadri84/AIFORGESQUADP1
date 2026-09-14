@@ -68,23 +68,23 @@ No duplicar estados en índices de handoffs. Conservar IDs y añadir los nuevos 
 
 ## T006 Implementar regla de intervalos y pruebas parametrizadas
 
-- [ ] T006 [US1] Implementar regla de intervalos y pruebas parametrizadas en backend: TimeRange o helper equivalente y tests.
+- [x] T006 [US1] Implementar regla de intervalos y pruebas parametrizadas en backend: TimeRange o helper equivalente y tests.
 
 - Dependencias: T002.
 - Handoff: H003.
 - Aceptación: Parciales a ambos lados, igualdad y contenciones chocan; ambas adyacencias y rangos separados permiten.
-- Situación: pendiente; inspección H001 confirma que esta funcionalidad no existe.
-- Evidencia: sin prueba funcional ejecutada; ver alcance real de H001.
+- Situación: completada; DEC-009.
+- Evidencia: TimeRangeTest (10 intervalos), BookingApiTest (2 escenarios transaccionales Oracle con MockMvc), verify 27 tests sin fallos; sin reservas duraderas de prueba.
 
 ## T007 Implementar crear, listar propias y cancelar con transacción y bloqueo de Espacio
 
-- [ ] T007 [US1] Implementar crear, listar propias y cancelar con transacción y bloqueo de Espacio en backend: servicio/repositories/controllers y tests API Oracle.
+- [x] T007 [US1] Implementar crear, listar propias y cancelar con transacción y bloqueo de Espacio en backend: servicio/repositories/controllers y tests API Oracle.
 
 - Dependencias: T003, T004, T005, T006.
 - Handoff: H003.
 - Aceptación: Creación 201, colisión 409, espacio ausente 404, listado propio, cancelación ajena 404 sin cambio, propia idempotente 204 y horario liberado.
-- Situación: pendiente; inspección H001 confirma que esta funcionalidad no existe.
-- Evidencia: sin prueba funcional ejecutada; ver alcance real de H001.
+- Situación: completada; DEC-009.
+- Evidencia: TimeRangeTest (10 intervalos), BookingApiTest (2 escenarios transaccionales Oracle con MockMvc), verify 27 tests sin fallos; sin reservas duraderas de prueba.
 
 ## T008 Integrar el primer recorrido Angular de reserva individual
 

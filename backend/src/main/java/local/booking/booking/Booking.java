@@ -34,6 +34,7 @@ public class Booking {
         this.space = space; this.ownerId = ownerId; this.startsAt = startsAt;
         this.endsAt = endsAt; this.status = status;
     }
+    public void cancel() { this.status=BookingStatus.CANCELLED; }
     public Long getId() { return id; }
     public Space getSpace() { return space; }
     public String getOwnerId() { return ownerId; }

@@ -7,6 +7,8 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 
 @SpringBootApplication
 public class BookingApplication extends SpringBootServletInitializer {
+    @org.springframework.context.annotation.Bean
+    java.time.Clock clock() { return java.time.Clock.systemUTC(); }
     public static void main(String[] args) {
         SpringApplication.run(BookingApplication.class, args);
     }
