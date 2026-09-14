@@ -39,3 +39,16 @@ tiempo, audiencia/subject. Providers/adaptador MSAL reales compilan, modo Basic 
 instancia Azure. No prueba de firma contra Azure ni tenant real. npm ls correcto y
 npm audit 0 vulnerabilidades; alcance frontend/lockfile, no auditoría integral Java.
 Angular build/test correctos. Siguiente H007: operación, prueba final y explicación.
+
+## Auditoría posterior T017 — DEC-015, 2026-09-14
+
+La auditoría de main 47a6af4 no corrige producción. [Informe](../docs/AUDITORIA_CUMPLIMIENTO_Y_SEGURIDAD.md)
+y [plan](../docs/PLAN_CORRECCIONES_AUDITORIA.md); estados solo en tasks.md. Se conservan
+las ejecuciones históricas anteriores, sin usarlas como certificación integral.
+76 casos Java distintos:70 pasan/6 fallan (dos ejecuciones), frontend 13/13/build y comparador 3/3.
+Regresiones rojas deliberadamente conservadas. Dependencias:65 coincidencias Maven/0 npm,
+con condiciones de aplicabilidad; no se afirman 65 vulnerabilidades explotadas.
+T018–T022 proponen correcciones; T023–T024 opcionales. T015 independiente, T014 no aplica.
+Dev Container completo no acreditado; no confundirlo con Compose funcional ni reabrir H001.
+La aplicación queda iniciada; verify ahora falla por los hallazgos y requiere start después.
+Siguiente: presentar diagnóstico y obtener alcance para correcciones, sin ejecutarlas aún.

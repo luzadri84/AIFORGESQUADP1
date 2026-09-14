@@ -1,0 +1,14 @@
+[
+  {
+    "knownForeignId": 204,
+    "status": 500,
+    "leaksBookingFields": false,
+    "limit": "No GET-by-id endpoint exists; fixture was already cancelled at this check."
+  },
+  {
+    "knownForeignId": 205,
+    "status": 500,
+    "leaksBookingFields": false,
+    "limit": "No GET-by-id endpoint exists; fixture was already cancelled at this check."
+  }
+]

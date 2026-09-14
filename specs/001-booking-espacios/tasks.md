@@ -177,3 +177,77 @@ No duplicar estados en índices de handoffs. Conservar IDs y añadir los nuevos 
 ## Regla de cierre de la prueba
 
 T013 permite preparar un resultado local candidato. T014 no aplica por DEC-004 y no es un bloqueo ni una tarea implementada. T015 mantiene su aceptación y bloqueo independiente: no acreditar compatibilidad de despliegue sin resolverlo. La descripción histórica de recepción/migración se conserva, pero no se ejecutará ni se inventará un defecto sustituto.
+
+## T017 Auditar cumplimiento y seguridad de la solución real
+
+- [x] T017 Auditar revisión 47a6af4, sin corregir código productivo.
+- Dependencias: T013, T016.
+- Handoff: H006 y H007.
+- Aceptación: fuentes originales distinguidas A/B/C/D, matriz, pruebas adversas/Oracle/navegador, dependencias y secretos, informes y propuesta mínima; conservar regresiones fallidas.
+- Situación: completada la auditoría disponible; **no equivale a aprobación de entrega**, DEC-015.
+- Evidencia: docs/AUDITORIA_CUMPLIMIENTO_Y_SEGURIDAD.md y docs/AUDITORIA_DEPENDENCIAS.md. 75 Java (69 pasan/6 fallan) + espera Oracle1/1; frontend13/13/build; comparador3/3. Seis fixtures visuales/HTTP CANCELLED, marcador original intacto. WebLogic/Dev Container completo/correo no verificables según informe.
+
+## T018 Resolver avisos de dependencias aplicables y acordar parches compatibles
+
+- [ ] T018 Resolver avisos de dependencias aplicables y acordar parches compatibles.
+- Dependencias: T017.
+- Handoff: H006.
+- Aceptación: Inventario antes/después, avisos aplicables tratados o descartados con evidencia, BOM compatible, pruebas seguridad/Oracle/WAR correctas.
+- Situación: pendiente de autorización para corregir; no implementada.
+- Evidencia de origen: AUD-01, DEC-015; docs/PLAN_CORRECCIONES_AUDITORIA.md.
+
+## T019 Rechazar coerción decimal de identificadores y ocurrencias
+
+- [ ] T019 Rechazar coerción decimal de identificadores y ocurrencias.
+- Dependencias: T017.
+- Handoff: H006.
+- Aceptación: Dos regresiones decimales devuelven400 sin escritura; enteros válidos mantienen comportamiento.
+- Situación: pendiente de autorización para corregir; no implementada.
+- Evidencia de origen: AUD-02, DEC-015; docs/PLAN_CORRECCIONES_AUDITORIA.md.
+
+## T020 Preservar estados HTTP de errores MVC
+
+- [ ] T020 Preservar estados HTTP de errores MVC.
+- Dependencias: T017.
+- Handoff: H006.
+- Aceptación: Tres regresiones400/404/405 pasan, 500solo inesperados, cuerpo redactado y Allow apropiado.
+- Situación: pendiente de autorización para corregir; no implementada.
+- Evidencia de origen: AUD-03, DEC-015; docs/PLAN_CORRECCIONES_AUDITORIA.md.
+
+## T021 Completar contrato OpenAPI real
+
+- [ ] T021 Completar contrato OpenAPI real.
+- Dependencias: T020.
+- Handoff: H007.
+- Aceptación: Seguridad Basic/CSRF y respuestas reales documentadas, prueba OpenAPI y uso Swagger verificados.
+- Situación: pendiente de autorización para corregir; no implementada.
+- Evidencia de origen: AUD-04, DEC-015; docs/PLAN_CORRECCIONES_AUDITORIA.md.
+
+## T022 Alinear Dev Container restaurado y mensajes de verificación
+
+- [ ] T022 Alinear Dev Container restaurado y mensajes de verificación.
+- Dependencias: T017.
+- Handoff: H007.
+- Aceptación: Ambos Compose con imágenes importadas, apertura real sin pérdida de datos/credenciales y JDBC read; sonda sin afirmaciones obsoletas.
+- Situación: pendiente de autorización para corregir; no implementada.
+- Evidencia de origen: AUD-05, DEC-015; docs/PLAN_CORRECCIONES_AUDITORIA.md.
+
+## T023 Evaluar permisos mínimos de ejecución Oracle
+
+- [ ] T023 Evaluar permisos mínimos de ejecución Oracle.
+- Dependencias: T017.
+- Handoff: H006.
+- Aceptación: Propuesta opcional aprobada antes de migrar permisos; CRUD verificado y separación de aprovisionamiento justificada.
+- Situación: opcional, pendiente de decisión; no implementada.
+- Evidencia de origen: AUD-07, DEC-015; docs/PLAN_CORRECCIONES_AUDITORIA.md.
+
+## T024 Evaluar límites y endurecimiento según exposición y volumen
+
+- [ ] T024 Evaluar límites y endurecimiento según exposición y volumen.
+- Dependencias: T017.
+- Handoff: H006.
+- Aceptación: Medición acotada y decisión justificada sobre consultas/listado/cabeceras; sin nuevas obligaciones o funcionalidades inventadas.
+- Situación: opcional, pendiente de decisión; no implementada.
+- Evidencia de origen: AUD-08, DEC-015; docs/PLAN_CORRECCIONES_AUDITORIA.md.
+
+T013 conserva la ejecución histórica local; su criterio de Dev Container queda matizado por AUD-05/T022. T012 conserva su revisión de dependencias anterior, cuyo alcance no era auditoría integral Java. T014 permanece No aplica; T015 conserva su texto y bloqueo independiente.

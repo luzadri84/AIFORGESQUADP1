@@ -1,5 +1,7 @@
 # Booking de espacios físicos
 
+> Auditoría T017: hay seis regresiones pendientes; verify falla actualmente. Consultar [dictamen y límites](docs/AUDITORIA_CUMPLIMIENTO_Y_SEGURIDAD.md) antes de interpretar las verificaciones históricas como cumplimiento integral.
+
 Aplicación local funcional sobre el repositorio definitivo (DEC-004): crear reservas,
 consultar las propias activas, cancelarlas y solicitar de 1 a 12 ocurrencias semanales
 con aceptación parcial. Dos identidades Basic de desarrollo; Oracle real conserva
@@ -86,3 +88,9 @@ El starter no llegará: T014 **No aplica por cambio de alcance**, no implementad
 no habrá migración ni defecto equivalente. Se preservan historial y evidencias
 previas de [H001](docs/INTEGRACION_H001.md), [T003](docs/VERIFICACION_T003.md) y
 [entorno original](docs/ENTORNO_LOCAL.md), que describen sus respectivas etapas.
+
+## Auditoría posterior — T017 / DEC-015
+
+La auditoría T017 conserva seis regresiones fallidas. El entorno local funciona con el WAR existente, pero verify falla hasta corregir los hallazgos y puede requerir app.ps1 start después. No se acredita entrega WebLogic ni Dev Container completo.
+
+[Diagnóstico y evidencia](docs/AUDITORIA_CUMPLIMIENTO_Y_SEGURIDAD.md) · [Plan de correcciones](docs/PLAN_CORRECCIONES_AUDITORIA.md).

@@ -109,3 +109,9 @@ RxJS de 15 segundos sin reintento automático; no implica rollback confirmado.
 Tests con FormGroup real y servicio compilado, HTTP simulado/tiempo virtual;
 navegador para igualdad, corrección, creación, conflicto y cancelación.
 No se altera API/SQL/seguridad; no atribuir sin evidencia la espera a extensiones.
+
+## Auditoría posterior — T017 / DEC-015
+
+T017 no reinicia la implementación: registra diagnóstico y regresiones del estado47a6af4. Los pendientes nuevos están en tasks.md; no se ejecutan correcciones con esta autorización.
+
+[Diagnóstico y evidencia](../../docs/AUDITORIA_CUMPLIMIENTO_Y_SEGURIDAD.md) · [Plan de correcciones](../../docs/PLAN_CORRECCIONES_AUDITORIA.md).

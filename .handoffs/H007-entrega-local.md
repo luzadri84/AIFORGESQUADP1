@@ -49,3 +49,16 @@ Comprobar: http://localhost:4200/; credenciales solo .local/runtime/booking.prop
 Comandos desde raíz: pwsh -NoProfile -File scripts/app.ps1 start (o verify/stop/status).
 Aplicación dejada iniciada. Próxima gestión: H008/T015, aclaración externa del runtime;
 T014 no aplica y no se ejecuta. No queda otra tarea local del alcance autorizado.
+
+## Auditoría posterior T017 — DEC-015, 2026-09-14
+
+La auditoría de main 47a6af4 no corrige producción. [Informe](../docs/AUDITORIA_CUMPLIMIENTO_Y_SEGURIDAD.md)
+y [plan](../docs/PLAN_CORRECCIONES_AUDITORIA.md); estados solo en tasks.md. Se conservan
+las ejecuciones históricas anteriores, sin usarlas como certificación integral.
+76 casos Java distintos:70 pasan/6 fallan (dos ejecuciones), frontend 13/13/build y comparador 3/3.
+Regresiones rojas deliberadamente conservadas. Dependencias:65 coincidencias Maven/0 npm,
+con condiciones de aplicabilidad; no se afirman 65 vulnerabilidades explotadas.
+T018–T022 proponen correcciones; T023–T024 opcionales. T015 independiente, T014 no aplica.
+Dev Container completo no acreditado; no confundirlo con Compose funcional ni reabrir H001.
+La aplicación queda iniciada; verify ahora falla por los hallazgos y requiere start después.
+Siguiente: presentar diagnóstico y obtener alcance para correcciones, sin ejecutarlas aún.

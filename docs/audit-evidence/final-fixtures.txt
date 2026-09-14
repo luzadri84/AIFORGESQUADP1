@@ -1,0 +1,16 @@
+
+	ID STATUS
+---------- ------------------------------------------------
+       204 CANCELLED
+       205 CANCELLED
+       206 CANCELLED
+       207 CANCELLED
+       208 CANCELLED
+       209 CANCELLED
+
+6 rows selected.
+
+
+AUDIT_SPACE_REMAINS
+-------------------
+		  0

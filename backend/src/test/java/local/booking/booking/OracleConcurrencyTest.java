@@ -77,4 +77,26 @@ class OracleConcurrencyTest {
   assertThat(firstWritten.get()).isTrue();
   assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM BKG_BOOKING WHERE SPACE_ID=?",Integer.class,spaceId)).isZero();
  }
+ @Test void auditLockTimeoutReturns503AndDoesNotCommit() throws Exception {
+  var c=client(USER);
+  CompletableFuture<HttpResponse<String>> request=null;
+  try(var connection=dataSource.getConnection()){
+   connection.setAutoCommit(false);
+   try(var statement=connection.prepareStatement("SELECT ID FROM BKG_SPACE WHERE ID=? FOR UPDATE")){
+    statement.setLong(1,spaceId);try(var rows=statement.executeQuery()){assertThat(rows.next()).isTrue();}
+   }
+   long started=System.nanoTime();
+   request=create(c,4);
+   var response=request.get(14,TimeUnit.SECONDS);
+   long elapsed=TimeUnit.NANOSECONDS.toMillis(System.nanoTime()-started);
+   assertThat(response.statusCode()).isEqualTo(503);
+   assertThat(response.body()).doesNotContain("ORA-", "SELECT", "Exception");
+   assertThat(elapsed).isBetween(8000L,14000L);
+   assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM BKG_BOOKING WHERE SPACE_ID=?",Integer.class,spaceId)).isZero();
+   connection.rollback();
+  } finally {
+   // Release the independent JDBC lock before awaiting any unexpected late completion.
+   if(request!=null&&!request.isDone())request.get(20,TimeUnit.SECONDS);
+  }
+ }
 }

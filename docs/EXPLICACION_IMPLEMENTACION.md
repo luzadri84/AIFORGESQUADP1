@@ -1,5 +1,7 @@
 # Explicación de la implementación construida
 
+> Auditoría T017: hay seis regresiones pendientes; verify falla actualmente. Consultar [dictamen y límites](AUDITORIA_CUMPLIMIENTO_Y_SEGURIDAD.md) antes de interpretar las verificaciones históricas como cumplimiento integral.
+
 Referencia de entrega local del 2026-09-14 (America/Bogota). Los estados se mantienen
 solo en [tasks.md](../specs/001-booking-espacios/tasks.md); decisiones e historia en
 [BITACORA](BITACORA.md). Este documento describe código ejecutado; los retos de la
@@ -352,3 +354,9 @@ Las seis modificaciones anteriores solo evalúan entendimiento. Azure real, TLS 
 operación pública requieren alcance/configuración independientes; no bloquean el MVP local.
 No hay pruebas de carga, auditoría de seguridad integral Java ni certificación productiva.
 El audit npm informa sobre el lockfile consultado, no sobre todo el sistema ni garantías futuras.
+
+## Auditoría posterior — T017 / DEC-015
+
+La auditoría posterior de la revisión47a6af4 matiza el cumplimiento: código local funcional, seis regresiones de contrato pendientes, dependencias y Dev Container por resolver; WebLogic no acreditado. Esta explicación conserva las preguntas/retos y no certifica por sí sola la entrega.
+
+[Diagnóstico y evidencia](AUDITORIA_CUMPLIMIENTO_Y_SEGURIDAD.md) · [Plan de correcciones](PLAN_CORRECCIONES_AUDITORIA.md).

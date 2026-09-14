@@ -243,3 +243,13 @@ creados por verificación visual; los fixtures automáticos están aislados.
 MSAL/JWT preparados y desactivados en Basic; no afirmar Azure real. T015 requiere
 aclaración externa y T014 no aplica. docs/EXPLICACION_IMPLEMENTACION.md describe
 la solución actual; sus retos solo son ejercicios de análisis. No push ni publicación.
+
+## Auditoría T017 — DEC-015, 2026-09-14
+
+Autorización vigente de esta fase: inspección, pruebas e informes, sin corregir aún
+producción/dependencias/configuración. Diagnóstico en docs/AUDITORIA_CUMPLIMIENTO_Y_SEGURIDAD.md.
+T018–T022 proponen correcciones, T023–T024 mejoras opcionales; estados en tasks.md.
+No interpretar esas propuestas como autorización de implementación. Las seis regresiones
+fallidas se conservan y hacen fallar verify; el WAR existente sigue operativo mediante start.
+T013 conserva evidencia histórica local, pero Dev Container completo sigue no acreditado.
+No reabrir H001, starter/T014 ni confundir WAR/Tomcat con WebLogic/T015.

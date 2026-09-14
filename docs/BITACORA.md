@@ -481,3 +481,44 @@ para atribuir nueva evidencia. npm test ahora compila primero el servicio real p
 la regresión; app.ps1 evita ejecutar ngc dos veces. T016 completada, no nueva funcionalidad.
 Logs ignorados .local/t016-frontend-tests.log y .local/t016-build.log. Commit T016/DEC-014,
 sin push. La causa exacta de la espera inicial sigue sin evidencia suficiente.
+
+## DEC-015 — Auditoría independiente del estado implementado
+
+2026-09-14, America/Bogota. Origen y decisión del usuario: auditar la solución
+terminada, priorizar seguridad, comprobar código y originales, conservar datos/historia,
+no corregir todavía producción/dependencias/configuración. El agente decide ejecutar
+T017 dentro de H006/H007 y reutilizar tasks como único estado. No se infiere aprobación
+de parches ni cambio de arquitectura. Starter/defecto excluidos, WebLogic independiente.
+
+Alternativa de aceptar pruebas anteriores como certificación descartada por la instrucción
+humana: se revisó main 47a6af4, árbol limpio y 18 commits, originales AGENTS/historia DOCX,
+especificaciones y código. Correo no localizado; no se atribuye su lectura a esta auditoría.
+Se añadieron AuditSecurityTest y una prueba real de espera a OracleConcurrencyTest.
+75 casos Java:69 pasan/6 fallan; prueba posterior de espera 1/1; frontend 13/13 y build.
+Los fallos se conservan: dos coerciones decimales, tres errores MVC500 y OpenAPI incompleto.
+No se cambiaron tests para ocultarlos ni se ejecutó corrección productiva.
+
+La espera Oracle devolvió503 en 8–14 s, cero filas; carrera y rollback previo pasaron con
+conexiones reales. Navegador: Ana/Bruno, recurrencia 3+1 y 0+4, listas separadas, texto
+inocuo escapado, teclado y fechas iguales. Se verificó cada cancelación tras observar
+que clics durante busy podían ignorarse; seis fixtures #204–209 quedaron CANCELLED,
+espacio temporal #170 retirado sin reservas. No se canceló trabajo preexistente.
+
+Revisión de permisos automática rechazó consulta OSV por envío de nombres/versiones
+derivados de repositorio privado. No se realizó ni se cambió de destino para eludirla.
+Alternativa segura aceptada: catálogos públicos completos y comparación local;65 avisos
+por versión Maven,0 npm, no 65 explotaciones. Se corrigió el comparador auxiliar para unir
+intervalos y se probaron3 casos de fronteras; el conteo no cambió. No se actualizaron paquetes.
+Avisos/scopes/condiciones y discrepancias de familias Spring están en el anexo.
+
+Auditoría de secretos conocidos/patrones en 274 blobs: sin coincidencias, con límites
+expresos; imágenes/WAR revisados sin revelar valores. BOOKING conserva rol de desarrollo
+amplio, registrado como recomendación D, no requisito inventado. Oracle healthy, JDBC read
+coincide con marcador original, puertos localhost. Semillas repetidas:0 filas cada vez.
+
+Conclusión del agente: local funcional con hallazgos; seguridad no certificada integralmente;
+entrega WebLogic bloqueada T015 y Dev Container no acreditado plenamente. T018–T022 son
+correcciones propuestas pendientes de autorización; T023–T024 opcionales. Informes y
+regresiones se registran en commit T017/DEC-015, sin push. El WAR existente queda iniciado.
+Las seis regresiones harán fallar verify hasta corregir; usar start después de una
+verificación fallida. No confundir HEAD auditado con commit posterior de informes.
