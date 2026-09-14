@@ -205,3 +205,15 @@ decisión humana DEC-005: organización por funcionalidades.
   atribuir al usuario elecciones autónomas del agente. La siguiente fase requiere
   la decisión de arquitectura prevista en Prompt A, ya recibida en DEC-005. La
   continuación a T003 fue autorizada por el cambio de alcance DEC-004.
+
+## Base implementada T003 — 2026-09-14
+
+DEC-006 concreta la persistencia de DEC-005: backend/pom.xml (WAR, Boot 3.3.13,
+Java 21), paquetes local.booking.booking y local.booking.space, entidades/repositorios,
+OffsetDateTime/NATIVE y TIMESTAMP(9) WITH TIME ZONE. SQL V001 aplicado explícitamente,
+semillas insert-only, Hibernate validate y SQL automático desactivado. Pruebas
+transaccionales con Oracle existente, sin H2 ni create-drop. No reaplicar V001
+ni resetear datos/marker; ver docs/VERIFICACION_T003.md y scripts/booking-db.ps1.
+No existen todavía controladores, servicios de reservas, configuración Basic/CSRF
+propia ni UI. Security en el POM no completa T004; el WAR base no completa T013/T015.
+La primera tarea pendiente es T004. Mantener todos los estados en tasks.md.

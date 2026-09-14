@@ -1,11 +1,11 @@
 # Tareas de Booking
 
 Reconciliado en H001 el 2026-09-14 contra main/5dcdb7c y el entorno restaurado.
-No hay aplicación Booking ni WAR. Una sola feature, mismos IDs T001–T015 de las
-semillas. [Spec](spec.md), [plan](plan.md), [evidencia](../../docs/INTEGRACION_H001.md).
+En H001 solo existían sondas; T003 incorpora ahora entidades/SQL y un WAR base,
+sin API ni UI Booking. Una sola feature, mismos IDs T001–T015 de las semillas. [Spec](spec.md), [plan](plan.md), [evidencia](../../docs/INTEGRACION_H001.md).
 
-**Alcance vigente (DEC-004):** repositorio actual como base definitiva; siguiente
-tarea autorizada T003. Arquitectura decidida por el usuario en DEC-005: monolito
+**Alcance vigente (DEC-004):** repositorio actual como base definitiva; la continuación
+autorizada se concretó en T003. Primera pendiente: T004. Arquitectura decidida por el usuario en DEC-005: monolito
 por funcionalidades; DEC-003 se conserva como propuesta previa.
 T014 no aplica; T015 permanece independiente. No se autorizan todas las tareas
 del backlog por este cambio.
@@ -39,13 +39,13 @@ No duplicar estados en índices de handoffs. Conservar IDs y añadir los nuevos 
 
 ## T003 Preparar entidades Oracle, esquema y espacios semilla idempotentes
 
-- [ ] T003 Preparar entidades Oracle, esquema y espacios semilla idempotentes en backend/ propuesto: base Maven WAR, paquetes space/booking y SQL versionado; conservar infra/checks y reutilizar conexión existente.
+- [x] T003 Preparar entidades Oracle, esquema y espacios semilla idempotentes en backend/: base Maven WAR, paquetes space/booking y SQL versionado; conservar infra/checks y reutilizar conexión existente.
 
 - Dependencias: T002.
 - Handoff: H002.
 - Aceptación: Conexión con usuario de aplicación, FK/check/estados, semillas repetibles y round trip temporal sin pérdida de instante.
-- Situación: pendiente; inspección H001 confirma que esta funcionalidad no existe.
-- Evidencia: sin prueba funcional ejecutada; ver alcance real de H001.
+- Situación: completada; autorización DEC-004, arquitectura DEC-005, detalle técnico DEC-006.
+- Evidencia: docs/VERIFICACION_T003.md; Maven verify genera WAR y pasa 12 pruebas Oracle reales, seed repetido sin duplicar/sobrescribir, 3 espacios/0 reservas al finalizar; marcador original conservado.
 
 ## T004 Implementar identidad Basic, CSRF y manejo seguro de credenciales
 
@@ -144,8 +144,8 @@ No duplicar estados en índices de handoffs. Conservar IDs y añadir los nuevos 
 - Dependencias: T011, T012.
 - Handoff: H007.
 - Aceptación: WAR generado y evidencia disponible de ejecución; flujo limpio devcontainer+Oracle+Angular; historial y secretos revisados; bloqueos externos visibles; docs/EXPLICACION_IMPLEMENTACION.md explica archivos y flujos reales, incluye al menos 12 preguntas respondidas y 6 retos con impacto en código, riesgos y pruebas; no implementar esos retos como ampliación del MVP. Cumplir íntegramente las 12 secciones y el contenido por reto de docs/ENTREGA_Y_STARTER.md (sección T013).
-- Situación: pendiente; inspección H001 confirma que esta funcionalidad no existe.
-- Evidencia: sin prueba funcional ejecutada; ver alcance real de H001.
+- Situación: pendiente; T003 produjo el WAR base, pero faltan aplicación, ejecución completa y criterios de cierre.
+- Evidencia parcial: docs/VERIFICACION_T003.md. No hay todavía verificación de entrega funcional ni despliegue.
 
 ## T014 Inspeccionar starter recibido e integrar su defecto y regresión
 

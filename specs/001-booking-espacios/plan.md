@@ -5,8 +5,9 @@
 
 ## Summary
 
-Conservar infraestructura comprobada y proponer un monolito pequeño con API Spring
-Boot y UI Angular. H001 solo integra metodología; no existe todavía aplicación.
+Conservar infraestructura comprobada y construir un monolito pequeño con API Spring
+Boot y UI Angular. H001 integró metodología; T003 añade persistencia y WAR base,
+sin API ni UI de Booking todavía.
 Continuación a T003 autorizada por DEC-004; arquitectura elegida por el usuario
 en DEC-005: monolito organizado por funcionalidades. Base actual definitiva.
 
@@ -29,8 +30,9 @@ en DEC-005: monolito organizado por funcionalidades. Base actual definitiva.
 Fuentes locales: [POM](../../infra/checks/pom.xml),
 [lockfile](../../infra/checks/frontend/package-lock.json),
 [Dockerfile](../../.devcontainer/Dockerfile), [verificación previa](../../docs/VERIFICACION_LOCAL.md)
-y [evidencia H001](../../docs/INTEGRACION_H001.md). Son versiones de sondas,
-no dependencias de una aplicación inexistente. No reinstalar ni volver a Angular 20.3.0.
+y [evidencia H001](../../docs/INTEGRACION_H001.md). Las sondas conservan esas versiones;
+backend/pom.xml adopta Boot 3.3.13/JPA/Security/JDBC para la base T003. SpringDoc
+y el cliente siguen siendo sondas, sin API/UI funcional. No reinstalar ni volver a Angular 20.3.0.
 
 ## Project Structure: real y conservada
 
@@ -41,7 +43,8 @@ infra/checks/pom.xml            resolución de dependencias; packaging=pom
 infra/checks/JdbcCheck.java     conexión y marcador técnico (check/read/write)
 infra/checks/frontend/          sonda Angular strict, no UI Booking
 infra/templates/               ejemplos de properties y proxy
-scripts/                       operación, transferencia y verificaciones existentes
+backend/                       WAR base, entidades/repositorios booking y space, SQL y tests Oracle
+scripts/                       operación existente más booking-db.ps1 (schema/seed/status)
 .mvn/ y mvnw                   wrapper existente
 .specify/ y .agents/skills/     metodología integrada en H001
 specs/001-booking-espacios/     spec, plan, tasks y trazabilidad
@@ -49,10 +52,10 @@ specs/001-booking-espacios/     spec, plan, tasks y trazabilidad
 docs/BITACORA.md                bitácora original ampliada, no duplicada
 ```
 
-No existen `backend/` ni `frontend/` de aplicación. Estas rutas son propuestas para
-H002/H004: backend Maven WAR con paquetes `booking`, `space`, `security`; frontend
-Angular standalone. `infra/checks` seguirá siendo infraestructura y no se renombra
-para aparentar funcionalidad. No se generó ningún scaffold en H001.
+`backend/` existe desde T003; contiene solo la base de persistencia, no endpoints.
+`frontend/` sigue propuesto para H004, Angular standalone. No se crean security/errors
+vacíos. `infra/checks` se conserva como infraestructura. H001 no generó scaffold;
+la evidencia posterior está en [VERIFICACION_T003](../../docs/VERIFICACION_T003.md).
 
 ## Arquitectura elegida (DEC-005; propuesta previa DEC-003)
 
@@ -78,7 +81,9 @@ Ambas opciones deben conservar propiedad, CSRF, concurrencia y pruebas en Oracle
 
 - Datos: Espacio semilla y Reserva por ocurrencia, ACTIVE/CANCELLED, propietario
   del principal. Fechas ISO 8601 con offset; comparar instantes y mostrar Bogotá.
-  Probar round trip temporal Oracle antes de confiar en el mapeo.
+  T003 verificó el round trip con OffsetDateTime/NATIVE y TIMESTAMP(9) WITH TIME ZONE.
+  DDL explícito V001, seed insert-only, Hibernate validate; DEC-006. El propietario
+  desde principal y el contrato de transporte aún deben implementarse.
 - Colisión: `existente.inicio < solicitado.fin AND existente.fin > solicitado.inicio`,
   mismo espacio/ACTIVE. Adyacencias permitidas. Bloquear la fila Espacio con
   PESSIMISTIC_WRITE antes de consultar bajo READ_COMMITTED; todas las escrituras
@@ -118,10 +123,10 @@ No hay investigación/modelo/contratos generados artificialmente para dar por he
 
 ## Dependencias y siguiente paso
 
-T003 es la primera tarea funcional y está autorizada por DEC-004 con la arquitectura
-DEC-005: preparar entidades/SQL/semillas sobre la base
-existente y verificar el mapeo temporal. T004/T005 completan seguridad y contrato.
-La orden actual permite continuar a T003 sin volver a integrar H001.
+T003 se ejecutó bajo DEC-004/005 y se verificó según DEC-006. La siguiente tarea
+pendiente es T004: identidad Basic y CSRF; después T005 fija contrato. La continuación
+autorizada en esta intervención se concretó en T003; no se ejecutó todo H002 ni
+se reinició H001. Consultar tasks.md antes de la siguiente intervención.
 
 Starter excluido por DEC-004: T014 No aplica por cambio de alcance; no habrá
 recepción, comparación, migración ni investigación de un defecto sembrado.

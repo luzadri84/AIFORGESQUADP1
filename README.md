@@ -1,9 +1,10 @@
 # Booking — repositorio base definitivo
 
 Este repositorio es la base definitiva por decisión del usuario (DEC-004).
-El starter queda fuera de alcance. La aplicación Booking todavía está por construir.
-Se preparan Docker Compose, devcontainer, Oracle real y sondas de dependencias,
-compilación y persistencia. No hay funcionalidades de negocio ni despliegue público.
+El starter queda fuera de alcance. T003 incorpora la base Maven WAR, entidades y
+repositorios por funcionalidades y esquema Oracle con espacios semilla. Se conservan
+Docker Compose, devcontainer y sondas. Todavía no hay API ni interfaz de reservas
+ni despliegue público. [Resultado T003](docs/VERIFICACION_T003.md).
 
 Consulte [uso y configuración local](docs/ENTORNO_LOCAL.md),
 [evidencia de verificación](docs/VERIFICACION_LOCAL.md) y
@@ -26,7 +27,8 @@ que abrir todavía. La preparación original sigue documentada en ENTORNO_LOCAL.
 Para conservar la evidencia restaurada usar el modo `read` anterior. Si se restaura
 en otra máquina, seguir TRANSFERIR_EQUIPO.md e importar datos antes de prepare.
 
-La parada conserva los datos. La aplicación, su WAR y sus pruebas quedan pendientes de desarrollo autorizado;
+La parada conserva los datos. El WAR base y sus pruebas de persistencia existen;
+la aplicación funcional y su verificación de entrega siguen pendientes;
 T014 es No aplica por cambio de alcance, conservada como trazabilidad y no implementada. Boot 3 y WebLogic 12.2.1.4 tienen una incompatibilidad de runtime.
 Para cambiar de equipo, consulte [transferencia de imagenes e historial](docs/TRANSFERIR_EQUIPO.md).
 
@@ -46,8 +48,23 @@ Arquitectura elegida por el usuario (DEC-005): monolito Spring Boot por funciona
 booking/space/security, con errors solo si hay tratamiento compartido. Dentro de booking,
 controlador–servicio transaccional–Spring Data JPA. Angular standalone por acceso/reservas. Alternativa: puertos/adaptadores en el mismo
 monolito, con más interfaces/mapeos. Se conserva la infraestructura actual en ambas.
-La siguiente tarea autorizada es T003/H002; DEC-004 y DEC-005 permiten continuar
-con la base de datos y entidades, sin reiniciar H001.
+T003/H002 quedó verificada bajo DEC-006. La primera tarea pendiente es T004:
+identidad Basic, CSRF y manejo seguro de credenciales. No repetir H001 ni T003.
 
 [Explicación de la implementación real](docs/EXPLICACION_IMPLEMENTACION.md):
 se actualiza con código y pruebas, preguntas respondidas y ejercicios solo de análisis.
+
+## Base de persistencia T003
+
+En este equipo el esquema y las semillas ya están aplicados. Para consultar y verificar:
+
+```powershell
+pwsh -NoProfile -File scripts/booking-db.ps1 status
+docker compose -f compose.yaml -f .local/transfer/compose.images.yaml exec -T dev bash mvnw -B -ntp -f backend/pom.xml verify
+```
+
+Genera `backend/target/booking.war` y ejecuta pruebas transaccionales en Oracle real.
+No inicia HTTP ni despliega el WAR. Requiere Oracle saludable, secretos restaurados
+y conexión montada en dev. El primer Maven puede descargar dependencias.
+Preparación de una base nueva y límites de DDL: [VERIFICACION_T003](docs/VERIFICACION_T003.md).
+No ejecutar schema nuevamente aquí; seed conserva filas existentes, no las actualiza.

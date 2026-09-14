@@ -286,3 +286,41 @@ la narración y su estado en el momento en que se escribió.
 - Relación: DEC-003 conserva su origen histórico y queda resuelta en cuanto a organización
   por esta decisión; DEC-004 autoriza continuar a T003. Contratos/negocio fuera de T003
   no se implementan por esta confirmación. Git: DEC-004/DEC-005 en commit documental.
+
+
+## DEC-006 — Base JPA/Oracle aditiva con SQL explícito y pruebas transaccionales
+
+- Registro/hecho: 2026-09-14, America/Bogota; T003, decisión técnica del agente dentro
+  de DEC-004/DEC-005. Usuario eligió funcionalidades; no revisó cada clase/mapeo.
+- Problema: crear base de persistencia conservando Oracle restaurado y marcador.
+- Evidencia previa: USER_TABLES solo contiene ENVIRONMENT_PROBE, no objetos BKG_;
+  BOOKING/FREEPDB1 tiene CREATE TABLE/SEQUENCE. No se borran ni recrean datos actuales.
+- Decisión: backend Maven WAR con Boot 3.3.13/Java 21 y repositorios por funcionalidades;
+  BKG_SPACE/BKG_BOOKING, secuencias y constraints; semillas solo de espacios de desarrollo.
+  No endpoints, servicios de reservas ni autenticación propia de T004/T005 aún.
+- SQL versionado aplicado explícitamente con SQL*Plus existente; Hibernate validate,
+  inicialización automática desactivada. Alternativa: nuevo motor Flyway/Liquibase;
+  no requerido para una V001 y catálogo inicial. Futuras migraciones exigen revisión.
+- Seguridad de operación: V001 falla si ya hay objetos destino; no DROP/ALTER, no
+  sobrescritura. Oracle DDL hace commits implícitos: ante fallo parcial, inspeccionar
+  antes de continuar. Semillas MERGE insert-only preservan filas y ediciones existentes.
+- Tiempo: OffsetDateTime/NATIVE y TIMESTAMP(9) WITH TIME ZONE para probar conservación
+  de instante y nanosegundos. Sin afirmar todavía corrección de intervalos/concurrencia.
+- Pruebas: JPA/DataJpaTest contra Oracle real, validate y rollback de cada prueba;
+  sin H2/create-drop ni reservas duraderas. Las secuencias pueden avanzar por pruebas.
+- Dependencias: starter-test administrado por BOM existente; sin cambiar las versiones
+  ya verificadas ni instalar otra herramienta. Se resuelve por Maven existente.
+- Verificación ejecutada: schema aditivo aplicado; seed 3 filas y luego 0; guard de
+  reaplicación rechaza con ORA-20001. Maven verify final BUILD SUCCESS, 12 pruebas
+  Oracle, 0 fallos/errores/omitidas; WAR generado. Al finalizar: 3 espacios, 0 reservas,
+  marcador original legible, credenciales/token idénticos al respaldo y Oracle healthy.
+- Fallo real y corrección: primera ejecución 12 pruebas/6 fallos por buscar SQLException
+  en la causa más profunda; driver usa OracleDatabaseException allí. Se localiza ahora
+  SQLException en la cadena y se valida el código Oracle. Constraints correctas desde
+  primera ejecución. No es defecto sembrado ni se presenta como sustituto de T014.
+- Límites: sin API/UI, seguridad propia, colisiones o prueba de despliegue. No se repite
+  reinicio de restauración ni pruebas H001. T004 es la siguiente tarea pendiente.
+- Evidencia y fuentes técnicas: [VERIFICACION_T003.md](VERIFICACION_T003.md),
+  [explicación](EXPLICACION_IMPLEMENTACION.md) y tests reales en backend/.
+- Git: cambio de alcance/arquitectura confirmado en 75af194 antes de implementar;
+  código/evidencia T003 se registra en commit incremental con DEC-006. Sin publicación.

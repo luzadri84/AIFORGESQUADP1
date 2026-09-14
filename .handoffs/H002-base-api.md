@@ -15,14 +15,22 @@ Inspeccionar Git/código antes de actuar: aprovechar lo existente, no repetir tr
 
 ## Límites y evidencia exigida
 
-Reutilizar BOOKING/FREEPDB1, credenciales, scripts y sondas. No recrear la base ni el marcador. Entidades y esquema de negocio no existen. No añadir CRUD de salas/usuarios ni Azure real.
+Reutilizar BOOKING/FREEPDB1, credenciales, scripts y sondas. No recrear la base ni el marcador. T003 incorpora entidades y esquema aditivo; consultar su evidencia antes de tocar SQL. No añadir CRUD de salas/usuarios ni Azure real.
 
 Los criterios completos se mantienen en las tareas canónicas. Registrar comandos,
 resultados, pruebas omitidas/fallidas y alcance real; no inferir aprobación humana.
 
 ## Continuación
 
-Sin ejecución de este bloque durante H001. Al trabajarlo registrar fecha/entorno,
-responsable, archivos/diff, evidencia, referencias T/DEC y commit real si existe;
-actualizar el estado solo en tasks.md. Conservar el punto de continuación si se interrumpe.
-Siguiente bloque orientativo: H003, sujeto a autorización y dependencias.
+H001 no ejecutó este bloque. Continuación real T003 el 2026-09-14, America/Bogota,
+por Codex tras DEC-004/005; detalle técnico DEC-006. Commit documental previo
+`75af194`. [Informe T003](../docs/VERIFICACION_T003.md): archivos, comandos, primer
+fallo de aserción corregido, 12 pruebas Oracle correctas y WAR base generado.
+Las transacciones de prueba se revirtieron; hay tres espacios y ninguna reserva.
+Esquema V001 ya aplicado: no reaplicar ni borrar objetos. Marcador/secretos conservados.
+
+Siguiente tarea pendiente: T004, identidad Basic y CSRF con credenciales externas;
+no inferir que la dependencia Security del POM acredita su aceptación. T005 sigue
+al contrato. T003 no arrancó HTTP, añadió UI ni implementó servicios de reservas.
+Los estados se actualizan exclusivamente en tasks.md; no ejecutar todo el handoff
+por disponer de este contexto. H003 continúa después de dependencias y autorización.

@@ -6,8 +6,9 @@
 **Alcance actualizado por DEC-004:** el repositorio actual es la base definitiva.
 El starter y su defecto quedan excluidos; T014 no aplica y T015 sigue independiente.
 
-**Input**: Prompt A y semillas contrastadas con AGENTS y código real. No hay backend,
-frontend Booking, entidades ni WAR: solo infraestructura y sondas. El texto original
+**Input histórico H001**: Prompt A y semillas contrastadas con AGENTS y código real.
+Entonces solo había infraestructura y sondas. T003 incorpora ahora entidades Oracle,
+SQL/semillas y WAR base; siguen sin API ni frontend Booking. El texto original
 de AGENTS se conserva. Los adjuntos originales fueron registrados en la documentación
 previa; no se acredita una nueva recepción del starter ni revisión del correo en H001.
 
@@ -64,7 +65,7 @@ Notificaciones, administración de espacios, calendario drag and drop, RRULE com
 
 El criterio de terminado exige evidencia real de FR001–FR011 y resolver el componente vigente de FR012 con el evaluador (T015). T014 queda excluida por DEC-004. Si siguen pendientes externos, puede prepararse una entrega candidata, pero no declarar cumplimiento total. Handoffs y tareas terminadas no reemplazan pruebas ni la definición de terminado del evaluador.
 
-## Key Entities (diseño, todavía sin tablas de negocio)
+## Key Entities (entidades y tablas desde T003; operaciones todavía pendientes)
 
 - Espacio: id, nombre, tipo, capacidad y sede; catálogo semilla sin administración.
 - Reserva: espacio, propietario, inicio, fin y estado; vínculo con cada ocurrencia.
