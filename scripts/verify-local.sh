@@ -8,6 +8,14 @@ java -version
 node --version
 npm --version
 git --version
+# Scope Git trust to this explicit Windows bind mount, never to all directories.
+[[ -f /.dockerenv && "$PWD" == /workspace ]] || {
+  echo "Run this script inside the project's dev container (/workspace)." >&2
+  exit 1
+}
+git config --global --fixed-value --get-all safe.directory /workspace >/dev/null ||
+  git config --global --add safe.directory /workspace
+git status --short
 bash mvnw -version
 bash mvnw -B -ntp -f infra/checks/pom.xml dependency:build-classpath -Dmdep.outputFile=target/classpath.txt
 bash scripts/jdbc-check.sh check

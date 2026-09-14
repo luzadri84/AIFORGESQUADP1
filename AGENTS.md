@@ -105,7 +105,7 @@ La autorización actual se limita a infraestructura provisional, sin negocio ni 
 - Oracle Free 23.26.3-slim por digest, servicio oracle:1521/FREEPDB1, schema BOOKING,
   secretos locales ignorados, healthcheck y volumen persistente. No exponer Oracle.
 - Las dependencias exactas están en infra/checks: BOM Boot 3.3.13, SpringDoc 2.6.0,
-  Angular 20.3.0, CDK 20.2.0, PrimeNG 20.0.0, RxJS 7.8.2, Tailwind 3.4.17,
+  Angular core/compiler 20.3.31 y CLI 20.3.37, CDK 20.2.0, PrimeNG 20.0.0, RxJS 7.8.2, Tailwind 3.4.17,
   MSAL Angular 3.1.0 / Browser 3.28.1, TypeScript 5.9.2. No forzar peers ni relajar strict.
 - Las sondas no constituyen la aplicación. packaging=war, arranque del backend,
   seguridad Basic/CSRF, pruebas de negocio y defecto sembrado quedan pendientes del starter.

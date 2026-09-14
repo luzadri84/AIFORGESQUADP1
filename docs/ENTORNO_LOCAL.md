@@ -62,14 +62,14 @@ habitual; no es una imagen para publicar ni se debe compartir con terceros.
 ## Versiones y reproducción
 
 - Temurin JDK 21.0.10+7 y Node 22.22.0 en imágenes fijadas por digest.
-- npm incluido en la imagen Node; Git y utilidades heredados de su base por digest.
+- npm 10.9.4 y Git 2.39.5, incluidos en la imagen Node fijada por digest.
 - Maven 3.9.9, Wrapper oficial 3.3.4 de tipo only-script, distribución fijada por SHA-256.
 - Oracle Free: gvenzl/oracle-free:23.26.3-slim, índice por digest; soporte amd64/arm64
   verificado en el registro. Es una imagen comunitaria documentada por su mantenedor;
   la edición Oracle Free no acredita una edición empresarial.
 - BOM Spring Boot 3.3.13 sin sobrescribir versiones transitivas, SpringDoc 2.6.0.
   El BOM resuelve ojdbc11 21.9.0.0.
-- Dependencias de la sonda Angular: core/CLI/compiler 20.3.0, CDK 20.2.0,
+- Dependencias de la sonda Angular: core/compiler 20.3.31 y CLI 20.3.37, CDK 20.2.0,
   PrimeNG 20.0.0, Tailwind 3.4.17, RxJS 7.8.2, TypeScript 5.9.2,
   MSAL Angular 3.1.0 y Browser 3.28.1.
 
@@ -87,8 +87,8 @@ No crea tablas de negocio.
 Conserve el historial del starter real y compare estas configuraciones antes de
 trasladarlas. No reemplace su estructura ni su seguridad automáticamente.
 Las plantillas de infra/templates no están activadas: el datasource requiere
-JDBC_URL, JDBC_USER y JDBC_PASSWORD; cargar la contraseña desde el archivo local
-de forma privada cuando se configure el proceso real. Conserve Basic y CSRF.
+JDBC_URL y JDBC_USER; carga la contraseña app_password mediante configtree desde
+/run/secrets/. Esa plantilla aún no pertenece a un proceso Spring real. Conserve Basic y CSRF.
 
 El backend real debe usar packaging=war, SpringBootServletInitializer y Tomcat
 provided. Generación y arranque del WAR, pruebas del starter, build de su frontend,

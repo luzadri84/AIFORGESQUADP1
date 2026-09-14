@@ -59,3 +59,47 @@ Fuentes oficiales confirman la incompatibilidad de runtime Boot 3/WebLogic 12.2.
 MSAL 3 con Angular 20 requiere validación funcional posterior aunque resuelva peers.
 Resultados y fallos reales del arranque se registran en VERIFICACION_LOCAL.md.
 No se atribuyen al usuario decisiones o rechazos que no haya expresado.
+## 5. Verificación y corrección de dependencias
+
+El primer ciclo completó Maven Wrapper, resolución del BOM, JDBC a Oracle real,
+npm ci, ngc strict y persistencia tras restart. Oracle informó:
+Oracle AI Database 26ai Free Release 23.26.3.0.0; driver 21.9.0.0.0;
+schema BOOKING y PDB FREEPDB1.
+
+npm audit detectó 23 paquetes vulnerables (1 crítico, 13 altos, 8 moderados,
+1 bajo) con las versiones candidatas. Se verificaron los parches disponibles:
+core/compiler Angular 20.3.31 y CLI 20.3.37, dentro de la rama obligatoria.
+Decisión del agente: aplicarlos conservando los demás paquetes compatibles.
+No se ejecutó npm audit fix --force.
+
+El primer intento de actualizar el lockfile produjo ERESOLVE por referencias
+cruzadas a Angular 20.3.0. Se resolvió el manifiesto actualizado en una carpeta
+temporal limpia (.local/npm-resolution), sin forzar peers, y se copió el lockfile
+resultante. Esa resolución reportó cero vulnerabilidades. El árbol anterior
+permanece en el commit de infraestructura, no se inventó un defecto del starter.
+
+La CLI Dev Containers 0.89.0 de VS Code leyó devcontainer.json correctamente.
+Un primer intento con --log-level error falló porque admite info/debug/trace;
+se corrigió el argumento. No fue un fallo de la configuración del proyecto.
+
+Se ajustó el Dockerfile para inicializar el volumen node_modules con propietario
+node. El volumen creado en el primer build se corrigió con chown sobre ese único
+directorio. No se borraron volúmenes ni se modificaron instalaciones ajenas.
+
+## 6. Cierre de infraestructura
+
+Dev Containers up terminó con outcome=success para booking-local, usuario node y
+/workspace, y ejecutó postCreateCommand completo. La compilación con los parches
+y npm ci terminaron correctamente, con cero vulnerabilidades reportadas por npm.
+La prueba JDBC confirmó persistencia tanto después de restart como de stop/up.
+
+Se detectó dubious ownership en Git sobre el bind mount Windows; la corrección
+se limita a safe.directory=/workspace dentro del contenedor y queda en el script
+de verificación. Nunca se añadió safe.directory=*.
+El árbol Maven real confirmó Framework 6.1.21, Security 6.3.10, Data JPA 3.3.13,
+Hibernate 6.5.3.Final y ojdbc11 21.9.0.0. La consulta se corrigió al pasar a bash
+un argumento -DoutputFile que PowerShell había dividido; no fue un fallo del BOM.
+
+Resultado y límites completos en docs/VERIFICACION_LOCAL.md. El entorno queda
+local y activo. Starter, aplicación, WAR y verificación WebLogic siguen pendientes.
+No se implementaron funcionalidades de negocio ni se publicó nada.
