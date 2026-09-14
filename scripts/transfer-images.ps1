@@ -9,12 +9,12 @@ Set-StrictMode -Version Latest
 $root = Split-Path $PSScriptRoot -Parent
 Set-Location -LiteralPath $root
 $destination = [IO.Path]::GetFullPath($Directory, $root)
-function Docker {
+function Invoke-TransferDocker {
     & docker @args
     if ($LASTEXITCODE -ne 0) { throw "Docker fallo con codigo $LASTEXITCODE." }
 }
 if (-not (Get-Command docker -ErrorAction SilentlyContinue)) { throw 'Falta Docker en PATH.' }
-$platform = Docker info --format '{{.OSType}}/{{.Architecture}}'
+$platform = Invoke-TransferDocker info --format '{{.OSType}}/{{.Architecture}}'
 if ($platform -notin @('linux/x86_64','linux/amd64')) {
     throw "Este paquete requiere Docker Linux amd64; motor actual: $platform. No se fuerza emulacion."
 }
@@ -32,8 +32,8 @@ if ($Action -eq 'import') {
         }
     }
     foreach ($entry in $manifest.images) {
-        Docker image load --input (Join-Path $destination $entry.file)
-        $loaded = Docker image inspect $entry.tag --format '{{.Os}}/{{.Architecture}}'
+        Invoke-TransferDocker image load --input (Join-Path $destination $entry.file)
+        $loaded = Invoke-TransferDocker image inspect $entry.tag --format '{{.Os}}/{{.Architecture}}'
         if ($loaded -ne 'linux/amd64') { throw "Arquitectura inesperada: $($entry.tag)" }
     }
     Write-Output 'Imagenes cargadas. Prepare secretos nuevos y use compose.images.yaml con --no-build.'
@@ -50,15 +50,15 @@ $sources = [ordered]@{
 $entries = @()
 foreach ($service in $sources.Keys) {
     $source = $sources[$service]
-    $details = (Docker image inspect $source --format '{{json .}}') | ConvertFrom-Json
+    $details = (Invoke-TransferDocker image inspect $source --format '{{json .}}') | ConvertFrom-Json
     if ($details.Os -ne 'linux' -or $details.Architecture -ne 'amd64') { throw "Plataforma inesperada: $source" }
     $suffix = ($details.Id -replace '^sha256:', '').Substring(0,12)
     $tag = "booking-transfer/${service}:$suffix"
-    Docker image tag $source $tag
+    Invoke-TransferDocker image tag $source $tag
     $tarPath = Join-Path $destination "$service-linux-amd64.tar"
     $gzipPath = $tarPath + '.gz'
     Write-Output "Exportando $service (imagen, sin volumenes ni capa mutable del contenedor)..."
-    Docker image save --platform linux/amd64 --output $tarPath $tag
+    Invoke-TransferDocker image save --platform linux/amd64 --output $tarPath $tag
     $inputStream = [IO.File]::OpenRead($tarPath)
     try {
         $outputStream = [IO.File]::Create($gzipPath)
