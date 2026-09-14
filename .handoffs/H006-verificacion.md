@@ -58,3 +58,10 @@ Siguiente: presentar diagnóstico y obtener alcance para correcciones, sin ejecu
 T018–T022 autorizadas por el usuario; estados canónicos en tasks.md. Conservar
 regresiones y auditoría histórica, realizar cambios mínimos y commits incrementales.
 No T023/T024, no push; T015 independiente. Progreso y evidencias se añadirán por bloque.
+
+### T019/T020 — DEC-017
+
+Coerción numérica deshabilitada y excepciones MVC específicas, mensajes redactados.
+12 pruebas dirigidas correctas; la ruta DELETE/{id} da405 ante GET, corregido el
+supuesto del test antes de implementar sin ocultar el500. Pendiente HTTP con WAR
+nuevo y suite completa; siguiente T018 mitigación/parches y H007/OpenAPI.

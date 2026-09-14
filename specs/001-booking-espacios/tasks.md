@@ -202,7 +202,7 @@ T013 permite preparar un resultado local candidato. T014 no aplica por DEC-004 y
 - Dependencias: T017.
 - Handoff: H006.
 - Aceptación: Dos regresiones decimales devuelven400 sin escritura; enteros válidos mantienen comportamiento.
-- Situación: autorizada por DEC-016; pendiente de implementación y verificación.
+- Situación: implementada, en verificación; 12 casos dirigidos pasan, pendiente HTTP/WAR nuevo y suite final, DEC-017.
 - Evidencia de origen: AUD-02, DEC-015; docs/PLAN_CORRECCIONES_AUDITORIA.md.
 
 ## T020 Preservar estados HTTP de errores MVC
@@ -211,7 +211,7 @@ T013 permite preparar un resultado local candidato. T014 no aplica por DEC-004 y
 - Dependencias: T017.
 - Handoff: H006.
 - Aceptación: Tres regresiones400/404/405 pasan, 500solo inesperados, cuerpo redactado y Allow apropiado.
-- Situación: autorizada por DEC-016; pendiente de implementación y verificación.
+- Situación: implementada, en verificación; 12 casos dirigidos pasan, pendiente HTTP/WAR nuevo y suite final, DEC-017.
 - Evidencia de origen: AUD-03, DEC-015; docs/PLAN_CORRECCIONES_AUDITORIA.md.
 
 ## T021 Completar contrato OpenAPI real

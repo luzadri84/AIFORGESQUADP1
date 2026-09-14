@@ -541,3 +541,23 @@ la condición de instrucciones/ejecución Dev Container; no se afirma lectura de
 Se registrará esa nueva fuente en el cierre sin cambiar retrospectivamente la auditoría.
 Antes de modificar se guardaron hashes privados de secretos, copia del WAR vigente y
 snapshot de reservas existentes en .local/corrections, nunca en el commit.
+
+## DEC-017 — Coerción numérica y semántica MVC, T019/T020
+
+2026-09-14, America/Bogota. Decisión del agente dentro de DEC-016: solo tokens JSON
+enteros para spaceId/occurrences. Rechazar 1.75, 1.0, 1e0 y cadenas como "1";
+conservar occurrences ausente/null=1, límites y campos desconocidos. Desactivar
+ACCEPT_FLOAT_AS_INT y ALLOW_COERCION_OF_SCALARS en Jackson; comprobar fechas y otros
+DTO. No nueva regla de reservas ni validación solo del cliente.
+
+Antes de cambiar el test, revisión de mappings: BookingController tiene DELETE/{id};
+GET sobre esa misma ruta corresponde a405 con Allow DELETE, no404. La expectativa
+histórica missingResourceShouldBe404Not500 usaba /api/bookings/99999999 y era errónea.
+Se conserva el nombre para trazabilidad pero se dirige a una ruta realmente inexistente;
+se añade el caso GET/{id}=405. Esto no oculta el defecto500: todos estos casos siguen
+fallando contra el handler anterior. Se mantienen negativa de ID inválido400 y PUT405.
+
+T019/T020, evidencia inicial: 12 casos dirigidos de AuditSecurityTest pasan con Oracle
+real (0 fallos/errores/omitidas). Incluyen los dos fraccionarios, formatos/límites,
+null válido, tres regresiones históricas y GET405. Log .local/corrections/t019-t020.log.
+Pendiente comprobar HTTP contra WAR nuevo y suite final; no se declara todavía cierre.

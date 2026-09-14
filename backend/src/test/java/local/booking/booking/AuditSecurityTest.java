@@ -115,13 +115,29 @@ class AuditSecurityTest {
         long count=bookings.count();mvc.perform(post("/api/bookings").header("Origin","https://audit.invalid").header("Authorization",auth("audit-a")).contentType("application/json").content(body())).andExpect(status().isForbidden());assertThat(bookings.count()).isEqualTo(count);
     }
     @Test @Tag("audit-finding") void missingResourceShouldBe404Not500()throws Exception{
-        mvc.perform(get("/api/bookings/99999999").header("Authorization",auth("audit-b"))).andExpect(status().isNotFound());
+        mvc.perform(get("/api/route-that-does-not-exist").header("Authorization",auth("audit-b"))).andExpect(status().isNotFound());
+    }
+    @Test void getOnCancellationRouteIs405WithAllow()throws Exception{
+        mvc.perform(get("/api/bookings/99999999").header("Authorization",auth("audit-b")))
+            .andExpect(status().isMethodNotAllowed()).andExpect(header().string("Allow",org.hamcrest.Matchers.containsString("DELETE")));
+    }
+    @ParameterizedTest @ValueSource(strings={"1.0","1e0","\"1\"","0","13"})
+    void integerTokenContractAndBounds(String value)throws Exception{
+        long before=bookings.count();
+        mvc.perform(secured(post("/api/bookings"),"audit-a",csrf()).contentType("application/json")
+            .content(body().replace("\"occurrences\":1","\"occurrences\":"+value))).andExpect(status().isBadRequest());
+        assertThat(bookings.count()).isEqualTo(before);
+    }
+    @Test void nullOccurrencesAndValidIntegerKeepDefaults()throws Exception{
+        var response=mvc.perform(secured(post("/api/bookings"),"audit-a",csrf()).contentType("application/json")
+            .content(body().replace("\"occurrences\":1","\"occurrences\":null"))).andExpect(status().isCreated()).andReturn();
+        assertThat(json.readTree(response.getResponse().getContentAsString()).get("created").size()).isEqualTo(1);
     }
     @Test @Tag("audit-finding") void malformedIdentifierShouldBe400Not500()throws Exception{
         mvc.perform(secured(delete("/api/bookings/not-a-number"),"audit-a",csrf())).andExpect(status().isBadRequest());
     }
     @Test @Tag("audit-finding") void unsupportedEditShouldBe405Not500()throws Exception{
-        mvc.perform(secured(put("/api/bookings/99999999"),"audit-a",csrf()).contentType("application/json").content(body())).andExpect(status().isMethodNotAllowed());
+        mvc.perform(secured(put("/api/bookings/99999999"),"audit-a",csrf()).contentType("application/json").content(body())).andExpect(status().isMethodNotAllowed()).andExpect(header().string("Allow",org.hamcrest.Matchers.containsString("DELETE")));
     }
     @ParameterizedTest @ValueSource(strings={"occurrences","spaceId"}) @Tag("audit-finding")
     void fractionalIntegersMustNotCreateReservations(String field)throws Exception{

@@ -35,3 +35,13 @@ su lista antes de reintentar. No hay clave de idempotencia para POST.
 OpenAPI autenticado: `/v3/api-docs`, `/swagger-ui/index.html`. El modo JWT alternativo
 está condicionado por configuración; Basic es el modo ejecutado. Los detalles y
 límites de identidad empresarial están en [la explicación](EXPLICACION_IMPLEMENTACION.md).
+
+## Precisión de entrada y routing — DEC-017
+
+spaceId/occurrences aceptan tokens JSON enteros: 1 válido; 1.75, 1.0, 1e0 y "1"
+se rechazan con400 antes del servicio. Ausente/null para occurrences mantiene1;
+espacio positivo y occurrences1–12. Jackson no convierte silenciosamente escalares;
+OffsetDateTime sigue usando texto ISO8601 con offset. Los demás DTO de respuesta
+no cambian. GET /api/bookings/{id} y PUT sobre esa ruta son405 (Allow: DELETE);
+una ruta sin mapping es404. No se añadieron GET por ID ni edición. ID inválido en
+DELETE es400 con Basic/CSRF válidos; contenido no soportado es415.
