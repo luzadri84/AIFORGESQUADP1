@@ -112,6 +112,22 @@ class OraclePersistenceTest {
                 "Prueba", "UNKNOWN", 2, "Prueba"));
     }
 
+    @ParameterizedTest
+    @org.junit.jupiter.params.provider.CsvSource({"9,11,true","11,13,true","10,12,true","9,13,true","10,11,true","11,12,true","8,10,false","12,14,false","6,8,false","14,16,false"})
+    void oracleCollisionQueryCoversEveryBoundary(int startHour,int endHour,boolean expected) {
+        var start=OffsetDateTime.parse("2037-01-01T10:00:00-05:00");
+        bookings.saveAndFlush(new Booking(spaces.getReferenceById(1L),"boundary-test",start,start.plusHours(2),BookingStatus.ACTIVE));
+        assertThat(bookings.collisions(1L,start.withHour(startHour),start.withHour(endHour))>0).isEqualTo(expected);
+    }
+
+    @Test void cancelledAndOtherSpaceDoNotBlockAnInterval() {
+        var start=OffsetDateTime.parse("2037-01-01T10:00:00-05:00");
+        var row=bookings.saveAndFlush(new Booking(spaces.getReferenceById(1L),"boundary-test",start,start.plusHours(2),BookingStatus.ACTIVE));
+        assertThat(bookings.collisions(2L,start,start.plusHours(1))).isZero();
+        row.cancel();bookings.flush();
+        assertThat(bookings.collisions(1L,start,start.plusHours(1))).isZero();
+    }
+
     private void insertBooking(Long spaceId, String owner, String status, String start, String end) {
         jdbc.update("INSERT INTO BKG_BOOKING (ID, SPACE_ID, OWNER_ID, STARTS_AT, ENDS_AT, STATUS) "
                 + "VALUES (BKG_BOOKING_SEQ.NEXTVAL, ?, ?, ?, ?, ?)", spaceId, owner,

@@ -423,3 +423,30 @@ y parecía 401; ApiErrors ahora da 500 genérico para excepciones no previstas.
 No se declaró concurrencia ni rollback verificados antes de corregir la prueba.
 
 H006 final: 39 tests correctos; carrera HTTP Oracle 201/409 y una fila, rollback real tras fallo inyectado y cero filas; fixtures propias limpiadas. MSAL/JWT compilan; Basic independiente. npm audit 0 en lockfile frontend, npm ls sin peers inválidos; no SCA Java integral ni Azure real. Árbol Maven obtenido tras corregir comillas de argumento PowerShell.
+
+## DEC-013 — Entrega local operable y documentación real
+
+2026-09-14, America/Bogota. Codex implementa T013: app.ps1 start/verify/stop/status
+reutiliza ambos Compose e imágenes --no-build. start usa WAR existente (lo empaqueta
+solo si falta); verify recompila/prueba y reinicia la app al terminar. Procesos dentro
+de dev, PID validado por comando/directorio antes de detener, sin matar procesos ajenos.
+Credenciales Basic se generan solo si faltan; nunca se reemplazan Oracle ni las existentes.
+Se documentan fechas de prueba y limitaciones, doce contenidos de explicación,
+preguntas/retos solo analíticos. No se afirma compatibilidad WebLogic ni Azure real.
+La comprobación de operación y la revisión final quedan registradas al cerrar H007.
+
+H007 final: app.ps1 verify pasa 50 pruebas Java, ngc/build strict y npm test 1/1.
+Se añadieron 11 casos al query Oracle para demostrar las fronteras también en
+persistencia, no solo en el helper. Stop/start ejecutados realmente; ambos procesos
+arrancan, Oracle healthy y lectura original coincide. Contraseñas Oracle y token
+comparados byte a byte con copia privada sin revelar valores. Login navegador tras
+reinicio correcto; cinco reservas visuales CANCELLED, ninguna activa de las pruebas.
+
+Revisión final: infraestructura original sin diff frente a 992bc41, secretos/clave
+ignorados y ausentes del WAR/candidatos, puertos exclusivos localhost. 140 enlaces
+locales en 28 documentos correctos, 15 IDs únicos, precondiciones Spec Kit correctas.
+README/explicación/contrato/spec/plan actualizados; explicación con doce secciones,
+quince preguntas y seis ejercicios analíticos no implementados. Constitución 1.1.1:
+solo corrección editorial de referencias a implementación, principios sin cambio.
+T015 permanece literal frente a 8ba745a, sin aclaración externa; T014 no aplica.
+No push ni despliegue. Informe: docs/VERIFICACION_FINAL.md. Próxima gestión T015.

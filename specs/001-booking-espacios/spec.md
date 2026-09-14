@@ -1,21 +1,22 @@
 # Feature Specification: Booking de Espacios Físicos
 
-**Feature**: `001-booking-espacios` | **Created**: 2026-09-14 | **Status**: Draft funcional reconciliado en H001
+**Feature**: `001-booking-espacios` | **Created**: 2026-09-14 | **Status**: Implementación local verificada; pendiente externo T015
 **Git al inicio**: main, 5dcdb7c; esta feature documental no crea otra rama.
 
 **Alcance actualizado por DEC-004:** el repositorio actual es la base definitiva.
 El starter y su defecto quedan excluidos; T014 no aplica y T015 sigue independiente.
 
 **Input histórico H001**: Prompt A y semillas contrastadas con AGENTS y código real.
-Entonces solo había infraestructura y sondas. T003 incorpora ahora entidades Oracle,
-SQL/semillas y WAR base; siguen sin API ni frontend Booking. El texto original
+Entonces solo había infraestructura y sondas. T003 añadió persistencia; DEC-007
+autorizó T004–T013, ahora con API, UI y pruebas locales. Las etapas históricas
+permanecen en Git y sus informes. El texto original
 de AGENTS se conserva. Los adjuntos originales fueron registrados en la documentación
 previa; no se acredita una nueva recepción del starter ni revisión del correo en H001.
 
-Los FR conservan los IDs de las semillas; refinamientos de producto/contrato todavía
-son propuestas. La aprobación de integrar SDD no aprueba automáticamente esas
-propuestas. Véanse [plan](plan.md), [trazabilidad](trazabilidad.md) y
-[orígenes](../../docs/INTEGRACION_H001.md).
+Los FR conservan los IDs de las semillas. DEC-007 autoriza el alcance local existente;
+DEC-008–013 documentan concreciones técnicas del agente sin atribuir aprobación
+individual al usuario. Véanse [plan](plan.md), [trazabilidad](trazabilidad.md),
+[orígenes](../../docs/INTEGRACION_H001.md) y [verificación](../../docs/VERIFICACION_FINAL.md).
 
 ## User Scenarios & Testing
 
@@ -25,7 +26,7 @@ Como funcionario autenticado quiero reservar un espacio para realizar una activi
 ### US2 Consultar y cancelar reservas propias (P1)
 Como funcionario quiero ver mis reservas activas y cancelar una propia sin poder consultar o cancelar las de otros.
 
-### US3 Repetir una reserva semanal (P2, refinamiento propuesto)
+### US3 Repetir una reserva semanal (P2, implementada bajo DEC-007/011)
 Como funcionario quiero solicitar varias ocurrencias y saber cuáles se crearon y cuáles chocaron, conservando las válidas.
 
 ## Requirements
@@ -53,9 +54,13 @@ Como funcionario quiero solicitar varias ocurrencias y saber cuáles se crearon 
 - Espacio ausente, inicio igual o mayor a fin y fechas sin offset: error explícito sin escrituras.
 - Dos transacciones independientes contra Oracle: una creación y una colisión con una sola fila activa.
 
-## Assumptions: decisiones de producto pendientes de confirmación
+## Semántica implementada bajo DEC-007/009/011
 
-Semanal, count de 1 a 12 incluyendo primera fecha. Cancelar una ocurrencia. Mis activas: ACTIVE y fin posterior al reloj actual, incluyendo las iniciadas. Mostrar/generar en America/Bogota y transportar ISO 8601 con offset. No prohibir el pasado ni agregar límite de duración sin requerimiento. No hay código que las implemente ni aceptación humana específica registrada. Resolverlas con la arquitectura y el contrato antes del bloque funcional; conservar FR e IDs al aclarar.
+Semanal, occurrences de 1 a 12 incluyendo primera fecha, ausente/null=1. Cancelar una
+ocurrencia. Mis activas: ACTIVE y fin posterior al reloj actual, incluyendo iniciadas.
+Mostrar/generar en America/Bogota y transportar ISO 8601 con offset. No prohibir pasado
+ni agregar límite de duración sin requerimiento. Son concreciones del agente dentro
+la continuación autorizada; no se inventa aceptación humana individual del contrato.
 
 ## Exclusiones
 
@@ -65,7 +70,7 @@ Notificaciones, administración de espacios, calendario drag and drop, RRULE com
 
 El criterio de terminado exige evidencia real de FR001–FR011 y resolver el componente vigente de FR012 con el evaluador (T015). T014 queda excluida por DEC-004. Si siguen pendientes externos, puede prepararse una entrega candidata, pero no declarar cumplimiento total. Handoffs y tareas terminadas no reemplazan pruebas ni la definición de terminado del evaluador.
 
-## Key Entities (entidades y tablas desde T003; operaciones todavía pendientes)
+## Key Entities implementadas
 
 - Espacio: id, nombre, tipo, capacidad y sede; catálogo semilla sin administración.
 - Reserva: espacio, propietario, inicio, fin y estado; vínculo con cada ocurrencia.
@@ -77,12 +82,12 @@ El criterio de terminado exige evidencia real de FR001–FR011 y resolver el com
   solapamiento de FR004; permite las dos adyacencias bajo la propuesta semiabierta.
 - SC002: en US2, dos identidades no ven ni cancelan datos ajenos; cancelar una propia
   libera el horario y repetir la cancelación conserva un resultado coherente.
-- SC003: para US3, si se confirma la aceptación parcial, cuatro ocurrencias con
+- SC003: para US3, cuatro ocurrencias con
   conflicto solo en la segunda dejan tres creadas y un rechazo identificado.
 - SC004: dos solicitudes independientes al mismo espacio/intervalo libre terminan
   con una sola reserva activa; un fallo técnico no deja un pedido parcialmente escrito.
 - SC005: evidencias vinculadas a FR y pruebas reales, WAR y explicación verificables;
   ninguna afirmación de cumplimiento total mientras T015 siga abierta.
 
-Estos resultados se verificarán durante H002–H008. No se inventan metas de latencia,
+Evidencia local de estos resultados en VERIFICACION_FINAL; T015 sigue independiente. No se inventan metas de latencia,
 usuarios concurrentes, implementación ni rendimiento para llenar una plantilla.

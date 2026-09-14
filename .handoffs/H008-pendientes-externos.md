@@ -30,3 +30,12 @@ Sin ejecución de este bloque durante H001. Al trabajarlo registrar fecha/entorn
 responsable, archivos/diff, evidencia, referencias T/DEC y commit real si existe;
 actualizar el estado solo en tasks.md. Conservar el punto de continuación si se interrumpe.
 Siguiente bloque orientativo: verificaciones afectadas y cierre de requisitos, sujeto a autorización y dependencias.
+
+## Contexto recibido tras H007 — 2026-09-14
+
+La solución local y su WAR se verificaron; ver [VERIFICACION_FINAL](../docs/VERIFICACION_FINAL.md).
+No se recibió aclaración del evaluador ni se probó WebLogic. Se mantiene literalmente
+la aceptación/bloqueo T015 en tasks.md; no trasladar a ella las pruebas Tomcat como
+certificación del runtime objetivo. T014 sigue No aplica por cambio de alcance.
+Próxima actuación útil: registrar la aclaración externa cuando exista y acordar la
+prueba correspondiente. No repetir H001–H007 ni migrar un starter.

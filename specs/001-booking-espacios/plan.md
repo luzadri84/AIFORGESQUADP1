@@ -5,11 +5,10 @@
 
 ## Summary
 
-Conservar infraestructura comprobada y construir un monolito pequeño con API Spring
-Boot y UI Angular. H001 integró metodología; T003 añade persistencia y WAR base,
-sin API ni UI de Booking todavía.
-Continuación a T003 autorizada por DEC-004; arquitectura elegida por el usuario
-en DEC-005: monolito organizado por funcionalidades. Base actual definitiva.
+Monolito local implementado bajo DEC-007, sobre la base definitiva DEC-004 y la
+arquitectura humana DEC-005. API Spring Boot, UI Angular, seguridad y transacciones
+Oracle verificadas; código y entorno previo conservados. Este plan se actualiza
+contra la ejecución; la versión inicial y sus propuestas permanecen en Git/bitácora.
 
 ## Technical Context: configuración y versiones existentes
 
@@ -31,109 +30,73 @@ Fuentes locales: [POM](../../infra/checks/pom.xml),
 [lockfile](../../infra/checks/frontend/package-lock.json),
 [Dockerfile](../../.devcontainer/Dockerfile), [verificación previa](../../docs/VERIFICACION_LOCAL.md)
 y [evidencia H001](../../docs/INTEGRACION_H001.md). Las sondas conservan esas versiones;
-backend/pom.xml adopta Boot 3.3.13/JPA/Security/JDBC para la base T003. SpringDoc
-y el cliente siguen siendo sondas, sin API/UI funcional. No reinstalar ni volver a Angular 20.3.0.
+[backend/pom.xml](../../backend/pom.xml) y [frontend/package-lock.json](../../frontend/package-lock.json)
+resuelven la aplicación real con estas versiones. No reinstalar herramientas ni volver a Angular 20.3.0.
 
-## Project Structure: real y conservada
+## Estructura implementada
 
-```text
-.devcontainer/                 imagen dev y configuración existentes
-compose.yaml                   Oracle y dev; usar override importado según README
-infra/checks/pom.xml            resolución de dependencias; packaging=pom
-infra/checks/JdbcCheck.java     conexión y marcador técnico (check/read/write)
-infra/checks/frontend/          sonda Angular strict, no UI Booking
-infra/templates/               ejemplos de properties y proxy
-backend/                       WAR base, entidades/repositorios booking y space, SQL y tests Oracle
-scripts/                       operación existente más booking-db.ps1 (schema/seed/status)
-.mvn/ y mvnw                   wrapper existente
-.specify/ y .agents/skills/     metodología integrada en H001
-specs/001-booking-espacios/     spec, plan, tasks y trazabilidad
-.handoffs/                      continuidad, sin motor de ejecución
-docs/BITACORA.md                bitácora original ampliada, no duplicada
-```
+- `backend/src/main/java/local/booking/booking`: controlador, servicio, DTO, entidad,
+  repositorio y reglas de recurrencia/intervalos; `space`: catálogo y persistencia;
+  `security`: Basic/CSRF y alternativa JWT; `errors`: tratamiento compartido real.
+- `frontend/src/app/acceso` y `reservas`: componentes standalone, formularios tipados,
+  servicios HTTP próximos, identidad en memoria y UI de resultado parcial.
+- `backend/src/main/resources/db/oracle`: V001 explícito y seed insert-only, ya aplicados;
+  Hibernate validate, sin create-drop. Dos tablas/dos secuencias, sin entidad Serie.
+- `scripts/app.ps1`, `app-process.sh`: operación local con ambos Compose y --no-build.
+  Se conservan Compose, devcontainer, wrapper, infra/checks y scripts anteriores.
+- `.specify`, `.agents/skills`, `.handoffs`: integración H001 conservada, sin regeneración.
 
-`backend/` existe desde T003; contiene solo la base de persistencia, no endpoints.
-`frontend/` sigue propuesto para H004, Angular standalone. No se crean security/errors
-vacíos. `infra/checks` se conserva como infraestructura. H001 no generó scaffold;
-la evidencia posterior está en [VERIFICACION_T003](../../docs/VERIFICACION_T003.md).
+## Arquitectura y decisiones ejecutadas
 
-## Arquitectura elegida (DEC-005; propuesta previa DEC-003)
+DEC-005: monolito por funcionalidades; controlador → servicio transaccional → Spring
+Data JPA dentro de booking. Alternativa de puertos/adaptadores documentada en DEC-003:
+más interfaces/mapeos sin necesidad actual; no se atribuye un rechazo humano inexistente.
 
-Un solo backend por funcionalidades: `booking` reúne controlador, servicio,
-repositorio, DTO, entidad y reglas de reservas; `space` reúne consulta, entidad y
-persistencia; `security` configura autenticación/adaptación de identidad; `errors`
-solo existe si hay errores HTTP realmente compartidos. Dentro de booking: controlador
-HTTP → servicio transaccional → repositorio Spring Data JPA, con funciones pequeñas
-de intervalos/recurrencias. Angular organiza `acceso` y `reservas` con componentes,
-modelos y servicios HTTP próximos. No se crean carpetas vacías para aparentar capas. Configuración
-por entorno, SQL versionado y tests junto a cada comportamiento. El código existente
-no exige refactor: se conserva completo.
+DEC-008/010: Basic por petición, contexto Security STATELESS y sesión exclusivamente
+CSRF. El token enmascarado se solicita explícitamente, no se desactiva CSRF; interceptor
+solo adjunta credenciales en /api/ propio, en memoria. La prueba HTTP descubrió rotación
+de sesión tras GET paralelos y motivó la corrección descrita en bitácora.
 
-Alternativa razonable: separar dominio puro y persistencia mediante puertos y
-adaptadores en el mismo monolito. Facilita aislamiento de dominio si futuras necesidades reales
-lo justifican; añade interfaces, mapeos y más pruebas de integración. Con una sola
-base Oracle y este alcance pequeño no hay evidencia actual que compense ese coste.
-La elección humana DEC-005 favorece organización por funcionalidades, no una
-infraestructura distinta. No se inventa un rechazo de puertos/adaptadores.
-Ambas opciones deben conservar propiedad, CSRF, concurrencia y pruebas en Oracle.
+DEC-009: propietario del principal, reserva ACTIVE/CANCELLED, listado propio con fin
+posterior al reloj. OffsetDateTime/NATIVE y TIMESTAMP(9) WITH TIME ZONE. Colisión con
+inicio < fin solicitado y fin > inicio solicitado, mismo espacio ACTIVE. Bloqueo
+PESSIMISTIC_WRITE de Espacio antes del query bajo READ_COMMITTED; crear y cancelar
+siguen el protocolo. No synchronized ni bloqueo exclusivo de reservas inexistentes.
 
-## Propuesta técnica para la revisión humana y siguientes tareas
+DEC-011: occurrences 1–12 incluyendo primera, ausente=1, semanas America/Bogota.
+Conflictos generan rechazos por fecha; una transacción conserva válidas y revierte
+ante excepción técnica. No entidad Serie ni cron. 201 total/200 parcial/409 ninguna,
+400 validación/401 identidad/403 CSRF/404 inaccesible/503 acceso a datos/500 inesperado.
+[Contrato ejecutado](../../docs/CONTRATO_API.md), con DTO y errores sin datos ajenos.
 
-- Datos: Espacio semilla y Reserva por ocurrencia, ACTIVE/CANCELLED, propietario
-  del principal. Fechas ISO 8601 con offset; comparar instantes y mostrar Bogotá.
-  T003 verificó el round trip con OffsetDateTime/NATIVE y TIMESTAMP(9) WITH TIME ZONE.
-  DDL explícito V001, seed insert-only, Hibernate validate; DEC-006. El propietario
-  desde principal y el contrato de transporte aún deben implementarse.
-- Colisión: `existente.inicio < solicitado.fin AND existente.fin > solicitado.inicio`,
-  mismo espacio/ACTIVE. Adyacencias permitidas. Bloquear la fila Espacio con
-  PESSIMISTIC_WRITE antes de consultar bajo READ_COMMITTED; todas las escrituras
-  siguen el mismo protocolo. No bloquear solo reservas (pueden no existir) ni usar
-  sincronización local Java para acreditar protección entre instancias.
-- Recurrencias: semanal, count 1–12 incluyendo primera fecha; conflictos por
-  ocurrencia como resultado de negocio; conservar válidas en una transacción y
-  revertir el pedido ante error técnico. Límite y semántica parcial pendientes de
-  confirmación; validar contra reservas y ocurrencias del mismo pedido.
-- API propuesta: GET `/api/csrf`, `/api/me`, `/api/spaces`; POST/GET `/api/bookings`;
-  DELETE `/api/bookings/{id}`. Usuario/estado no aceptados del body. Cancelación
-  propia idempotente; ajena/ausente 404. 201 creación total, 200 parcial, 409 ninguna
-  por conflicto; 400 validación, 401 identidad, 403 CSRF, 503 temporal identificado.
-  Respuestas ProblemDetail y rechazos sin datos ajenos. Contrato aún sin ejecutar.
-- Seguridad: Basic/PasswordEncoder y dos identidades externas; CSRF SPA real,
-  interceptor limitado a API propia, credencial solo en memoria. Modo Basic inicia
-  sin tenant/llamadas Azure. MSAL/Resource Server con adaptadores condicionados y
-  compilables en T012, no acreditados por haber resuelto dependencias.
-- UI: formulario, lista propia, cancelación, resultado parcial, loading/error/vacío;
-  formularios tipados y RxJS. No reintentar automáticamente POST tras un fallo de red.
+DEC-012: MSAL Angular y Resource Server con adaptadores condicionados, compilables;
+modo Basic inicia sin Azure. Se probaron claims, no tenant/JWKS/firma ni login empresarial.
+DEC-013: WAR ejecutable local, scripts start/verify/stop/status y documentación real.
 
-## Testing y criterios
+## Verificación y Constitution Check
 
-Unitarias de intervalos y expansión; API de autenticación/CSRF/propiedad; integración
-Oracle para carrera, rollback, tiempo y cancelación; navegador real para US1–US3.
-No usar H2/mocks para acreditar Oracle/concurrencia. Pruebas con datos aislados:
-conservar el marcador original y no eliminar volúmenes para limpiar fixtures.
-Metas de rendimiento no fijadas ni medidas. Alcance: MVP local, sin despliegue público.
-Los criterios de entrega/estudio y el procedimiento histórico del starter están en [ENTREGA_Y_STARTER.md](../../docs/ENTREGA_Y_STARTER.md).
+La autorización DEC-007 concreta T004–T013 sin pausas entre handoffs. No altera la
+arquitectura ni los requisitos; las elecciones técnicas siguen registradas como del
+agente. Se conservan secretos, volumen, marcador original, historial e infraestructura.
 
-## Constitution Check
+Pruebas parametrizadas de intervalos y expansión, API MockMvc con Oracle, HTTP real
+para sesión y carrera, rollback técnico tras flush y navegador para US1–US3.
+No se usa H2 ni mocks como evidencia de persistencia. Fixtures transaccionales o
+limpieza limitada a IDs creados por la propia prueba. Sin rendimiento medido.
+Resultados reales en [VERIFICACION_FINAL](../../docs/VERIFICACION_FINAL.md); fuente de
+estado única [tasks.md](tasks.md). [Explicación](../../docs/EXPLICACION_IMPLEMENTACION.md)
+cubre doce contenidos, quince preguntas y seis ejercicios solo de análisis.
 
-H001 conserva stack, datos, código, historial y autorización limitada. Los guards
-funcionales anteriores están planificados y siguen sin comprobarse. Una arquitectura
-recomendada no satisface FR; consultar [tasks.md](tasks.md) como único estado.
-No hay investigación/modelo/contratos generados artificialmente para dar por hecho H002.
+## Pendientes independientes
 
-## Dependencias y siguiente paso
+T014 **No aplica por cambio de alcance** (DEC-004): sin recepción, comparación,
+migración ni investigación de defecto; no inventar sustituto. T015 conserva su
+aceptación y bloqueo por aclaración externa del runtime. No bloquea la solución local.
 
-T003 se ejecutó bajo DEC-004/005 y se verificó según DEC-006. La siguiente tarea
-pendiente es T004: identidad Basic y CSRF; después T005 fija contrato. La continuación
-autorizada en esta intervención se concretó en T003; no se ejecutó todo H002 ni
-se reinició H001. Consultar tasks.md antes de la siguiente intervención.
-
-Starter excluido por DEC-004: T014 No aplica por cambio de alcance; no habrá
-recepción, comparación, migración ni investigación de un defecto sembrado.
-La aclaración WebLogic sigue pendiente exclusivamente en T015. Spring Boot 3.3 requiere
-Servlet 5+; WebLogic 12.2.1.4 documenta Java EE 7. La incompatibilidad sigue abierta,
-no se soluciona por cambiar a WAR. Fuentes oficiales consultadas en H001:
+La contradicción de Boot 3/WebLogic 12.2.1.4 quedó documentada en H001: Boot requiere
+Servlet 5+ y WebLogic documenta Java EE 7. Fuentes oficiales consultadas entonces:
 [Spring Boot](https://docs.spring.io/spring-boot/3.3/system-requirements.html) y
 [Oracle](https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/intro/compatibility.html).
-Tomcat 10.1 es una posible prueba local propuesta, no una sustitución aprobada del
-runtime objetivo. No se instala ni despliega en H001.
+La ejecución local usa Tomcat administrado por Boot dentro del WAR, autorizada en
+DEC-007. No certifica ni sustituye la obligación de aclarar el runtime externo.
+No despliegue público, push ni implementación de ejercicios de sustentación.

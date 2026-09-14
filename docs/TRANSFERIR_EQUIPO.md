@@ -1,5 +1,8 @@
 # Continuar en otro equipo Windows 10
 
+> Registro de su etapa histórica. La aplicación posterior y su operación vigente
+> están en [README](../README.md) y [VERIFICACION_FINAL](VERIFICACION_FINAL.md).
+
 > Actualización de alcance — DEC-004 (2026-09-14): este documento conserva el
 > registro/propuesta de su etapa original. Las instrucciones de esperar, recibir,
 > comparar o migrar un starter e investigar su defecto quedaron superadas: el

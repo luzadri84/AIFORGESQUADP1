@@ -20,7 +20,7 @@ Reutilizar BOOKING/FREEPDB1, credenciales, scripts y sondas. No recrear la base 
 Los criterios completos se mantienen en las tareas canónicas. Registrar comandos,
 resultados, pruebas omitidas/fallidas y alcance real; no inferir aprobación humana.
 
-## Continuación
+## Continuación histórica al cerrar T003 (superada por el cierre H002 inferior)
 
 H001 no ejecutó este bloque. Continuación real T003 el 2026-09-14, America/Bogota,
 por Codex tras DEC-004/005; detalle técnico DEC-006. Commit documental previo

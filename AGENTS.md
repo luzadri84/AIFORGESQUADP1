@@ -206,7 +206,7 @@ decisión humana DEC-005: organización por funcionalidades.
   la decisión de arquitectura prevista en Prompt A, ya recibida en DEC-005. La
   continuación a T003 fue autorizada por el cambio de alcance DEC-004.
 
-## Base implementada T003 — 2026-09-14
+## Base implementada T003 — 2026-09-14 (histórico, ampliado por DEC-007–013)
 
 DEC-006 concreta la persistencia de DEC-005: backend/pom.xml (WAR, Boot 3.3.13,
 Java 21), paquetes local.booking.booking y local.booking.space, entidades/repositorios,
@@ -227,3 +227,19 @@ finita/aceptación parcial de las tareas existentes; registrar elecciones de det
 como decisiones del agente, no aprobaciones individuales del usuario. Ejecución local
 con WAR ejecutable y Tomcat administrado por Boot, sin afirmar WebLogic. T014 no aplica,
 T015 permanece independiente. No push, publicación, agentes paralelos ni funciones extra.
+
+## Implementación local entregable — DEC-008–013, 2026-09-14
+
+API y UI existen: backend por booking/space/security/errors, frontend acceso/reservas.
+Contrato vigente en docs/CONTRATO_API.md. Basic por petición, sesión solo CSRF,
+propietario del principal, bloqueo Espacio READ_COMMITTED para crear/cancelar,
+recurrencia semanal 1–12 con resultado parcial y rollback ante error técnico.
+No repetir H001, reaplicar V001 ni instalar otra vez herramientas. Versiones y pruebas
+actuales en docs/VERIFICACION_FINAL.md; tareas únicamente en tasks.md. Operación:
+`pwsh -NoProfile -File scripts/app.ps1 start|verify|stop|status` (elegir una acción).
+verify reconstruye/prueba y deja la app iniciada; start reutiliza WAR. Nunca usar
+jdbc write para validar la restauración. Conservar secretos y registros CANCELLED
+creados por verificación visual; los fixtures automáticos están aislados.
+MSAL/JWT preparados y desactivados en Basic; no afirmar Azure real. T015 requiere
+aclaración externa y T014 no aplica. docs/EXPLICACION_IMPLEMENTACION.md describe
+la solución actual; sus retos solo son ejercicios de análisis. No push ni publicación.

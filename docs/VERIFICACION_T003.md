@@ -1,5 +1,8 @@
 # T003: base de persistencia Oracle y WAR
 
+> Registro de su etapa histórica. La aplicación posterior y su operación vigente
+> están en [README](../README.md) y [VERIFICACION_FINAL](VERIFICACION_FINAL.md).
+
 Verificación ejecutada por Codex el 2026-09-14, America/Bogota, sobre
 `C:\PruebaAIFORGESQUAD`. Continúa desde el commit documental `75af194` (DEC-004/005).
 Estado canónico: [tasks.md](../specs/001-booking-espacios/tasks.md).

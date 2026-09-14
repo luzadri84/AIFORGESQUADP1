@@ -1,14 +1,13 @@
 # Tareas de Booking
 
-Reconciliado en H001 el 2026-09-14 contra main/5dcdb7c y el entorno restaurado.
-En H001 solo existían sondas; T003 incorpora ahora entidades/SQL y un WAR base,
-sin API ni UI Booking. Una sola feature, mismos IDs T001–T015 de las semillas. [Spec](spec.md), [plan](plan.md), [evidencia](../../docs/INTEGRACION_H001.md).
+H001 reconcilió el repositorio main/5dcdb7c el 2026-09-14; T003 añadió persistencia y
+DEC-007 autorizó T004–T013. API/UI/Oracle y pruebas actuales en
+[VERIFICACION_FINAL](../../docs/VERIFICACION_FINAL.md). Una sola feature e IDs T001–T015.
 
-**Alcance vigente (DEC-004):** repositorio actual como base definitiva; la continuación
-autorizada se concretó en T003. Primera pendiente: T004. Arquitectura decidida por el usuario en DEC-005: monolito
-por funcionalidades; DEC-003 se conserva como propuesta previa.
-DEC-007 amplía expresamente la autorización a T004–T013 hasta completar solución local.
-T014 no aplica; T015 conserva bloqueo independiente. No esperar aprobación entre handoffs.
+**Alcance vigente:** base definitiva DEC-004; arquitectura humana DEC-005 por
+funcionalidades. DEC-007 autoriza la solución local sin pausas entre handoffs;
+DEC-008–013 registran concreciones técnicas. T014 no aplica; T015 conserva bloqueo
+independiente. No reiniciar integración ni repetir trabajo ya verificado.
 
 ## Convención de estado
 
@@ -138,13 +137,13 @@ No duplicar estados en índices de handoffs. Conservar IDs y añadir los nuevos 
 
 ## T013 Construir WAR y cerrar verificación local y documentación candidata
 
-- [ ] T013 Construir WAR y cerrar verificación local y documentación candidata en backend build, README, AGENTS, bitácora, docs/EXPLICACION_IMPLEMENTACION.md e informes existentes.
+- [x] T013 Construir WAR y cerrar verificación local y documentación candidata en backend build, README, AGENTS, bitácora, docs/EXPLICACION_IMPLEMENTACION.md e informes existentes.
 
 - Dependencias: T011, T012.
 - Handoff: H007.
 - Aceptación: WAR generado y evidencia disponible de ejecución; flujo limpio devcontainer+Oracle+Angular; historial y secretos revisados; bloqueos externos visibles; docs/EXPLICACION_IMPLEMENTACION.md explica archivos y flujos reales, incluye al menos 12 preguntas respondidas y 6 retos con impacto en código, riesgos y pruebas; no implementar esos retos como ampliación del MVP. Cumplir íntegramente las 12 secciones y el contenido por reto de docs/ENTREGA_Y_STARTER.md (sección T013).
-- Situación: pendiente; T003 produjo el WAR base, pero faltan aplicación, ejecución completa y criterios de cierre.
-- Evidencia parcial: docs/VERIFICACION_T003.md. No hay todavía verificación de entrega funcional ni despliegue.
+- Situación: completada; entrega local operable, DEC-013.
+- Evidencia: docs/VERIFICACION_FINAL.md; app.ps1 verify pasa 50 tests Java, ngc/build y npm test; stop/start reales, Oracle healthy, marcador/credenciales originales intactos y login navegador posterior. WAR ejecutable, secretos excluidos, 12 secciones/15 preguntas/6 retos analíticos. WebLogic no acreditado.
 
 ## T014 Inspeccionar starter recibido e integrar su defecto y regresión
 

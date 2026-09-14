@@ -18,13 +18,13 @@ controlador–servicio–repositorio dentro de booking y Angular por acceso/rese
 ### III. Seguridad en el servidor
 Preservar identidad autenticada, autorización por propietario, validación,
 CSRF para Basic en navegador y secretos externos. No confiar userId/estado del
-cliente ni revelar datos ajenos. Estas son garantías exigidas, todavía sin API.
+cliente ni revelar datos ajenos. La evidencia de implementación se mantiene en tasks.md.
 
 ### IV. Datos y concurrencia reales
-Preservar Oracle y sus datos actuales. La solución futura debe impedir solapamientos
+Preservar Oracle y sus datos actuales. La solución debe impedir solapamientos
 incluso ante peticiones concurrentes y verificar recurrencias. El bloqueo de Espacio,
-intervalos semiabiertos, aceptación parcial y rollback del pedido son propuestas
-técnicas/producto del plan que deben contrastarse antes de implementarlas.
+intervalos semiabiertos, aceptación parcial y rollback del pedido se concretaron bajo DEC-007/009/011 y se probaron con Oracle; conservar el protocolo
+y su evidencia al modificarlo.
 
 ### V. Evidencia y continuidad
 Probar riesgos reales con herramientas existentes. Una sonda JDBC/ngc no acredita
@@ -55,4 +55,7 @@ no aprueba automáticamente cada detalle de contrato o propuesta funcional. Camb
 más pruebas afectadas; conservar la justificación anterior. Las instrucciones
 expresas posteriores pueden cambiar alcance, dejando su trazabilidad.
 
-**Version**: 1.1.0 | **Ratified**: 2026-09-14 (reglas operativas solicitadas) | **Last Amended**: 2026-09-14
+**Version**: 1.1.1 | **Ratified**: 2026-09-14 (reglas operativas solicitadas) | **Last Amended**: 2026-09-14
+
+Aclaración editorial DEC-013: referencias a implementación actualizadas tras DEC-007;
+no se cambian los principios ni se atribuye aprobación individual de detalles.

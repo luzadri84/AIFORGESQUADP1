@@ -2,7 +2,8 @@
 
 Adaptación autocontenida de las secciones 6 y 7 de la guía 07 suministrada; H001
 solo incorpora criterios. Tareas/estado únicamente en
-[tasks.md](../specs/001-booking-espacios/tasks.md). No es una entrega de aplicación.
+[tasks.md](../specs/001-booking-espacios/tasks.md). Este archivo conserva criterios;
+la entrega ejecutada se describe en [VERIFICACION_FINAL](VERIFICACION_FINAL.md).
 
 ## T013 / H007: explicación final
 
