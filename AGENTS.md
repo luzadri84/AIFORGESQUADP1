@@ -117,3 +117,12 @@ La autorización actual se limita a infraestructura provisional, sin negocio ni 
   Dentro de dev: bash scripts/verify-local.sh.
 - Consultar docs/VERIFICACION_LOCAL.md para resultados; no inferir éxito de la configuración.
   El historial nuevo solo registra trabajo ocurrido aquí.
+
+## Transferencia solicitada — 2026-09-14
+
+El usuario autorizo preparar la subida del historial a luzadri84/AIFORGESQUADP1
+y exportar las imagenes para otro Windows 10. Esta instruccion posterior amplia
+el alcance a respaldo/transferencia del repositorio; no autoriza un despliegue web.
+No incluir .env, secretos, correo, volumenes o archivos de imagen en Git.
+El estado real de subida, visibilidad y autenticacion debe verificarse antes de
+confirmar que GitHub ya contiene los cambios.
