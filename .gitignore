@@ -8,3 +8,11 @@
 **/.angular/
 *.eml
 *.log
+# Versionar skills de proyecto, no autenticación ni cachés del agente.
+.agents/*
+!.agents/skills/
+.codex/auth.json
+.codex/sessions/
+.codex/history.jsonl
+.codex/log/
+*.pem

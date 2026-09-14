@@ -142,3 +142,29 @@ el contenedor de comprobación, conservando ese volumen y la base original.
 La clave de restauración permanece únicamente en .local/transfer-private.
 El resultado completo y el enlace de descarga están en docs/TRANSFERENCIA_VERIFICADA.md.
 La comprobación real en el otro Windows todavía corresponde al paso de importación.
+
+
+## DEC-001 — Reutilizar Specify e integrar solo sus recursos necesarios
+
+- Registro/hecho: 2026-09-14, America/Bogota; contemporáneo, H001/T001.
+- Problema: adoptar SDD sin reinicializar el entorno restaurado ni sobrescribir documentos.
+- Origen/propuesta: solicitud humana explícita de Prompt A; selección de archivos por Codex.
+- Intervención humana real: integrar Spec Kit y .handoffs, comparar/fusionar, ejecutar solo H001.
+- Decisión/responsable: adopción aceptada por solicitud humana; reutilización de 0.8.1,
+  generación offline temporal y selección de manifests decididas por el agente.
+- Alternativa: inicializar sobre la raíz; descartada por el agente por riesgo de colisión.
+- Motivo/compensación: evita reinstalación y deriva de versiones; requiere revisión
+  selectiva de futuros cambios. Sin impacto de rendimiento de la aplicación medido.
+- Implementación: .specify, nueve skills .agents/skills, docs/SPECKIT.md y exclusiones Git.
+  Se excluyó el workflow generado; .handoffs no será un motor de ejecución.
+- Verificación ejecutada por Codex en Windows 10: uv tool list y specify version =
+  0.8.1; direct_url.json fija tag v0.8.1/commit a63f64b; ayuda real y specify check
+  correctos. specify init temporal offline terminó correctamente. La llamada inicial
+  falló por Unicode/cp1252; PYTHONIOENCODING=utf-8 y PYTHONUTF8=1 lo resolvieron.
+- Verificación adicional: manifests originales coinciden byte a byte; specify integration
+  list identifica codex instalado. Codex app-server skills/list, cwd del repositorio y
+  forceReload=true, devuelve las nueve skills scope=repo/enabled=true y cero errores
+  del proyecto. Consulta por stdio sin crear tareas ni ejecutar modelos.
+- Límite: estas comprobaciones no ejecutan negocio ni demuestran la UI del selector
+  de skills; no se atribuye al usuario la ejecución de estas comprobaciones.
+- Vinculación: T001 y DEC-001 en el mensaje del commit, sin hash futuro inventado.

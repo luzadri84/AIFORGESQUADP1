@@ -1,0 +1,10 @@
+{
+  "specify_cli": "0.8.1",
+  "source": "https://github.com/github/spec-kit.git",
+  "revision": "v0.8.1",
+  "commit": "a63f64b69dfd9785360cac83e6a0221f6ff9f444",
+  "integration": "codex",
+  "script": "ps",
+  "generation": "specify init .local/speckit-stage --integration codex --script ps --offline --no-git",
+  "merge": "Individual files enumerated by the generated codex/speckit manifests; no existing files overwritten. Generated AGENTS.md and workflow files excluded."
+}
