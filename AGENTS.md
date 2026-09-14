@@ -92,3 +92,28 @@ Antes de programar, añade bajo cada sección las decisiones concretas que tomes
 - Bitácora de decisiones (dónde difieres de la IA, qué aceptaste/rechazaste y por qué).
 - Este archivo AGENTS.md, extendido con tus decisiones.
 - Instrucciones claras de ejecución.
+
+## Decisiones de infraestructura local — 2026-09-14
+
+Esta especificación se recuperó del adjunto original. No se ha recibido el starter:
+la carpeta inicial contenía solo documentos y no tenía historial Git.
+La autorización actual se limita a infraestructura provisional, sin negocio ni publicación.
+
+- Docker Desktop/WSL2 y VS Code Dev Containers existentes se reutilizan.
+- Entorno dev con JDK 21.0.10+7, Node 22.22.0 e imágenes por digest; Maven Wrapper
+  3.3.4 y Maven 3.9.9 verificado por checksum. Detalles: docs/ENTORNO_LOCAL.md.
+- Oracle Free 23.26.3-slim por digest, servicio oracle:1521/FREEPDB1, schema BOOKING,
+  secretos locales ignorados, healthcheck y volumen persistente. No exponer Oracle.
+- Las dependencias exactas están en infra/checks: BOM Boot 3.3.13, SpringDoc 2.6.0,
+  Angular 20.3.0, CDK 20.2.0, PrimeNG 20.0.0, RxJS 7.8.2, Tailwind 3.4.17,
+  MSAL Angular 3.1.0 / Browser 3.28.1, TypeScript 5.9.2. No forzar peers ni relajar strict.
+- Las sondas no constituyen la aplicación. packaging=war, arranque del backend,
+  seguridad Basic/CSRF, pruebas de negocio y defecto sembrado quedan pendientes del starter.
+  Su futura incorporación debe conservar requisitos e historial original.
+- No desactivar CSRF, generar reservas ficticias, usar H2 ni afirmar compatibilidad
+  Boot 3/WebLogic 12.2.1.4. La incompatibilidad del runtime sigue abierta.
+- Comandos reales: pwsh -NoProfile -File scripts/local.ps1
+  con acciones diagnose, prepare, up, verify, status y stop.
+  Dentro de dev: bash scripts/verify-local.sh.
+- Consultar docs/VERIFICACION_LOCAL.md para resultados; no inferir éxito de la configuración.
+  El historial nuevo solo registra trabajo ocurrido aquí.

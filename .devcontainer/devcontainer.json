@@ -1,0 +1,25 @@
+{
+  "name": "Booking: infraestructura provisional",
+  "dockerComposeFile": "../compose.yaml",
+  "service": "dev",
+  "workspaceFolder": "/workspace",
+  "remoteUser": "node",
+  "shutdownAction": "stopCompose",
+  "overrideCommand": false,
+  "initializeCommand": [
+    "pwsh",
+    "-NoProfile",
+    "-File",
+    "scripts/local.ps1",
+    "prepare"
+  ],
+  "postCreateCommand": "bash scripts/verify-local.sh",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "java.jdt.ls.java.home": "/opt/java/openjdk",
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  }
+}

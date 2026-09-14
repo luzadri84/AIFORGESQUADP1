@@ -1,0 +1,60 @@
+name: booking-local
+services:
+  oracle:
+    image: gvenzl/oracle-free:23.26.3-slim@sha256:6d61d267a3b978c24c5ac1790e62e927416a0aec446bd86e4b3a1527562757bd
+    environment:
+      ORACLE_PASSWORD_FILE: /run/secrets/oracle_password
+      APP_USER: BOOKING
+      APP_USER_PASSWORD_FILE: /run/secrets/app_password
+    secrets:
+      - oracle_password
+      - app_password
+    volumes:
+      - oracle-data:/opt/oracle/oradata
+    mem_limit: 3g
+    shm_size: 1g
+    healthcheck:
+      test: ["CMD", "healthcheck.sh"]
+      interval: 10s
+      timeout: 10s
+      retries: 45
+      start_period: 90s
+    stop_grace_period: 2m
+  dev:
+    build:
+      context: .
+      dockerfile: .devcontainer/Dockerfile
+    init: true
+    command: ["sleep", "infinity"]
+    working_dir: /workspace
+    user: node
+    mem_limit: 2g
+    environment:
+      JDBC_URL: jdbc:oracle:thin:@oracle:1521/FREEPDB1
+      JDBC_USER: BOOKING
+      JDBC_PASSWORD_FILE: /run/secrets/app_password
+      MAVEN_OPTS: -Xmx512m
+      NODE_OPTIONS: --max-old-space-size=1024
+    secrets:
+      - app_password
+    volumes:
+      - .:/workspace
+      - maven-cache:/home/node/.m2
+      - npm-cache:/home/node/.npm
+      - checks-node-modules:/workspace/infra/checks/frontend/node_modules
+    ports:
+      - "127.0.0.1:${LOCAL_HTTP_PORT:-8080}:8080"
+      - "127.0.0.1:${LOCAL_ANGULAR_PORT:-4200}:4200"
+    depends_on:
+      oracle:
+        condition: service_healthy
+secrets:
+  oracle_password:
+    file: ./.local/secrets/oracle-password
+  app_password:
+    file: ./.local/secrets/app-password
+volumes:
+  oracle-data:
+  maven-cache:
+  npm-cache:
+  checks-node-modules:
