@@ -18,3 +18,5 @@ pwsh -NoProfile -File scripts/local.ps1 stop
 La parada conserva los datos. La aplicación, su WAR y sus pruebas quedan pendientes
 del starter real. Boot 3 y WebLogic 12.2.1.4 tienen una incompatibilidad de runtime.
 Para cambiar de equipo, consulte [transferencia de imagenes e historial](docs/TRANSFERIR_EQUIPO.md).
+
+[Paquete en GitHub y comprobacion final de restauracion](docs/TRANSFERENCIA_VERIFICADA.md).

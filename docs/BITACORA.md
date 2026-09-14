@@ -127,3 +127,18 @@ AES-256-GCM, RSA de 3072 bits y OAEP SHA-256 mediante OpenSSL 3.0.18 ya instalad
 La clave privada queda fuera de Git y de los archivos que se envían a GitHub.
 La prueba de cifrado compara el tar descifrado con el original byte a byte.
 La restauración sobre otro equipo solo se acredita después de ejecutarla allí.
+
+## 8. Subida y restauración verificadas
+
+La rama main se subió al repositorio privado. La Release local-env-20260914
+contiene ocho archivos; cada digest SHA-256 de GitHub coincidió con el archivo local.
+El código y el bundle de la Release corresponden al commit 31782c5.
+
+El respaldo Oracle se extrajo a un volumen independiente nuevo y se arrancó
+oracle-restore-check sobre él. El healthcheck pasó. JDBC se dirigió explícitamente
+a ese servicio y leyó el marcador original como BOOKING/FREEPDB1. Después se detuvo
+el contenedor de comprobación, conservando ese volumen y la base original.
+
+La clave de restauración permanece únicamente en .local/transfer-private.
+El resultado completo y el enlace de descarga están en docs/TRANSFERENCIA_VERIFICADA.md.
+La comprobación real en el otro Windows todavía corresponde al paso de importación.
