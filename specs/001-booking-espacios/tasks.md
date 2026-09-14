@@ -193,7 +193,7 @@ T013 permite preparar un resultado local candidato. T014 no aplica por DEC-004 y
 - Dependencias: T017.
 - Handoff: H006.
 - Aceptación: Inventario antes/después, avisos aplicables tratados o descartados con evidencia, BOM compatible, pruebas seguridad/Oracle/WAR correctas.
-- Situación: autorizada por DEC-016; pendiente de implementación y verificación.
+- Situación: parcial, mitigación anticipada de cabeceras y Tomcat10.1.59 verificados de forma dirigida; resto pendiente de análisis final. Usuario mantiene stack obligatorio (DEC-019).
 - Evidencia de origen: AUD-01, DEC-015; docs/PLAN_CORRECCIONES_AUDITORIA.md.
 
 ## T019 Rechazar coerción decimal de identificadores y ocurrencias
@@ -220,7 +220,7 @@ T013 permite preparar un resultado local candidato. T014 no aplica por DEC-004 y
 - Dependencias: T020.
 - Handoff: H007.
 - Aceptación: Seguridad Basic/CSRF y respuestas reales documentadas, prueba OpenAPI y uso Swagger verificados.
-- Situación: autorizada por DEC-016; pendiente de implementación y verificación.
+- Situación: contrato y protección implementados, pruebas dirigidas pasan; pendiente Swagger interactivo/WAR nuevo, DEC-020.
 - Evidencia de origen: AUD-04, DEC-015; docs/PLAN_CORRECCIONES_AUDITORIA.md.
 
 ## T022 Alinear Dev Container restaurado y mensajes de verificación

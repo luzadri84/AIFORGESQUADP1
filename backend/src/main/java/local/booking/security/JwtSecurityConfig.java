@@ -26,7 +26,8 @@ public class JwtSecurityConfig {
   catch(java.security.NoSuchAlgorithmException e){throw new IllegalStateException(e);}
  }
  @Bean SecurityFilterChain jwtSecurity(HttpSecurity http,JwtDecoder decoder)throws Exception{
-  http.authorizeHttpRequests(a->a.requestMatchers("/api/csrf").permitAll().anyRequest().authenticated())
+  http.headers(h -> h.withObjectPostProcessor(EagerSecurityHeaders.processor()))
+            .authorizeHttpRequests(a->a.requestMatchers("/api/csrf").permitAll().anyRequest().authenticated())
    .sessionManagement(s->s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
    .requestCache(c->c.disable())
    .csrf(c->c.sessionAuthenticationStrategy(new org.springframework.security.web.authentication.session.NullAuthenticatedSessionStrategy()))

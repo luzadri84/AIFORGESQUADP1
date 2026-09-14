@@ -561,3 +561,51 @@ T019/T020, evidencia inicial: 12 casos dirigidos de AuditSecurityTest pasan con 
 real (0 fallos/errores/omitidas). Incluyen los dos fraccionarios, formatos/límites,
 null válido, tres regresiones históricas y GET405. Log .local/corrections/t019-t020.log.
 Pendiente comprobar HTTP contra WAR nuevo y suite final; no se declara todavía cierre.
+
+## DEC-018 — Mitigación compatible y parche Tomcat, T018
+
+2026-09-14, America/Bogota. Selección del agente, bajo DEC-016: Tomcat10.1.59,
+confirmado en Maven Central y página oficial Apache; alinear core/el/websocket
+mediante propiedad gestionada tomcat.version, sin forzar módulos Spring. No se
+modifica Boot/Security/DataJPA ni se compra soporte Enterprise.
+
+CVE-2026-22732: mitigación oficial setShouldWriteHeadersEagerly(true), común a los
+filtros Basic/JWT ya existentes (JWT sigue inactivo). La prueba de filtro efectivo
+securityHeadersAreWrittenBeforeDownstreamApplication falló antes: nosniff era null
+al entrar a la aplicación. Se comprobará después. No es PoC del camino original
+no divulgado del CVE; demuestra la configuración efectiva y sus efectos de caché.
+El código propio no sobrescribe Cache-Control; el test muestra que una cabecera
+explícita posterior sí puede reemplazarla y que DENY permanece. No se presenta como
+versión corregida ni como cierre de otros avisos.
+
+T018: tras aplicar la mitigación y Tomcat10.1.59, 5 pruebas dirigidas pasaron:
+2 de cabeceras y3 de carrera/rollback/espera real Oracle, incluidas cabeceras503.
+La prueba antes falló con nosniff=null en entrada del downstream y ahora pasa.
+Catálogo actualizado por descarga completa:65→43 coincidencias paquete-aviso;
+se retiraron22 de Tomcat del inventario corregido, no se ocultan avisos.
+
+## DEC-019 — Mantener familias obligatorias, decisión del usuario
+
+2026-09-14, America/Bogota. Se presentó alternativa exacta y resuelta en POM temporal:
+Boot3.5.16, Framework6.2.19, Security6.5.11, DataJPA3.5.13, Hibernate6.6.53.Final,
+SpringDoc2.8.17 y Tomcat10.1.59. Excepciones requeridas: familias Security y DataJPA.
+Respuesta literal del usuario: «Mantener el stack obligatorio por ahora; continuar
+mitigaciones y dejar pendiente lo no resuelto». Se conserva Boot3.3.13 y las familias
+originales. No se aplica la alternativa ni se acepta riesgo en nombre del usuario;
+T018 quedará parcial si resta aplicabilidad sin tratamiento suficiente.
+
+## DEC-020 — OpenAPI y acceso interactivo protegido, T021
+
+Decisión del agente bajo DEC-016: declarar respuestas por operación y esquemas
+Basic+csrfToken en el mismo SecurityRequirement (AND). Token del endpoint actual,
+cookie HttpOnly existente, sin cambiar mecanismo CSRF. Swagger permanece protegido;
+se añade desafío Basic solo en rutas de documentación para que el navegador pueda
+abrirla, manteniendo401 JSON sin diálogo nativo para rutas de negocio. No persistir
+autorización en Swagger. Paso manual de token documentado, sin secretos de ejemplo.
+Cuatro tests dirigidos (OpenAPI, protección Swagger y cabeceras) pasaron. Pendiente
+operación de escritura visual sobre WAR nuevo para cerrar T021.
+
+T018: dos pruebas adicionales pasan sobre configuración efectiva: los handlers de
+recursos no contienen resolvers de caché/versión/encoded; Swagger permanece protegido.
+Existe StandardServletMultipartResolver, pero POST multipart de reservas devuelve415
+sin escritura. Esto acota prerrequisitos; no demuestra ausencia universal de riesgos.

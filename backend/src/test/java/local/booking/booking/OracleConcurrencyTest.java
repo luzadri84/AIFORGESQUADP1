@@ -73,7 +73,10 @@ class OracleConcurrencyTest {
    firstWritten.set(true);throw new DataAccessResourceFailureException("controlled test failure after actual Oracle flush");
   }).when(bookings).saveAndFlush(any(Booking.class));
   var response=create(client(USER),4).get(30,TimeUnit.SECONDS);
-  assertThat(response.statusCode()).isEqualTo(503);assertThat(response.body()).doesNotContain("controlled test failure");
+  assertThat(response.statusCode()).isEqualTo(503);
+   assertThat(response.headers().firstValue("Cache-Control").orElse("")).contains("no-store");
+   assertThat(response.headers().firstValue("X-Content-Type-Options")).contains("nosniff");
+   assertThat(response.headers().firstValue("X-Frame-Options")).contains("DENY");assertThat(response.body()).doesNotContain("controlled test failure");
   assertThat(firstWritten.get()).isTrue();
   assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM BKG_BOOKING WHERE SPACE_ID=?",Integer.class,spaceId)).isZero();
  }
@@ -90,6 +93,9 @@ class OracleConcurrencyTest {
    var response=request.get(14,TimeUnit.SECONDS);
    long elapsed=TimeUnit.NANOSECONDS.toMillis(System.nanoTime()-started);
    assertThat(response.statusCode()).isEqualTo(503);
+   assertThat(response.headers().firstValue("Cache-Control").orElse("")).contains("no-store");
+   assertThat(response.headers().firstValue("X-Content-Type-Options")).contains("nosniff");
+   assertThat(response.headers().firstValue("X-Frame-Options")).contains("DENY");
    assertThat(response.body()).doesNotContain("ORA-", "SELECT", "Exception");
    assertThat(elapsed).isBetween(8000L,14000L);
    assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM BKG_BOOKING WHERE SPACE_ID=?",Integer.class,spaceId)).isZero();

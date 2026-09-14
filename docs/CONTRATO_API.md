@@ -45,3 +45,18 @@ OffsetDateTime sigue usando texto ISO8601 con offset. Los demás DTO de respuest
 no cambian. GET /api/bookings/{id} y PUT sobre esa ruta son405 (Allow: DELETE);
 una ruta sin mapping es404. No se añadieron GET por ID ni edición. ID inválido en
 DELETE es400 con Basic/CSRF válidos; contenido no soportado es415.
+
+## Swagger protegido — DEC-020
+
+Abrir http://localhost:8080/swagger-ui/index.html. El navegador solicita Basic para
+la documentación: usar las credenciales externas de este entorno. La API de negocio
+mantiene401 JSON sin ese desafío. Dentro de Swagger, Authorize/basicAuth con el mismo
+usuario; ejecutar GET /api/csrf con Try it out y conservar la cookie del navegador.
+Copiar solo el valor token del JSON a Authorize/csrfToken. POST y DELETE requieren
+ambos esquemas conjuntamente; el navegador conserva la sesión sin leer su cookie.
+No guardar ni compartir capturas/URLs con claves. La autorización no persiste tras
+recargar. Para terminar, cerrar Swagger; la revocación de Basic no ocurre por un botón.
+
+OpenAPI describe201/200/409 para POST;204 sin body para DELETE; errores por operación,
+con503 solo donde se accede a datos. /api/csrf es público; los demás requieren Basic.
+No se añadieron endpoints de negocio ni excepciones CSRF para documentación.

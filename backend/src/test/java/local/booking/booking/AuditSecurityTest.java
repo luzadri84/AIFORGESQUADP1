@@ -150,5 +150,78 @@ class AuditSecurityTest {
         assertThat(doc.at("/paths/~1api~1bookings/post/responses").has("201")).isTrue();
         assertThat(doc.at("/paths/~1api~1bookings/post/responses").has("409")).isTrue();
         assertThat(doc.at("/components/securitySchemes").isMissingNode()).isFalse();
+        assertThat(doc.at("/components/securitySchemes/basicAuth/scheme").asText()).isEqualTo("basic");
+        var security=doc.at("/paths/~1api~1bookings/post/security");
+        assertThat(security.size()).isEqualTo(1);
+        assertThat(security.get(0).has("basicAuth")&&security.get(0).has("csrfToken")).isTrue();
+        assertThat(doc.at("/paths/~1api~1csrf/get/security").size()).isZero();
+        assertThat(doc.at("/paths/~1api~1bookings~1{id}/delete/responses/204/content").isMissingNode()).isTrue();
+        assertThat(doc.at("/paths/~1api~1me/get/responses").has("503")).isFalse();
+        assertThat(doc.at("/paths/~1api~1bookings/post/responses").has("200")).isTrue();
+
+    }
+    @Autowired org.springframework.security.web.FilterChainProxy filterChain;
+    @Test void securityHeadersAreWrittenBeforeDownstreamApplication()throws Exception{
+        var headers=filterChain.getFilters("/api/bookings").stream()
+            .filter(org.springframework.security.web.header.HeaderWriterFilter.class::isInstance)
+            .map(org.springframework.security.web.header.HeaderWriterFilter.class::cast).findFirst().orElseThrow();
+        var request=new org.springframework.mock.web.MockHttpServletRequest("GET","/api/bookings");
+        var response=new org.springframework.mock.web.MockHttpServletResponse();
+        headers.doFilter(request,response,(req,res)->{
+            var http=(jakarta.servlet.http.HttpServletResponse)res;
+            assertThat(http.getHeader("X-Content-Type-Options")).isEqualTo("nosniff");
+            assertThat(http.getHeader("X-Frame-Options")).isEqualTo("DENY");
+            assertThat(http.getHeader("Cache-Control")).contains("no-store");
+            // Document the official workaround's override semantics, not an app endpoint.
+            http.setHeader("Cache-Control","private, max-age=30");
+        });
+        assertThat(response.getHeader("Cache-Control")).isEqualTo("private, max-age=30");
+        assertThat(response.getHeader("X-Frame-Options")).isEqualTo("DENY");
+    }
+    @Test void headersRemainOnSuccessfulAndRejectedRequests()throws Exception{
+        var c=csrf();
+        var cases=List.of(
+            Map.entry(get("/api/csrf"),200),
+            Map.entry(get("/api/bookings"),401),
+            Map.entry(post("/api/bookings").header("Authorization",auth("audit-a")).contentType("application/json").content(body()),403),
+            Map.entry(secured(post("/api/bookings"),"audit-a",c).contentType("application/json").content("{}"),400),
+            Map.entry(get("/api/route-that-does-not-exist").header("Authorization",auth("audit-a")),404),
+            Map.entry(get("/api/bookings/123").header("Authorization",auth("audit-a")),405));
+        for(var entry:cases)mvc.perform(entry.getKey()).andExpect(status().is(entry.getValue()))
+            .andExpect(header().string("X-Content-Type-Options","nosniff"))
+            .andExpect(header().string("X-Frame-Options","DENY"))
+            .andExpect(header().string("Cache-Control",org.hamcrest.Matchers.containsString("no-store")));
+        create("audit-a",c);
+        mvc.perform(secured(post("/api/bookings"),"audit-a",c).contentType("application/json").content(body()))
+            .andExpect(status().isConflict()).andExpect(header().string("Cache-Control",org.hamcrest.Matchers.containsString("no-store")));
+    }
+    @Test void documentationIsProtectedWithBrowserChallengeOnlyThere()throws Exception{
+        mvc.perform(get("/swagger-ui/index.html")).andExpect(status().isUnauthorized())
+            .andExpect(header().string("WWW-Authenticate",org.hamcrest.Matchers.startsWith("Basic ")));
+        mvc.perform(get("/api/bookings")).andExpect(status().isUnauthorized()).andExpect(header().doesNotExist("WWW-Authenticate"));
+        mvc.perform(get("/swagger-ui/index.html").header("Authorization",auth("audit-a"))).andExpect(status().isOk());
+    }
+    @Autowired org.springframework.context.ApplicationContext applicationContext;
+    @Test void effectiveStaticResourcesHaveNoSharedCachingOrVersionResolvers()throws Exception{
+        var mappings=applicationContext.getBeansOfType(org.springframework.web.servlet.handler.SimpleUrlHandlerMapping.class);
+        var resources=mappings.values().stream().flatMap(m->m.getHandlerMap().values().stream())
+            .filter(org.springframework.web.servlet.resource.ResourceHttpRequestHandler.class::isInstance)
+            .map(org.springframework.web.servlet.resource.ResourceHttpRequestHandler.class::cast).toList();
+        assertThat(resources).isNotEmpty();
+        for(var resource:resources)for(var resolver:resource.getResourceResolvers()){
+            assertThat(resolver).isNotInstanceOf(org.springframework.web.servlet.resource.CachingResourceResolver.class);
+            assertThat(resolver).isNotInstanceOf(org.springframework.web.servlet.resource.VersionResourceResolver.class);
+            assertThat(resolver).isNotInstanceOf(org.springframework.web.servlet.resource.EncodedResourceResolver.class);
+        }
+        for(var path:List.of("/swagger-ui/index.html","/swagger-ui/swagger-ui.css","/v3/api-docs"))
+            mvc.perform(get(path)).andExpect(status().isUnauthorized());
+    }
+    @Test void multipartResolverExistsButBookingDoesNotAcceptMultipart()throws Exception{
+        assertThat(applicationContext.getBean("multipartResolver"))
+            .isInstanceOf(org.springframework.web.multipart.support.StandardServletMultipartResolver.class);
+        long before=bookings.count();
+        mvc.perform(secured(multipart("/api/bookings").param("spaceId",Long.toString(space)),"audit-a",csrf()))
+            .andExpect(status().isUnsupportedMediaType());
+        assertThat(bookings.count()).isEqualTo(before);
     }
 }
