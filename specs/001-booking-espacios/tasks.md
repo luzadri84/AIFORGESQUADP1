@@ -4,13 +4,16 @@ Reconciliado en H001 el 2026-09-14 contra main/5dcdb7c y el entorno restaurado.
 No hay aplicación Booking ni WAR. Una sola feature, mismos IDs T001–T015 de las
 semillas. [Spec](spec.md), [plan](plan.md), [evidencia](../../docs/INTEGRACION_H001.md).
 
-**Límite de ejecución actual:** H001/T001–T002. Antes de T003–T013 se requiere
-la decisión humana sobre la propuesta DEC-003 y autorización del bloque funcional.
+**Alcance vigente (DEC-004):** repositorio actual como base definitiva; siguiente
+tarea autorizada T003. Arquitectura decidida por el usuario en DEC-005: monolito
+por funcionalidades; DEC-003 se conserva como propuesta previa.
+T014 no aplica; T015 permanece independiente. No se autorizan todas las tareas
+del backlog por este cambio.
 No inferir esa aceptación de este backlog ni del silencio del usuario.
 
 ## Convención de estado
 
-Este archivo es la lista canónica. `[x]` solo cuando se cumple la aceptación con evidencia. `[ ]` permanece para pendiente, en curso o bloqueada; indicar la situación en la anotación de la tarea. Solo una tarea en curso por ejecutor. Las dependencias externas no bloquean tareas independientes. No usar [P] para sugerir ejecución paralela en este paquete.
+Este archivo es la lista canónica. `[x]` solo cuando se cumple la aceptación con evidencia. `[ ]` permanece para pendiente, en curso, bloqueada o **No aplica por cambio de alcance**; esta última es una disposición terminal sin implementación y no bloquea dependencias; indicar la situación en la anotación de la tarea. Solo una tarea en curso por ejecutor. Las dependencias externas no bloquean tareas independientes. No usar [P] para sugerir ejecución paralela en este paquete.
 
 No duplicar estados en índices de handoffs. Conservar IDs y añadir los nuevos al final si el análisis descubre trabajo necesario. Si ya existen IDs al importar, crear una correspondencia y actualizar todas las referencias sin romper el historial.
 
@@ -150,9 +153,9 @@ No duplicar estados en índices de handoffs. Conservar IDs y añadir los nuevos 
 
 - Dependencias: sin dependencia interna.
 - Handoff: H008.
-- Aceptación: Reproducción demostrada, causa y fix mínimos, prueba apropiada antes/después e historial conservado; si llega tarde comparar sin reescribir trabajo; inspeccionar en carpeta separada, conservar el punto previo e historiales, documentar procedencia del portado y actualizar explicación final y pruebas afectadas. Seguir los nueve pasos de docs/ENTREGA_Y_STARTER.md (sección T014); mantener T015 separada.
-- Situación: bloqueada por starter no recibido.
-- Evidencia: sin prueba funcional ejecutada; ver alcance real de H001.
+- Aceptación histórica, sin vigencia por DEC-004: Reproducción demostrada, causa y fix mínimos, prueba apropiada antes/después e historial conservado; si llega tarde comparar sin reescribir trabajo; inspeccionar en carpeta separada, conservar el punto previo e historiales, documentar procedencia del portado y actualizar explicación final y pruebas afectadas. Seguir los nueve pasos de docs/ENTREGA_Y_STARTER.md (sección T014); mantener T015 separada.
+- Situación: **No aplica por cambio de alcance** — DEC-004, decisión del usuario del 2026-09-14. No implementada; se conserva solo para trazabilidad.
+- Evidencia: instrucción explícita del usuario recogida en DEC-004; sin recepción, migración ni prueba de defecto ejecutadas.
 
 ## T015 Resolver con el evaluador la contradicción de runtime y su evidencia exigida
 
@@ -166,4 +169,4 @@ No duplicar estados en índices de handoffs. Conservar IDs y añadir los nuevos 
 
 ## Regla de cierre de la prueba
 
-T013 permite preparar un resultado local candidato. No declarar cumplimiento total mientras T014/T015 estén abiertas, salvo aclaración explícita del evaluador que cambie el alcance y quede registrada. Si T014 introduce cambios relevantes después de T013, reabrir o añadir las verificaciones afectadas, sin borrar su evidencia previa.
+T013 permite preparar un resultado local candidato. T014 no aplica por DEC-004 y no es un bloqueo ni una tarea implementada. T015 mantiene su aceptación y bloqueo independiente: no acreditar compatibilidad de despliegue sin resolverlo. La descripción histórica de recepción/migración se conserva, pero no se ejecutará ni se inventará un defecto sustituto.

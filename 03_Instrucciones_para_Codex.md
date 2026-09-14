@@ -1,5 +1,12 @@
 # Instrucciones para desarrollar la prueba con Codex
 
+> Actualización de alcance — DEC-004 (2026-09-14): este documento conserva el
+> registro/propuesta de su etapa original. Las instrucciones de esperar, recibir,
+> comparar o migrar un starter e investigar su defecto quedaron superadas: el
+> repositorio actual es la base definitiva. No aplica por cambio de alcance;
+> no se acredita implementación de esas tareas. WebLogic sigue independiente.
+> Reglas y estado vigentes: AGENTS.md, tasks.md y docs/BITACORA.md.
+
 Estos textos están preparados para usarse dentro del repositorio starter. No sustituyen la inspección del repositorio ni autorizan cambios de stack incompatibles con la prueba. El trabajo actual es planificación; los prompts de implementación se usarán cuando se decida comenzar a desarrollar.
 
 ## 1 Preparar el contexto

@@ -1,4 +1,4 @@
-# Criterios de entrega y recepción del starter
+# Criterios de entrega e historial de recepción excluida
 
 Adaptación autocontenida de las secciones 6 y 7 de la guía 07 suministrada; H001
 solo incorpora criterios. Tareas/estado únicamente en
@@ -23,7 +23,8 @@ implementación. Debe cubrir estos doce contenidos:
 7. Pruebas/evidencia: requisito → test/comando → resultado; distinguir qué prueban
    Oracle, mocks y sonda frontend; no inventar mediciones.
 8. Proceso con IA: decisiones determinantes con DEC y commits reales; bitácora fuente.
-9. Starter: procedencia, defecto real, reproducción, fix/regresión/adaptación o ausencia.
+9. Base definitiva y procedencia: describir DEC-004, repositorio actual e historia
+   conservada. Starter/defecto/migración: No aplica por cambio de alcance; no simularlos.
 10. Al menos 12 preguntas de sustentación basadas en código, respuestas razonadas,
     archivos a mostrar y errores conceptuales frecuentes.
 11. Al menos 6 retos plausibles de modificación, analizados sin implementarlos.
@@ -42,7 +43,11 @@ No cerrar T013 hasta cumplir estos criterios, generar/probar el WAR conforme al
 alcance acordado y mostrar todos los pendientes externos. Las 12 preguntas y 6 retos
 no deben fabricarse en H001 alrededor de archivos que todavía no existen.
 
-## T014 / H008: recepción del starter en nueve pasos
+## T014 / H008: procedimiento histórico sin vigencia (DEC-004)
+
+**No aplica por cambio de alcance.** Se conserva abajo la descripción de recepción,
+comparación, migración e investigación original para trazabilidad. No ejecutar
+estos pasos ni marcarlos implementados: el starter no estará disponible y fue excluido.
 
 1. Registrar rama, HEAD, diff pendiente, pruebas y handoff del punto actual. Preservar
    cambios sin reset/stash/borrado automático; punto de recuperación sin secretos.
@@ -69,5 +74,7 @@ no deben fabricarse en H001 alrededor de archivos que todavía no existen.
 
 Recibir el starter no aprueba Tomcat, no resuelve WebLogic automáticamente y no
 permite publicación. Registrar aclaración y evidencia exigida por el evaluador.
-Mientras falten insumos, conservar T014/T015 abiertas; no bloquear trabajo independiente
-que ya esté autorizado, ni anticipar una capa genérica de compatibilidad.
+T014 no aplica por DEC-004; T015 conserva su bloqueo externo y criterios sin cambios.
+No bloquear trabajo local independiente ya autorizado ni anticipar una capa genérica
+de compatibilidad. La solución de estudio debe referenciar código/pruebas reales
+y sus preguntas/retos son ejercicios de análisis, nunca nuevas funcionalidades.

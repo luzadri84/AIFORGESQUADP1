@@ -1,13 +1,14 @@
 # Implementation Plan: Booking
 
 **Feature**: 001-booking-espacios | **Git al inicio**: main, 5dcdb7c | **Date**: 2026-09-14
-**Spec**: [spec.md](spec.md) | **Estado de decisiones**: [DEC-003](../../docs/BITACORA.md)
+**Spec**: [spec.md](spec.md) | **Estado de decisiones**: [DEC-003/DEC-005](../../docs/BITACORA.md)
 
 ## Summary
 
 Conservar infraestructura comprobada y proponer un monolito pequeño con API Spring
 Boot y UI Angular. H001 solo integra metodología; no existe todavía aplicación.
-Recomendación pendiente de decisión humana y de autorización del siguiente bloque.
+Continuación a T003 autorizada por DEC-004; arquitectura elegida por el usuario
+en DEC-005: monolito organizado por funcionalidades. Base actual definitiva.
 
 ## Technical Context: configuración y versiones existentes
 
@@ -53,19 +54,24 @@ H002/H004: backend Maven WAR con paquetes `booking`, `space`, `security`; fronte
 Angular standalone. `infra/checks` seguirá siendo infraestructura y no se renombra
 para aparentar funcionalidad. No se generó ningún scaffold en H001.
 
-## Recomendación de arquitectura (DEC-003, pendiente)
+## Arquitectura elegida (DEC-005; propuesta previa DEC-003)
 
-Un solo backend: controlador HTTP → servicio de aplicación transaccional →
-repositorios específicos Spring Data JPA, más DTO/validadores y pequeñas funciones
-puras de intervalos/recurrencias. Un frontend Angular por funcionalidad. Configuración
+Un solo backend por funcionalidades: `booking` reúne controlador, servicio,
+repositorio, DTO, entidad y reglas de reservas; `space` reúne consulta, entidad y
+persistencia; `security` configura autenticación/adaptación de identidad; `errors`
+solo existe si hay errores HTTP realmente compartidos. Dentro de booking: controlador
+HTTP → servicio transaccional → repositorio Spring Data JPA, con funciones pequeñas
+de intervalos/recurrencias. Angular organiza `acceso` y `reservas` con componentes,
+modelos y servicios HTTP próximos. No se crean carpetas vacías para aparentar capas. Configuración
 por entorno, SQL versionado y tests junto a cada comportamiento. El código existente
 no exige refactor: se conserva completo.
 
 Alternativa razonable: separar dominio puro y persistencia mediante puertos y
-adaptadores en el mismo monolito. Facilita aislamiento de dominio si el starter
-lo justifica; añade interfaces, mapeos y más pruebas de integración. Con una sola
+adaptadores en el mismo monolito. Facilita aislamiento de dominio si futuras necesidades reales
+lo justifican; añade interfaces, mapeos y más pruebas de integración. Con una sola
 base Oracle y este alcance pequeño no hay evidencia actual que compense ese coste.
-No se registra rechazo humano de la alternativa ni aprobación del diseño recomendado.
+La elección humana DEC-005 favorece organización por funcionalidades, no una
+infraestructura distinta. No se inventa un rechazo de puertos/adaptadores.
 Ambas opciones deben conservar propiedad, CSRF, concurrencia y pruebas en Oracle.
 
 ## Propuesta técnica para la revisión humana y siguientes tareas
@@ -101,7 +107,7 @@ Oracle para carrera, rollback, tiempo y cancelación; navegador real para US1–
 No usar H2/mocks para acreditar Oracle/concurrencia. Pruebas con datos aislados:
 conservar el marcador original y no eliminar volúmenes para limpiar fixtures.
 Metas de rendimiento no fijadas ni medidas. Alcance: MVP local, sin despliegue público.
-Los criterios de entrega/estudio/starter están en [ENTREGA_Y_STARTER.md](../../docs/ENTREGA_Y_STARTER.md).
+Los criterios de entrega/estudio y el procedimiento histórico del starter están en [ENTREGA_Y_STARTER.md](../../docs/ENTREGA_Y_STARTER.md).
 
 ## Constitution Check
 
@@ -112,12 +118,14 @@ No hay investigación/modelo/contratos generados artificialmente para dar por he
 
 ## Dependencias y siguiente paso
 
-T003 es la primera tarea funcional: una vez recibida la decisión humana sobre
-DEC-003 y la autorización de H002, preparar entidades/SQL/semillas sobre la base
+T003 es la primera tarea funcional y está autorizada por DEC-004 con la arquitectura
+DEC-005: preparar entidades/SQL/semillas sobre la base
 existente y verificar el mapeo temporal. T004/T005 completan seguridad y contrato.
-No iniciar H002 automáticamente al terminar esta integración.
+La orden actual permite continuar a T003 sin volver a integrar H001.
 
-Starter ausente y aclaración WebLogic separada: T014/T015. Spring Boot 3.3 requiere
+Starter excluido por DEC-004: T014 No aplica por cambio de alcance; no habrá
+recepción, comparación, migración ni investigación de un defecto sembrado.
+La aclaración WebLogic sigue pendiente exclusivamente en T015. Spring Boot 3.3 requiere
 Servlet 5+; WebLogic 12.2.1.4 documenta Java EE 7. La incompatibilidad sigue abierta,
 no se soluciona por cambiar a WAR. Fuentes oficiales consultadas en H001:
 [Spring Boot](https://docs.spring.io/spring-boot/3.3/system-requirements.html) y

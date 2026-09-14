@@ -26,5 +26,6 @@ precondiciones y entorno: [INTEGRACION_H001.md](../docs/INTEGRACION_H001.md).
 Consultar tasks.md para el cierre exacto. La primera tarea funcional es T003 en
 [H002](H002-base-api.md), después de la decisión humana sobre DEC-003 y autorización
 del bloque. Abrir plan/spec/tasks y leer la base actual antes de implementar.
-Starter/T014 y runtime/T015 siguen como dependencias externas; no son tareas H001.
+Actualización posterior DEC-004: starter/T014 no aplica; runtime/T015 conserva su
+dependencia externa. Se mantiene este cierre como evidencia histórica de H001.
 Los commits de cierre se localizan por T002/DEC-002, sin inventar su hash futuro.

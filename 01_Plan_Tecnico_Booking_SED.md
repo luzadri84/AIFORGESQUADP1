@@ -1,5 +1,12 @@
 # Plan técnico para la prueba de Booking de Espacios Físicos
 
+> Actualización de alcance — DEC-004 (2026-09-14): este documento conserva el
+> registro/propuesta de su etapa original. Las instrucciones de esperar, recibir,
+> comparar o migrar un starter e investigar su defecto quedaron superadas: el
+> repositorio actual es la base definitiva. No aplica por cambio de alcance;
+> no se acredita implementación de esas tareas. WebLogic sigue independiente.
+> Reglas y estado vigentes: AGENTS.md, tasks.md y docs/BITACORA.md.
+
 Fecha de preparación: 14 de septiembre de 2026. Estado: diseño propuesto antes de inspeccionar el starter y antes de implementar.
 
 La recomendación es construir un monolito pequeño con Angular y Spring Boot, persistencia Oracle y un flujo completo para crear, consultar y cancelar reservas propias. La calidad debe concentrarse en la corrección de horarios, la autorización por recurso, las recurrencias parciales y la evidencia de verificación. La aplicación no necesita IA en tiempo de ejecución: lo obligatorio es utilizar IA durante el desarrollo y demostrar criterio al revisar su trabajo.

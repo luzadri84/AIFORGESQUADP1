@@ -3,6 +3,9 @@
 **Feature**: `001-booking-espacios` | **Created**: 2026-09-14 | **Status**: Draft funcional reconciliado en H001
 **Git al inicio**: main, 5dcdb7c; esta feature documental no crea otra rama.
 
+**Alcance actualizado por DEC-004:** el repositorio actual es la base definitiva.
+El starter y su defecto quedan excluidos; T014 no aplica y T015 sigue independiente.
+
 **Input**: Prompt A y semillas contrastadas con AGENTS y código real. No hay backend,
 frontend Booking, entidades ni WAR: solo infraestructura y sondas. El texto original
 de AGENTS se conserva. Los adjuntos originales fueron registrados en la documentación
@@ -39,7 +42,7 @@ Como funcionario quiero solicitar varias ocurrencias y saber cuáles se crearon 
 - FR009 Oracle 19c o superior, Java 21, stack frontend/backend obligatorio, strict y WAR; ejecución reproducible mediante devcontainer.
 - FR010 MSAL Angular y Resource Server preparados como extensión, con Basic independiente de Azure real. Sin integración real requerida.
 - FR011 Pruebas automatizadas críticas, dependencias reales, secretos fuera de código/historial, bitácora y commits reales.
-- FR012 Inspeccionar, explicar y corregir el defecto sembrado del starter y resolver/documentar la contradicción del runtime objetivo con el evaluador.
+- FR012 Resolver/documentar la contradicción del runtime objetivo (T015). Componente histórico de este requisito: inspeccionar, explicar y corregir el defecto del starter (T014), **No aplica por cambio de alcance** (DEC-004), no implementado.
 
 ### Casos de aceptación y bordes
 
@@ -59,7 +62,7 @@ Notificaciones, administración de espacios, calendario drag and drop, RRULE com
 
 ## Terminado
 
-FR001–FR011 tienen evidencia real según alcance y FR012 está resuelto con el starter/evaluador. Si siguen pendientes externos, puede prepararse una entrega candidata, pero no declarar cumplimiento total. Handoffs y tareas terminadas no reemplazan pruebas ni la definición de terminado del evaluador.
+El criterio de terminado exige evidencia real de FR001–FR011 y resolver el componente vigente de FR012 con el evaluador (T015). T014 queda excluida por DEC-004. Si siguen pendientes externos, puede prepararse una entrega candidata, pero no declarar cumplimiento total. Handoffs y tareas terminadas no reemplazan pruebas ni la definición de terminado del evaluador.
 
 ## Key Entities (diseño, todavía sin tablas de negocio)
 
@@ -78,7 +81,7 @@ FR001–FR011 tienen evidencia real según alcance y FR012 está resuelto con el
 - SC004: dos solicitudes independientes al mismo espacio/intervalo libre terminan
   con una sola reserva activa; un fallo técnico no deja un pedido parcialmente escrito.
 - SC005: evidencias vinculadas a FR y pruebas reales, WAR y explicación verificables;
-  ninguna afirmación de cumplimiento total mientras T014/T015 sigan abiertas.
+  ninguna afirmación de cumplimiento total mientras T015 siga abierta.
 
 Estos resultados se verificarán durante H002–H008. No se inventan metas de latencia,
 usuarios concurrentes, implementación ni rendimiento para llenar una plantilla.

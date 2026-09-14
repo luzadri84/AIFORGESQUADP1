@@ -1,5 +1,12 @@
 # Transferencia verificada — 2026-09-14
 
+> Actualización de alcance — DEC-004 (2026-09-14): este documento conserva el
+> registro/propuesta de su etapa original. Las instrucciones de esperar, recibir,
+> comparar o migrar un starter e investigar su defecto quedaron superadas: el
+> repositorio actual es la base definitiva. No aplica por cambio de alcance;
+> no se acredita implementación de esas tareas. WebLogic sigue independiente.
+> Reglas y estado vigentes: AGENTS.md, tasks.md y docs/BITACORA.md.
+
 Repositorio privado: [luzadri84/AIFORGESQUADP1](https://github.com/luzadri84/AIFORGESQUADP1).
 Paquete completo: [Release local-env-20260914](https://github.com/luzadri84/AIFORGESQUADP1/releases/tag/local-env-20260914).
 

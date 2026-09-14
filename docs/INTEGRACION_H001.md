@@ -1,5 +1,12 @@
 # Integración H001: estado y evidencia real
 
+> Actualización de alcance — DEC-004 (2026-09-14): este documento conserva el
+> registro/propuesta de su etapa original. Las instrucciones de esperar, recibir,
+> comparar o migrar un starter e investigar su defecto quedaron superadas: el
+> repositorio actual es la base definitiva. No aplica por cambio de alcance;
+> no se acredita implementación de esas tareas. WebLogic sigue independiente.
+> Reglas y estado vigentes: AGENTS.md, tasks.md y docs/BITACORA.md.
+
 Registro: 2026-09-14, America/Bogota. Ejecutó: Codex en Windows 10/PowerShell 7.
 Estado de T001/T002 y siguientes únicamente en [tasks.md](../specs/001-booking-espacios/tasks.md).
 [Handoff](../.handoffs/H001-integracion.md), [Spec Kit](SPECKIT.md), [bitácora](BITACORA.md).

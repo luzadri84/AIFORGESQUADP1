@@ -1,5 +1,24 @@
 # AGENTS.md — Especificación inicial del proyecto "Booking de Espacios Físicos"
 
+## Alcance vigente — DEC-004, 2026-09-14
+
+Por instrucción explícita del usuario, este repositorio y su entorno local son la
+base definitiva. El starter no llegará y queda fuera del alcance: no recibir,
+comparar, migrar ni investigar su supuesto defecto; no inventar uno equivalente.
+T014 conserva su descripción como **No aplica por cambio de alcance**, no implementada.
+Los registros anteriores se conservan como historia; sus dependencias del starter y
+el límite temporal de ejecutar solo H001 quedaron superados por esta instrucción.
+El usuario autoriza continuar con la siguiente tarea pendiente, T003, sin reiniciar
+Spec Kit ni repetir trabajo verificado. DEC-005 registra la decisión humana de
+monolito por funcionalidades: booking, space, security y errors solo si se comparte;
+controlador–servicio–repositorio dentro de booking. Angular: acceso y reservas.
+T015/WebLogic permanece sin cambios y no condiciona trabajos locales independientes.
+
+Mantener Spec Kit, .handoffs, tasks.md como único estado, commits incrementales y
+la bitácora real. docs/EXPLICACION_IMPLEMENTACION.md describe únicamente código y
+pruebas existentes, con preguntas respondidas y ejercicios de análisis, nunca
+funcionalidades extra ejecutadas para resolver esos ejercicios.
+
 ## Rol de este archivo
 
 Este archivo es la especificación inicial (spec) del proyecto, siguiendo la metodología Spec-Driven Development (SDD) que opera el AI Forge Squad. Tu agente de IA (Copilot, Claude u otro equivalente) debe leer este archivo como contexto antes de generar código.
@@ -93,7 +112,7 @@ Antes de programar, añade bajo cada sección las decisiones concretas que tomes
 - Este archivo AGENTS.md, extendido con tus decisiones.
 - Instrucciones claras de ejecución.
 
-## Decisiones de infraestructura local — 2026-09-14
+## Decisiones de infraestructura local — 2026-09-14 (registro histórico; alcance actualizado por DEC-004)
 
 Esta especificación se recuperó del adjunto original. No se ha recibido el starter:
 la carpeta inicial contenía solo documentos y no tenía historial Git.
@@ -130,10 +149,11 @@ confirmar que GitHub ya contiene los cambios.
 
 ## Integración SDD y reglas vigentes — H001, 2026-09-14
 
-Esta ampliación conserva íntegro el texto anterior. La orden actual autoriza solo
-H001/T001–T002 (metodología y planificación), no negocio ni publicación. Requisitos
+Esta ampliación registra las reglas de H001. Su límite temporal H001/T001–T002 y
+la dependencia del starter fueron superados por DEC-004; no autoriza publicación. Requisitos
 del evaluador e instrucciones humanas expresas prevalecen sobre ejemplos de skills,
-plantillas y documentos propuestos. Arquitectura concreta pendiente de DEC-003.
+plantillas y documentos propuestos. La propuesta DEC-003 fue concretada por la
+decisión humana DEC-005: organización por funcionalidades.
 
 - Feature única: `specs/001-booking-espacios`. Leer spec.md, plan.md, tasks.md y el
   handoff solicitado antes de trabajar. tasks.md es la única lista de tareas/estados;
@@ -176,11 +196,12 @@ plantillas y documentos propuestos. Arquitectura concreta pendiente de DEC-003.
   analizados de docs/ENTREGA_Y_STARTER.md en docs/EXPLICACION_IMPLEMENTACION.md contra
   código real. No completar ahora un documento de implementación inexistente ni
   implementar los retos como alcance extra.
-- T014/H008 sigue los nueve pasos de recepción del starter de ese mismo documento;
-  inspección separada, defecto demostrado, historiales conservados y portado trazable.
+- T014/H008 no se ejecuta: No aplica por cambio de alcance (DEC-004). Sus nueve
+  pasos se conservan como procedimiento histórico sin vigencia.
   T015/WebLogic es independiente. No bloquear trabajo independiente ya autorizado,
   ni declarar cumplimiento completo sin resolver obligaciones externas.
 - Pedir intervención solo para decisiones materiales no resueltas o alcance nuevo;
   continuar lo rutinario autorizado. Presentar recomendación y alternativa sin
   atribuir al usuario elecciones autónomas del agente. La siguiente fase requiere
-  la decisión de arquitectura y autorización expresa previstas en Prompt A.
+  la decisión de arquitectura prevista en Prompt A, ya recibida en DEC-005. La
+  continuación a T003 fue autorizada por el cambio de alcance DEC-004.

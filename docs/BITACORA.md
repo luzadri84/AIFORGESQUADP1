@@ -208,6 +208,10 @@ La comprobación real en el otro Windows todavía corresponde al paso de importa
 
 ## DEC-003 — Arquitectura propuesta para la siguiente fase, sin aprobación atribuida
 
+Actualización posterior: organización resuelta por decisión humana DEC-005; las
+dependencias del starter de esta entrada quedaron superadas por DEC-004. Se conserva
+la narración y su estado en el momento en que se escribió.
+
 - Registro/hecho: 2026-09-14, America/Bogota, contemporáneo H001/T002.
 - Problema: elegir estructura sencilla para negocio futuro sin reformar infraestructura válida.
 - Origen: monolito propuesto en plan previo de ChatGPT; Codex lo contrasta ahora con
@@ -228,3 +232,57 @@ La comprobación real en el otro Windows todavía corresponde al paso de importa
 - Pendientes: arquitectura, refinamientos producto/contrato explícitos de spec/plan;
   starter (T014) y aclaración WebLogic (T015), sin cambiar unilateralmente el stack.
 - Vinculación: T002/DEC-003 en el commit real de planificación; sin hash futuro.
+
+
+## DEC-004 — Adoptar el repositorio actual como base definitiva
+
+- Registro/hecho: 2026-09-14, America/Bogota; decisión contemporánea del usuario.
+- Origen e intervención humana real: «el starter no llegará y no se tendrá en cuenta»;
+  continuar sobre el repositorio y entorno actuales, retirar esa dependencia y
+  registrar el ajuste en un commit de documentación antes de la siguiente tarea.
+- Decisión/responsable: **usuario — adoptar el repositorio actual como base definitiva**.
+- Motivo: el starter no estará disponible y queda fuera del alcance.
+- Consecuencia: no habrá recepción, comparación, migración ni investigación de un
+  defecto sembrado de ese repositorio. No inventar uno equivalente ni presentar
+  otro problema como el defecto sembrado. T014: No aplica por cambio de alcance,
+  conservando descripción/aceptación histórica; no implementada ni bloqueante.
+- Alternativa anterior: esperar/recibir/migrar/investigar el starter. Superada por
+  esta instrucción del usuario; no se inventa un rechazo de otra propuesta técnica.
+- Estado de decisión: aceptada por instrucción explícita. Implementación: actualización
+  documental en AGENTS, constitution/spec/plan/tasks/trazabilidad, handoffs y docs.
+  Los registros anteriores de ausencia/espera/provisionalidad quedan como historia
+  superada por DEC-004; sus resultados de pruebas no se borran ni se reinterpretan.
+- Límites: T015/WebLogic y su evidencia exigida permanecen sin cambios; esta decisión
+  no certifica despliegue ni cambia el stack. La arquitectura se consultó por separado
+  y el usuario respondió durante este ajuste: elección registrada en DEC-005.
+- Entrega/estudio: EXPLICACION_IMPLEMENTACION.md debe describir lo realmente construido,
+  archivos y pruebas, preguntas respondidas y retos solo de análisis, sin ampliar MVP.
+- Verificación del ajuste ejecutada por Codex el 2026-09-14: enlaces canónicos
+  válidos, T014 sin marcar implementada, bloque T015 idéntico al anterior y diff
+  exclusivamente Markdown; código/configuración sin cambios. No se repitieron
+  pruebas funcionales ya verificadas para este cambio documental.
+- Git: continuación desde main/8ba745a con árbol limpio; commit asociado a DEC-004.
+  No reset/rebase, reinstalación, nueva integración ni publicación.
+
+
+## DEC-005 — Monolito organizado por funcionalidades
+
+- Registro/hecho: 2026-09-14, America/Bogota; respuesta humana contemporánea.
+- Origen: consulta sobre la propuesta DEC-003; el usuario decide monolito por
+  funcionalidades para equilibrar simplicidad y claridad.
+- Intervención real: booking con controlador/servicio/repositorio/DTO/entidad/reglas;
+  space con consulta/entidad/persistencia; security con autenticación/adaptación de
+  identidad; errors solo si se comparte. Angular: acceso y reservas, elementos próximos.
+- Decisión/responsable: **usuario**, arquitectura aceptada con esta organización.
+  Mantener controlador–servicio–repositorio dentro de booking, sin infraestructura nueva.
+- Alternativas: organización global por capas y puertos/adaptadores estaban en la
+  conversación; no se inventa rechazo de tecnologías ni desacuerdo previo. La estructura
+  por funcionalidades concreta la propuesta anterior de paquetes booking/space/security.
+- Implementación: plan/AGENTS/constitución/README actualizados; código pendiente de T003.
+  No crear paquetes vacíos ni errors antes de un tratamiento realmente compartido.
+- Garantías: propiedad, CSRF, validación, transacciones/concurrencia y pruebas Oracle
+  se conservan; la organización no acredita por sí sola seguridad ni rendimiento.
+- Verificación: decisión documental; no se atribuyen al usuario las pruebas del agente.
+- Relación: DEC-003 conserva su origen histórico y queda resuelta en cuanto a organización
+  por esta decisión; DEC-004 autoriza continuar a T003. Contratos/negocio fuera de T003
+  no se implementan por esta confirmación. Git: DEC-004/DEC-005 en commit documental.

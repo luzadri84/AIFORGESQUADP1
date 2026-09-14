@@ -1,8 +1,9 @@
-# H008 — Incorporar starter y aclaración del runtime
+# H008 — Aclaración del runtime; starter histórico excluido
 
 ## Objetivo y alcance
 
-Trabajar exclusivamente T014, T015. Los criterios, dependencias y estados están en
+Trabajar únicamente el pendiente vigente T015. T014 se conserva como referencia
+histórica, No aplica por cambio de alcance (DEC-004), sin implementación. Los criterios, dependencias y estados están en
 [tasks.md](../specs/001-booking-espacios/tasks.md); no mantener otro tablero aquí.
 
 ## Contexto de entrada
@@ -14,7 +15,11 @@ Inspeccionar Git/código antes de actuar: aprovechar lo existente, no repetir tr
 
 ## Límites y evidencia exigida
 
-Seguir íntegramente los nueve pasos de recepción en [ENTREGA_Y_STARTER.md](../docs/ENTREGA_Y_STARTER.md). Reproducir defecto antes de reemplazar piezas, preservar historiales y portado. Starter y runtime son obligaciones separadas; no publicar.
+Los nueve pasos de recepción de [ENTREGA_Y_STARTER.md](../docs/ENTREGA_Y_STARTER.md)
+son un procedimiento histórico superado por DEC-004: no ejecutarlos, no migrar ni
+inventar un defecto equivalente. Mantener exclusivamente la aceptación de T015:
+aclaración del runtime y evidencia exigida, sin declarar WebLogic validado por un WAR.
+La compatibilidad de despliegue permanece independiente; no publicar.
 
 Los criterios completos se mantienen en las tareas canónicas. Registrar comandos,
 resultados, pruebas omitidas/fallidas y alcance real; no inferir aprobación humana.

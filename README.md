@@ -1,6 +1,7 @@
-# Booking — infraestructura local provisional
+# Booking — repositorio base definitivo
 
-Esta carpeta todavía no contiene el starter ni la aplicación Booking.
+Este repositorio es la base definitiva por decisión del usuario (DEC-004).
+El starter queda fuera de alcance. La aplicación Booking todavía está por construir.
 Se preparan Docker Compose, devcontainer, Oracle real y sondas de dependencias,
 compilación y persistencia. No hay funcionalidades de negocio ni despliegue público.
 
@@ -26,7 +27,7 @@ Para conservar la evidencia restaurada usar el modo `read` anterior. Si se resta
 en otra máquina, seguir TRANSFERIR_EQUIPO.md e importar datos antes de prepare.
 
 La parada conserva los datos. La aplicación, su WAR y sus pruebas quedan pendientes de desarrollo autorizado;
-el starter real es una dependencia externa independiente. Boot 3 y WebLogic 12.2.1.4 tienen una incompatibilidad de runtime.
+T014 es No aplica por cambio de alcance, conservada como trazabilidad y no implementada. Boot 3 y WebLogic 12.2.1.4 tienen una incompatibilidad de runtime.
 Para cambiar de equipo, consulte [transferencia de imagenes e historial](docs/TRANSFERIR_EQUIPO.md).
 
 [Paquete en GitHub y comprobacion final de restauracion](docs/TRANSFERENCIA_VERIFICADA.md).
@@ -39,11 +40,14 @@ Booking. [Estado/evidencia de H001](docs/INTEGRACION_H001.md),
 [uso de Spec Kit](docs/SPECKIT.md), [constitución](.specify/memory/constitution.md),
 [spec](specs/001-booking-espacios/spec.md), [plan](specs/001-booking-espacios/plan.md),
 [tareas y estados](specs/001-booking-espacios/tasks.md),
-[handoffs](.handoffs/README.md) y [criterios de entrega/starter](docs/ENTREGA_Y_STARTER.md).
+[handoffs](.handoffs/README.md) y [criterios de entrega e historial del starter](docs/ENTREGA_Y_STARTER.md).
 
-Recomendación pendiente de decisión humana (DEC-003): monolito Spring Boot con
-controladores, servicio transaccional, Spring Data JPA y funciones pequeñas de dominio;
-Angular standalone por funcionalidad. Alternativa: puertos/adaptadores en el mismo
+Arquitectura elegida por el usuario (DEC-005): monolito Spring Boot por funcionalidades
+booking/space/security, con errors solo si hay tratamiento compartido. Dentro de booking,
+controlador–servicio transaccional–Spring Data JPA. Angular standalone por acceso/reservas. Alternativa: puertos/adaptadores en el mismo
 monolito, con más interfaces/mapeos. Se conserva la infraestructura actual en ambas.
-La primera tarea funcional es T003/H002 después de decidir arquitectura y autorizar
-el bloque; la integración no dispara la siguiente fase.
+La siguiente tarea autorizada es T003/H002; DEC-004 y DEC-005 permiten continuar
+con la base de datos y entidades, sin reiniciar H001.
+
+[Explicación de la implementación real](docs/EXPLICACION_IMPLEMENTACION.md):
+se actualiza con código y pruebas, preguntas respondidas y ejercicios solo de análisis.

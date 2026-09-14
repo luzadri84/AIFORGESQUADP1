@@ -12,6 +12,6 @@ Estado único en [tasks.md](../specs/001-booking-espacios/tasks.md); leer AGENTS
 | H005 | [Conservar ocurrencias válidas de una serie](H005-recurrencias.md) | T009, T010 |
 | H006 | [Cerrar riesgos técnicos e identidad futura](H006-verificacion.md) | T011, T012 |
 | H007 | [Preparar entrega local verificable](H007-entrega-local.md) | T013 |
-| H008 | [Incorporar starter y aclaración del runtime](H008-pendientes-externos.md) | T014, T015 |
+| H008 | [Aclarar runtime; starter histórico excluido](H008-pendientes-externos.md) | T014, T015 |
 
 Las decisiones extensas están en [docs/BITACORA.md](../docs/BITACORA.md).

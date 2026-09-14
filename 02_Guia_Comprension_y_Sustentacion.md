@@ -1,5 +1,12 @@
 # Guía para comprender y defender la solución de Booking
 
+> Actualización de alcance — DEC-004 (2026-09-14): este documento conserva el
+> registro/propuesta de su etapa original. Las instrucciones de esperar, recibir,
+> comparar o migrar un starter e investigar su defecto quedaron superadas: el
+> repositorio actual es la base definitiva. No aplica por cambio de alcance;
+> no se acredita implementación de esas tareas. WebLogic sigue independiente.
+> Reglas y estado vigentes: AGENTS.md, tasks.md y docs/BITACORA.md.
+
 Esta guía explica el diseño propuesto en `01_Plan_Tecnico_Booking_SED.md`. Todavía no describe una implementación ejecutada. Después de desarrollar, sustituir nombres propuestos por los reales y comprobar cada afirmación contra archivos, métodos y pruebas. Poder repetir una explicación no basta: hay que localizar la decisión en código, predecir su comportamiento y modificarla con seguridad.
 
 ## 1 El recorrido completo de una reserva
