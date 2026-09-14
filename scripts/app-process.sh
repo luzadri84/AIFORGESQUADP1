@@ -36,6 +36,7 @@ stop_one() {
 case "${1:-status}" in
  backend) start_one backend java -Xmx384m -jar /workspace/backend/target/booking.war ;;
  frontend) start_one frontend bash -c 'cd /workspace/frontend; exec node /workspace/frontend/node_modules/@angular/cli/bin/ng.js serve booking --host 0.0.0.0 --port 4200 --poll 1000' ;;
+ stop-backend) stop_one backend ;;
  stop-frontend) stop_one frontend ;;
  stop) stop_one frontend; stop_one backend ;;
  status) for name in backend frontend; do file=".local/runtime/$name.pid"; if [[ -f "$file" ]] && owned_pid "$name" "$(cat "$file")"; then echo "$name running"; else echo "$name stopped"; fi; done ;;

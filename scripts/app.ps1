@@ -7,7 +7,7 @@ $root = Split-Path $PSScriptRoot -Parent
 $ComposeFiles = @('-f','compose.yaml','-f','.local/transfer/compose.images.yaml')
 function Compose([string[]]$Arguments) {
     & docker compose @ComposeFiles @Arguments
-    if ($LASTEXITCODE -ne 0) { throw 'Docker Compose no pudo completar la operación. Revise la salida anterior.' }
+    if ($LASTEXITCODE -ne 0) { throw 'Docker Compose no pudo completar la operaciÃ³n. Revise la salida anterior.' }
 }
 function Run-Bash([string]$Command) { Compose @('exec','-T','dev','bash','-c',$Command) }
 function Ensure-Credentials {
@@ -20,7 +20,7 @@ function Ensure-Credentials {
         $content = "booking.auth.first.username=ana`nbooking.auth.first.password=$one`nbooking.auth.second.username=bruno`nbooking.auth.second.password=$two`n"
         $stream = [IO.File]::Open($file,[IO.FileMode]::CreateNew,[IO.FileAccess]::Write)
         try { $bytes=[Text.Encoding]::UTF8.GetBytes($content); $stream.Write($bytes,0,$bytes.Length) } finally { $stream.Dispose() }
-        Write-Host 'Credenciales nuevas guardadas solo en .local/runtime/booking.properties; no se modificó Oracle.'
+        Write-Host 'Credenciales nuevas guardadas solo en .local/runtime/booking.properties; no se modificÃ³ Oracle.'
     }
 }
 function Ensure-Dependencies {
@@ -34,7 +34,7 @@ function Wait-Url([string]$Url) {
         try { $response=Invoke-WebRequest -Uri $Url -TimeoutSec 10; if ($response.StatusCode -eq 200) { return } } catch { }
         Start-Sleep -Seconds 1
     } while ([DateTime]::UtcNow -lt $deadline)
-    throw "No respondió $Url. Revise .local/runtime/backend.log y frontend.log."
+    throw "No respondiÃ³ $Url. Revise .local/runtime/backend.log y frontend.log."
 }
 function Start-Application {
     Compose @('exec','-T','dev','bash','scripts/app-process.sh','backend')
@@ -52,14 +52,14 @@ try {
     }
     switch ($Action) {
         'start' {
-            if (-not (Test-Path -LiteralPath 'backend/target/booking.war')) { Run-Bash 'bash mvnw -B -ntp -f backend/pom.xml -DskipTests package' }
+            Run-Bash 'if ! bash scripts/backend-artifact.sh current; then bash scripts/app-process.sh stop-backend; bash scripts/backend-artifact.sh build; fi'
             Start-Application
         }
         'verify' {
             Compose @('exec','-T','dev','bash','scripts/app-process.sh','stop')
-            Run-Bash 'bash mvnw -B -ntp -f backend/pom.xml verify'
+            Run-Bash 'bash scripts/backend-artifact.sh verify'
             Run-Bash 'cd frontend && npm run build && npm test'
-            Run-Bash 'bash scripts/jdbc-check.sh read'
+            Run-Bash 'if [[ -f .local/persistence-token ]]; then bash scripts/jdbc-check.sh read; else bash scripts/jdbc-check.sh check; fi'
             foreach ($ignored in @('.local/restore-key.pem','.local/runtime/booking.properties','.local/secrets/app-password','.env')) {
                 & git check-ignore -q -- $ignored
                 if ($LASTEXITCODE -ne 0) { throw "Secreto no excluido: $ignored" }
@@ -70,7 +70,7 @@ try {
             $running = @(Compose @('ps','--status','running','--services'))
             if ($running -contains 'dev') { Compose @('exec','-T','dev','bash','scripts/app-process.sh','stop') }
             Compose @('stop')
-            Write-Host 'Entorno detenido; volúmenes y datos conservados.'
+            Write-Host 'Entorno detenido; volÃºmenes y datos conservados.'
         }
         'status' {
             Compose @('ps')

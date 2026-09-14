@@ -609,3 +609,21 @@ T018: dos pruebas adicionales pasan sobre configuración efectiva: los handlers 
 recursos no contienen resolvers de caché/versión/encoded; Swagger permanece protegido.
 Existe StandardServletMultipartResolver, pero POST multipart de reservas devuelve415
 sin escritura. Esto acota prerrequisitos; no demuestra ausencia universal de riesgos.
+
+## DEC-021 — Reapertura y artefacto verificable, T022
+
+2026-09-14 America/Bogota. Decisión del agente bajo DEC-016: mantener imágenes
+importadas con ambos Compose y overlay que elimina build; initialize solo valida.
+Bootstrap separado y guardado para una base nueva, sin ejecutarlo en la restaurada.
+start verifica hashes de fuentes y WAR; si son obsoletos recompila con pruebas.
+verify registra revisión/fecha/hash y no escribe marcador. Son correcciones de
+reproducibilidad, no una infraestructura o funcionalidades nuevas.
+
+Primer up real falló en postCreate por finales CRLF introducidos al editar Bash.
+Se corrigieron a LF. Segundo up tuvo éxito sobre el mismo contenedor; la CLI omite
+postCreate ya intentado, por ello se ejecuta explícitamente el script corregido con
+ devcontainer exec. No se afirma ejecución visual de VS Code ni instalación limpia.
+
+Dev Container up/exec: éxito; sonda completa, compilación Angular de infraestructura
+y lectura del marcador original correctas. Bootstrap nuevo rechaza .local existente
+antes de generar nada. Pendiente compilación final/aplicación desde devcontainer exec.

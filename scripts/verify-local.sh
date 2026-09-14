@@ -18,9 +18,9 @@ git config --global --fixed-value --get-all safe.directory /workspace >/dev/null
 git status --short
 bash mvnw -version
 bash mvnw -B -ntp -f infra/checks/pom.xml dependency:build-classpath -Dmdep.outputFile=target/classpath.txt
-bash scripts/jdbc-check.sh check
+if [[ -f .local/persistence-token ]]; then bash scripts/jdbc-check.sh read; else bash scripts/jdbc-check.sh check; fi
 cd infra/checks/frontend
-npm ci --ignore-scripts --no-fund
+npm ls --depth=0 >/dev/null 2>&1 || npm ci --ignore-scripts --no-audit --no-fund
 npm ls --depth=0
 npm run check
-echo "Infrastructure checks passed. Starter application and WAR are not available."
+echo "Toolchain and Oracle checks passed. Application build/test: pwsh -File scripts/app.ps1 verify (host)."

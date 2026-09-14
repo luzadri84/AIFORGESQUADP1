@@ -1,6 +1,10 @@
 {
-  "name": "Booking: infraestructura provisional",
-  "dockerComposeFile": "../compose.yaml",
+  "name": "Booking local",
+  "dockerComposeFile": [
+    "../compose.yaml",
+    "../.local/transfer/compose.images.yaml",
+    "compose.restored.yaml"
+  ],
   "service": "dev",
   "workspaceFolder": "/workspace",
   "remoteUser": "node",
@@ -10,8 +14,7 @@
     "pwsh",
     "-NoProfile",
     "-File",
-    "scripts/local.ps1",
-    "prepare"
+    "scripts/devcontainer-initialize.ps1"
   ],
   "postCreateCommand": "bash scripts/verify-local.sh",
   "customizations": {

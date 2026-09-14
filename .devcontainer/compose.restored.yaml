@@ -1,0 +1,5 @@
+# Images must already be imported or built by the explicit new-environment bootstrap.
+services:
+  dev:
+    build: !reset null
+    pull_policy: never
