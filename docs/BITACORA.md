@@ -522,3 +522,22 @@ correcciones propuestas pendientes de autorización; T023–T024 opcionales. Inf
 regresiones se registran en commit T017/DEC-015, sin push. El WAR existente queda iniciado.
 Las seis regresiones harán fallar verify hasta corregir; usar start después de una
 verificación fallida. No confundir HEAD auditado con commit posterior de informes.
+
+## DEC-016 — Autorización humana para corregir T018–T022
+
+2026-09-14, America/Bogota. El usuario autoriza implementar T018–T022 y ejecutar
+09_Prompt_Corregir_Auditoria_y_Verificar_Entrega.md del material de apoyo. Base real:
+main e170418, árbol limpio y sincronizado con GitHub tras el push autorizado en el
+turno anterior. Esta fase no autoriza otro push/publicación. T023/T024 excluidas;
+T015/WebLogic independiente, starter/defecto excluidos, arquitectura por funciones.
+
+El agente elige tratar mitigaciones/parches compatibles y continuar correcciones
+independientes cuando una excepción de stack necesite decisión humana. No se acepta
+riesgo residual en nombre del usuario. Estados solo en tasks; continuidad H006/H007.
+Se preserva la auditoría de47a6af4 con sus seis fallos como evidencia histórica.
+
+Correo no localizado en carpeta de apoyo al inicio. Esta instrucción humana aporta
+la condición de instrucciones/ejecución Dev Container; no se afirma lectura del correo.
+Se registrará esa nueva fuente en el cierre sin cambiar retrospectivamente la auditoría.
+Antes de modificar se guardaron hashes privados de secretos, copia del WAR vigente y
+snapshot de reservas existentes en .local/corrections, nunca en el commit.

@@ -1,6 +1,6 @@
 # Plan de correcciones de auditoría — DEC-015
 
-Este documento propone aceptación y orden; **el único estado está en [tasks.md](../specs/001-booking-espacios/tasks.md)**. T017 autoriza pruebas e informes, no ejecutar estas correcciones. No son funcionalidades nuevas, ni el defecto del starter excluido. Conservar arquitectura por funcionalidades, credenciales, datos, historial y regresiones. [Diagnóstico](AUDITORIA_CUMPLIMIENTO_Y_SEGURIDAD.md), [dependencias](AUDITORIA_DEPENDENCIAS.md).
+Este documento propone aceptación y orden; **el único estado está en [tasks.md](../specs/001-booking-espacios/tasks.md)**. T017 autorizó pruebas e informes; DEC-016 autoriza ahora implementar T018–T022. No son funcionalidades nuevas, ni el defecto del starter excluido. Conservar arquitectura por funcionalidades, credenciales, datos, historial y regresiones. [Diagnóstico](AUDITORIA_CUMPLIMIENTO_Y_SEGURIDAD.md), [dependencias](AUDITORIA_DEPENDENCIAS.md).
 
 ## Antes de entregar
 
@@ -13,7 +13,7 @@ Este documento propone aceptación y orden; **el único estado está en [tasks.m
 | 5. T022 | AUD-05 | Ajustar perfil de Dev Container restaurado a ambos Compose y mensajes de sonda vigentes. Abrir realmente con VS Code, sin reconstrucciones/volúmenes ajenos ni regenerar credenciales; leer marcador original. | T017. Reutilizar instalación; conservar procedimiento de instalación original cuando corresponda. |
 | Gestión externa paralela: T015 | AUD-06 | Obtener aclaración del runtime, registrar decisión humana y probar el despliegue acordado. WAR/Tomcat no demuestra WebLogic12.2.1.4. | Bloqueo externo ya existente; no reabrir starter/T014. |
 
-T018 tiene prioridad de revisión por seguridad. T019–T022 pueden prepararse de forma independiente de T015 cuando el usuario autorice corregir. No se ejecuta automáticamente un cambio de stack ni una migración por este plan. Para Tomcat, 10.1.59 es candidato dentro de la familia, pero la elección final debe satisfacer todos los avisos activos y pruebas. Parches de Spring en ramas antiguas pueden requerir soporte Enterprise: comprobar disponibilidad/licencia antes de proponer una instalación concreta.
+T018 tiene prioridad de revisión por seguridad. T019–T022 pueden prepararse de forma independiente de T015 bajo la autorización DEC-016. No se ejecuta automáticamente un cambio de stack ni una migración por este plan. Para Tomcat, 10.1.59 es candidato dentro de la familia, pero la elección final debe satisfacer todos los avisos activos y pruebas. Parches de Spring en ramas antiguas pueden requerir soporte Enterprise: comprobar disponibilidad/licencia antes de proponer una instalación concreta.
 
 ## Mejoras opcionales, no requisitos originales adicionales
 

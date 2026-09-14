@@ -62,3 +62,9 @@ T018–T022 proponen correcciones; T023–T024 opcionales. T015 independiente, T
 Dev Container completo no acreditado; no confundirlo con Compose funcional ni reabrir H001.
 La aplicación queda iniciada; verify ahora falla por los hallazgos y requiere start después.
 Siguiente: presentar diagnóstico y obtener alcance para correcciones, sin ejecutarlas aún.
+
+## Continuación autorizada — DEC-016
+
+T018–T022 autorizadas por el usuario; estados canónicos en tasks.md. Conservar
+regresiones y auditoría histórica, realizar cambios mínimos y commits incrementales.
+No T023/T024, no push; T015 independiente. Progreso y evidencias se añadirán por bloque.

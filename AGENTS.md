@@ -253,3 +253,14 @@ No interpretar esas propuestas como autorización de implementación. Las seis r
 fallidas se conservan y hacen fallar verify; el WAR existente sigue operativo mediante start.
 T013 conserva evidencia histórica local, pero Dev Container completo sigue no acreditado.
 No reabrir H001, starter/T014 ni confundir WAR/Tomcat con WebLogic/T015.
+
+## Correcciones autorizadas — DEC-016, 2026-09-14
+
+La instrucción humana posterior autoriza implementar y verificar T018–T022 según
+09_Prompt_Corregir_Auditoria_y_Verificar_Entrega.md. Supera el límite de auditoría
+sin cambios de DEC-015. Conservar arquitectura, datos, credenciales e historial;
+commits incrementales locales, sin push/publicación. No implementar T023/T024.
+T015 independiente. Excepciones al stack requieren decisión explícita sobre una
+alternativa exacta; continuar las tareas que no dependan de ella. Preservar informe
+histórico y seis regresiones; justificar semántica de mappings antes de cambiar
+expectativas de tests. Probar WAR nuevo y Dev Container real, no solo configuración.
