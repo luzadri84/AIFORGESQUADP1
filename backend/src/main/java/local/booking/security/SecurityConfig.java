@@ -27,13 +27,13 @@ public class SecurityConfig {
     }
     @Bean SecurityFilterChain security(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(a -> a.requestMatchers("/api/csrf").permitAll().anyRequest().authenticated())
-            .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.NEVER))
+            .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .securityContext(s -> s.securityContextRepository(new NullSecurityContextRepository()))
             .requestCache(c -> c.disable())
             .csrf(c -> c.sessionAuthenticationStrategy(new org.springframework.security.web.authentication.session.NullAuthenticatedSessionStrategy()))
-            .httpBasic(b -> b.authenticationEntryPoint((req,res,e) -> problem(res,401,"AutenticaciÃ³n requerida")))
-            .exceptionHandling(e -> e.authenticationEntryPoint((req,res,x) -> problem(res,401,"AutenticaciÃ³n requerida"))
-                .accessDeniedHandler((req,res,x) -> problem(res,403,"Acceso denegado o token CSRF invÃ¡lido")));
+            .httpBasic(b -> b.authenticationEntryPoint((req,res,e) -> problem(res,401,"AutenticaciÃƒÂ³n requerida")))
+            .exceptionHandling(e -> e.authenticationEntryPoint((req,res,x) -> problem(res,401,"AutenticaciÃƒÂ³n requerida"))
+                .accessDeniedHandler((req,res,x) -> problem(res,403,"Acceso denegado o token CSRF invÃƒÂ¡lido")));
         // Basic is revalidated every request; do not rotate its CSRF-only session token on every authentication.
         // XOR validation and the HttpSession CSRF repository remain enabled.
         return http.build();

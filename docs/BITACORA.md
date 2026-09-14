@@ -368,3 +368,23 @@ propia idempotente, ajena/ausente 404. Se conserva horario pasado permitido (sin
 que lo prohíba). Reloj inyectable UTC. Pruebas reales y resultados al cierre H003.
 
 H003 verificado: Maven verify BUILD SUCCESS, 27 tests correctos; ciclo propio/ajeno, colisión/adyacencia y cancelación contra Oracle en transacciones revertidas. No prueba aún carrera entre peticiones, prevista T011.
+
+## DEC-010 — Cliente por funcionalidades y ejecución dentro de dev
+
+2026-09-14, America/Bogota. Codex implementa T008: Angular standalone strict por
+acceso/reservas, PrimeNG, Tailwind y RxJS; autenticación/token solo en memoria,
+interceptor limitado a rutas relativas /api/. Proxy Angular al backend del mismo
+contenedor, sin CORS abierto. Formularios expresan horario Bogotá y envían offset.
+Alternativa de almacenar Basic en localStorage descartada por persistencia innecesaria
+de credenciales. Estado de carga/error/vacío explícito y POST sin reintento automático.
+Dependencias @angular/build 20.3.37 y @primeng/themes 20.0.0 verificadas con npm view;
+se reutilizan CLI/Node/cachés/versiones, sin reinstalar herramientas. Procesos locales
+dentro de dev; no nuevos contenedores ni modificación del volumen Oracle.
+
+H004 encontró un defecto real de sesión no cubierto por MockMvc: login/listado
+funcionaban, POST devolvía 403 después de consultas paralelas. NEVER seguía permitiendo
+rotación de sesión por autenticación; se cambia contexto Security a STATELESS,
+conservando sesión explícita exclusivamente del repositorio CSRF. Se repiten pruebas
+y flujo HTTP/navegador; no se desactiva la protección CSRF.
+
+H004 final: regresión 27/27, HttpSecurityTest adicional 1/1, Angular strict y npm test 1/1. Navegador real creó/listó/rechazó duplicado/canceló #55. Estado Security STATELESS corrigió rotación de sesión; CSRF sigue exigido. npm avisó de deprecación de animations/themes de versiones fijadas; no se alteró unilateralmente el stack.

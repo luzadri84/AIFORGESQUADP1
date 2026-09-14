@@ -243,3 +243,11 @@ registra el fallo de renovación CSRF y corrección. Reservas/UI aún pendientes
 ## Evolución H003
 
 BookingController → BookingService transaccional → SpaceRepository.lockById y BookingRepository implementan ciclo individual. TimeRangeTest y BookingApiTest elevan verify a 27 pruebas correctas. Propiedad del principal y filtros CSRF reales; todavía no navegador ni carrera concurrente. DEC-009.
+
+## Evolución H004
+
+Frontend acceso/reservas ya funcional. Login → AuthService → token CSRF; interceptor
+solo /api/; BookingApi → BookingController → transacción Oracle. Formulario Bogotá,
+listado propio y cancelación verificados en navegador con #55. UI no guarda Basic
+en almacenamiento persistente. HttpSecurityTest cubre el fallo real de cookies
+tras consultas paralelas; estado Security STATELESS, sesión exclusivamente CSRF.

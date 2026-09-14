@@ -25,3 +25,17 @@ Sin ejecución de este bloque durante H001. Al trabajarlo registrar fecha/entorn
 responsable, archivos/diff, evidencia, referencias T/DEC y commit real si existe;
 actualizar el estado solo en tasks.md. Conservar el punto de continuación si se interrumpe.
 Siguiente bloque orientativo: H005, sujeto a autorización y dependencias.
+
+## Ejecución H004 — 2026-09-14, DEC-010
+
+Angular standalone strict, PrimeNG/Tailwind/RxJS, funcionalidades acceso/reservas;
+Basic/token en memoria y ruta propia probada. ng build correcto, npm test 1/1;
+backend regresión 27/27 y nuevo HttpSecurityTest 1/1 con servidor y cookies reales.
+Navegador localhost:4200: ana creó #55 en Auditorio 20/01/2035 10–11 Bogotá; apareció
+en listado, duplicado rechazado y cancelación dejó agenda vacía. Se conserva fila
+cancelada, no se borra evidencia. Captura revisada visualmente. Hubo carga prematura
+antes de terminar ng serve (ERR_EMPTY_RESPONSE), resuelta esperando compilación.
+El 403 real tras lecturas paralelas llevó a STATELESS para contexto de seguridad;
+sesión explícita solo CSRF, protección activa. Comprobación reproducible: iniciar
+backend/frontend con scripts/app-process.sh dentro de dev; URL http://localhost:4200/.
+Claves en .local/runtime/booking.properties, no impresas. Siguiente H005 T009/T010.

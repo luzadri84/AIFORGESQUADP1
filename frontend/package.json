@@ -1,0 +1,39 @@
+{
+  "name": "booking-frontend",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Cliente local de reservas",
+  "engines": {
+    "node": "22.22.0",
+    "npm": "10.9.4"
+  },
+  "scripts": {
+    "start": "ng serve --host 0.0.0.0 --port 4200",
+    "build": "ng build",
+    "check": "ngc -p tsconfig.app.json",
+    "test": "node --experimental-strip-types --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@angular/animations": "20.3.31",
+    "@angular/common": "20.3.31",
+    "@angular/compiler": "20.3.31",
+    "@angular/core": "20.3.31",
+    "@angular/forms": "20.3.31",
+    "@angular/platform-browser": "20.3.31",
+    "@angular/router": "20.3.31",
+    "@angular/cdk": "20.2.0",
+    "@azure/msal-angular": "3.1.0",
+    "@azure/msal-browser": "3.28.1",
+    "primeng": "20.0.0",
+    "rxjs": "7.8.2",
+    "tslib": "2.8.1",
+    "@primeng/themes": "20.0.0"
+  },
+  "devDependencies": {
+    "@angular/cli": "20.3.37",
+    "@angular/compiler-cli": "20.3.31",
+    "tailwindcss": "3.4.17",
+    "typescript": "5.9.2",
+    "@angular/build": "20.3.37"
+  }
+}

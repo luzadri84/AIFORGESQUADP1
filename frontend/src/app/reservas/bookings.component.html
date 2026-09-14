@@ -1,0 +1,15 @@
+<div class="page-heading"><div><span class="eyebrow">RESERVAS</span><h1>Organiza tu próximo encuentro.</h1><p class="muted">Elige un espacio y un horario. Nosotros comprobamos su disponibilidad.</p></div><span class="timezone">Hora de Bogotá · UTC−5</span></div>
+@if(message()){<p role="status" class="success">{{message()}}</p>}
+@if(error()){<p role="alert" class="error">{{error()}}</p>}
+@if(loading()){<p role="status">Cargando espacios y reservas…</p>}
+<div class="workspace"><section class="panel"><h2>Nueva reserva</h2><p class="muted">Los horarios consecutivos están permitidos.</p>
+<form [formGroup]="form" (ngSubmit)="create()" class="grid gap-4 mt-6">
+<label for="space">Espacio</label><select id="space" formControlName="spaceId">@for(space of spaces();track space.id){<option [ngValue]="space.id">{{space.name}} · {{space.capacity}} personas</option>}</select>
+<label for="start">Inicio</label><input id="start" type="datetime-local" formControlName="startsAt">
+<label for="end">Fin</label><input id="end" type="datetime-local" formControlName="endsAt">
+<p-button type="submit" label="Reservar espacio" [loading]="busy()" [disabled]="form.invalid||busy()||loading()" />
+</form></section>
+<section class="panel"><div class="section-heading"><h2>Mis reservas activas</h2><p-button label="Actualizar" severity="secondary" [text]="true" (onClick)="refresh()" [disabled]="busy()||loading()" /></div>
+@if(!loading() && bookings().length===0){<div class="empty"><span class="empty-icon">◇</span><h3>Tu agenda está libre</h3><p class="muted">Tus próximas reservas aparecerán aquí.</p></div>}
+<div class="booking-list">@for(booking of bookings();track booking.id){<article class="booking-card"><div><span class="badge">CONFIRMADA</span><h3>{{booking.spaceName}}</h3><p>{{booking.startsAt | date:'dd/MM/yyyy, HH:mm':'-0500'}} — {{booking.endsAt | date:'HH:mm':'-0500'}}</p><small class="muted">Reserva #{{booking.id}}</small></div><p-button label="Cancelar" severity="secondary" [outlined]="true" (onClick)="cancel(booking.id)" [disabled]="busy()" /></article>}</div>
+</section></div>

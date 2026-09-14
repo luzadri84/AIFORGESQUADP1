@@ -88,13 +88,13 @@ No duplicar estados en índices de handoffs. Conservar IDs y añadir los nuevos 
 
 ## T008 Integrar el primer recorrido Angular de reserva individual
 
-- [ ] T008 [US2] Integrar el primer recorrido Angular de reserva individual en frontend: auth, API service, formulario y lista.
+- [x] T008 [US2] Integrar el primer recorrido Angular de reserva individual en frontend: auth, API service, formulario y lista.
 
 - Dependencias: T007.
 - Handoff: H004.
 - Aceptación: Cubre US1 y US2: navegador real crea/lista/cancela en Oracle; strict pasa; errores y loading visibles; Basic no se adjunta a URL ajena.
-- Situación: pendiente; inspección H001 confirma que esta funcionalidad no existe.
-- Evidencia: sin prueba funcional ejecutada; ver alcance real de H001.
+- Situación: completada; DEC-010.
+- Evidencia: ng build strict correcto, npm test 1/1, HttpSecurityTest real 1/1 y regresión backend 27/27; navegador localhost:4200 crea/lista/rechaza duplicado/cancela reserva #55. H004 y bitácora detallan corrección CSRF.
 
 ## T009 Expandir recurrencia semanal finita y probar límites
 
