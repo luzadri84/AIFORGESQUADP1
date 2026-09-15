@@ -1,0 +1,2168 @@
+{
+  "stats": {
+    "Maven": {
+      "catalogRecords": 7077,
+      "inventoryEntries": 112,
+      "packageNames": 112
+    },
+    "npm": {
+      "catalogRecords": 228972,
+      "inventoryEntries": 560,
+      "packageNames": 503
+    }
+  },
+  "hits": [
+    {
+      "ecosystem": "Maven",
+      "name": "ch.qos.logback:logback-core",
+      "version": "1.5.18",
+      "scope": "compile",
+      "id": "GHSA-25qh-j22f-pwp8",
+      "aliases": [
+        "CVE-2025-11226"
+      ],
+      "summary": "QOS.CH logback-core is vulnerable to Arbitrary Code Execution through file processing",
+      "severity": "MODERATE",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "1.4.0"
+            },
+            {
+              "fixed": "1.5.19"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-11226"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/qos-ch/logback/issues/974"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/qos-ch/logback/commit/61f6a2544f36b3016e0efd434ee21f19269f1df7"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/qos-ch/logback"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/qos-ch/logback/releases/tag/v_1.5.19"
+        },
+        {
+          "type": "WEB",
+          "url": "https://logback.qos.ch/news.html#1.3.16"
+        },
+        {
+          "type": "WEB",
+          "url": "https://logback.qos.ch/news.html#1.5.19"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "org.springframework.security:spring-security-web",
+      "version": "6.3.10",
+      "scope": "compile",
+      "id": "GHSA-293q-567p-wmwq",
+      "aliases": [
+        "CVE-2026-47838"
+      ],
+      "summary": "Spring Security Vulnerable to Unauthorized User Impersonation when Using X.509 Client Certificates",
+      "severity": "MODERATE",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "6.0.0"
+            },
+            {
+              "last_affected": "6.3.10"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-47838"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://github.com/advisories/GHSA-2jrg-rf5x-568g"
+        },
+        {
+          "type": "WEB",
+          "url": "https://spring.io/security/cve-2026-47838"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "spring-projects/spring-security"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "org.springframework:spring-webmvc",
+      "version": "6.1.21",
+      "scope": "compile",
+      "id": "GHSA-3chg-m5w7-qfv5",
+      "aliases": [
+        "CVE-2026-41845"
+      ],
+      "summary": "Spring Framework Cross-site Scripting via JavaScriptUtils",
+      "severity": "HIGH",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "6.1.0"
+            },
+            {
+              "last_affected": "6.1.21"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-41845"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-framework/commit/86d99790dbaa8ce6bb1087ef92844d0abfdab015"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-framework/commit/a1826b725c29fbb175fa7b4fc005aa3d78c32015"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/spring-projects/spring-framework"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-framework/releases/tag/v6.2.19"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-framework/releases/tag/v7.0.8"
+        },
+        {
+          "type": "WEB",
+          "url": "https://spring.io/security/cve-2026-41845"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "com.fasterxml.jackson.core:jackson-databind",
+      "version": "2.17.3",
+      "scope": "compile",
+      "id": "GHSA-3pjw-73gf-8qr5",
+      "aliases": [
+        "CVE-2026-59888"
+      ],
+      "summary": "jackson-databind: @JsonIgnore on a Record property is bypassed with a PropertyNamingStrategy",
+      "severity": "MODERATE",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "2.15.0"
+            },
+            {
+              "fixed": "2.18.8"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "WEB",
+          "url": "https://github.com/FasterXML/jackson-databind/security/advisories/GHSA-3pjw-73gf-8qr5"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-59888"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/FasterXML/jackson-databind/pull/5974"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/FasterXML/jackson-databind/commit/baa2cdf5ca2b2717fbb88d91955d69d8651df3e4"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/FasterXML/jackson-databind/commit/c7c678360624da5bc7eed2152789fa522880db9d"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/FasterXML/jackson-databind"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "org.springframework:spring-webmvc",
+      "version": "6.1.21",
+      "scope": "compile",
+      "id": "GHSA-4773-3jfm-qmx3",
+      "aliases": [
+        "CVE-2026-22737"
+      ],
+      "summary": "Spring Framework Improper Path Limitation with Script View Templates",
+      "severity": "MODERATE",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "6.0.0"
+            },
+            {
+              "last_affected": "6.1.21"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-22737"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/spring-projects/spring-framework"
+        },
+        {
+          "type": "WEB",
+          "url": "https://spring.io/security/cve-2026-22737"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "com.fasterxml.jackson.core:jackson-databind",
+      "version": "2.17.3",
+      "scope": "compile",
+      "id": "GHSA-5jmj-h7xm-6q6v",
+      "aliases": [
+        "CVE-2026-54515"
+      ],
+      "summary": "jackson-databind has case-insensitive deserialization bypasses per-property @JsonIgnoreProperties",
+      "severity": "MODERATE",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "2.8.0"
+            },
+            {
+              "fixed": "2.18.9"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "WEB",
+          "url": "https://github.com/FasterXML/jackson-databind/security/advisories/GHSA-5jmj-h7xm-6q6v"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-54515"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/FasterXML/jackson-databind/issues/5962"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/FasterXML/jackson-databind/issues/5964"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/FasterXML/jackson-databind/commit/0e1b0b211f7a53baa62ba2f4c9bd006c7bf4d5fa"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/FasterXML/jackson-databind"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "org.springframework.data:spring-data-commons",
+      "version": "3.3.13",
+      "scope": "compile",
+      "id": "GHSA-5m4m-73w9-8433",
+      "aliases": [
+        "CVE-2026-41721"
+      ],
+      "summary": "Spring Data Commons: Denial of Service via excessive memory allocation in projection binding",
+      "severity": "MODERATE",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "3.0.0"
+            },
+            {
+              "last_affected": "3.3.16"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-41721"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-data-commons/releases/tag/3.5.12"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-data-commons/releases/tag/4.0.6"
+        },
+        {
+          "type": "WEB",
+          "url": "https://spring.io/security/cve-2026-41721"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "org.springframework.data:spring-data-commons",
+      "version": "3.3.13",
+      "scope": "compile",
+      "id": "GHSA-5vpf-xvv7-c8vh",
+      "aliases": [
+        "CVE-2026-41711"
+      ],
+      "summary": "Spring Data Commons: StackOverflowException when parsing Sort parameters (DoS)",
+      "severity": "MODERATE",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "3.0.0"
+            },
+            {
+              "last_affected": "3.3.16"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-41711"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/spring-projects/spring-data-commons"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-data-commons/releases/tag/3.5.12"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-data-commons/releases/tag/4.0.6"
+        },
+        {
+          "type": "WEB",
+          "url": "https://spring.io/security/cve-2026-41711"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "org.springframework:spring-core",
+      "version": "6.1.21",
+      "scope": "compile",
+      "id": "GHSA-659m-px2c-25wj",
+      "aliases": [
+        "CVE-2026-41848"
+      ],
+      "summary": "Spring Framework Denial of Service via AntPathMatcher",
+      "severity": "LOW",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "6.1.0"
+            },
+            {
+              "last_affected": "6.1.21"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-41848"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-framework/commit/12b44f2545a1bec6150c7a05e66092c732597a94"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/spring-projects/spring-framework"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-framework/releases/tag/v6.2.19"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-framework/releases/tag/v7.0.8"
+        },
+        {
+          "type": "WEB",
+          "url": "https://spring.io/security/cve-2026-41848"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "org.springframework:spring-webmvc",
+      "version": "6.1.21",
+      "scope": "compile",
+      "id": "GHSA-6hcq-hmm3-jj3c",
+      "aliases": [
+        "CVE-2026-22735"
+      ],
+      "summary": "Spring MVC and WebFlux has Server Sent Event stream corruption",
+      "severity": "LOW",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "6.0.0"
+            },
+            {
+              "last_affected": "6.1.21"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-22735"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/spring-projects/spring-framework"
+        },
+        {
+          "type": "WEB",
+          "url": "https://spring.io/security/cve-2026-22735"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "org.springframework:spring-webmvc",
+      "version": "6.1.21",
+      "scope": "compile",
+      "id": "GHSA-6p4f-wcwh-5vvm",
+      "aliases": [
+        "CVE-2026-22745"
+      ],
+      "summary": "Spring MVC and WebFlux applications are vulnerable to Denial of Service attacks when resolving static resources",
+      "severity": "MODERATE",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "6.1.0"
+            },
+            {
+              "last_affected": "6.1.26"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-22745"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/spring-projects/spring-framework"
+        },
+        {
+          "type": "WEB",
+          "url": "https://spring.io/security/cve-2026-22745"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "com.fasterxml.jackson.core:jackson-core",
+      "version": "2.17.3",
+      "scope": "compile",
+      "id": "GHSA-72hv-8253-57qq",
+      "aliases": [
+        "CVE-2026-18401"
+      ],
+      "summary": "jackson-core: Number Length Constraint Bypass in Async Parser Leads to Potential DoS Condition",
+      "severity": "MODERATE",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "2.15.0"
+            },
+            {
+              "fixed": "2.18.6"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "WEB",
+          "url": "https://github.com/FasterXML/jackson-core/security/advisories/GHSA-72hv-8253-57qq"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-18401"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/FasterXML/jackson-core/pull/1555"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/FasterXML/jackson-core/commit/b0c428e6f993e1b5ece5c1c3cb2523e887cd52cf"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/FasterXML/jackson-core"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "org.springframework:spring-webmvc",
+      "version": "6.1.21",
+      "scope": "compile",
+      "id": "GHSA-72pg-x5f8-j25j",
+      "aliases": [
+        "CVE-2026-41843"
+      ],
+      "summary": "Spring Framework Path Traversal via Versioned Static Resources in Spring MVC and WebFlux",
+      "severity": "MODERATE",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "6.1.0"
+            },
+            {
+              "last_affected": "6.1.21"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-41843"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/spring-projects/spring-framework"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-framework/releases/tag/v6.2.19"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-framework/releases/tag/v7.0.8"
+        },
+        {
+          "type": "WEB",
+          "url": "https://spring.io/security/cve-2026-41843"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "org.springframework:spring-webmvc",
+      "version": "6.1.21",
+      "scope": "compile",
+      "id": "GHSA-957g-f97v-vppc",
+      "aliases": [
+        "CVE-2026-41846"
+      ],
+      "summary": "Spring Framework Cross-site Scripting via JSP Form Tags",
+      "severity": "MODERATE",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "6.1.0"
+            },
+            {
+              "last_affected": "6.1.21"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-41846"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-framework/commit/1829b42b9c45e780c268dd17863d9198d62154d3"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-framework/commit/e8f10244e3859e8bb5b6be3823c9bbea2c130573"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/spring-projects/spring-framework"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-framework/releases/tag/v6.2.19"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-framework/releases/tag/v7.0.8"
+        },
+        {
+          "type": "WEB",
+          "url": "https://spring.io/security/cve-2026-41846"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "org.springframework:spring-expression",
+      "version": "6.1.21",
+      "scope": "compile",
+      "id": "GHSA-9f52-rjqv-25qv",
+      "aliases": [
+        "CVE-2026-41852"
+      ],
+      "summary": "Spring Framework Arbitrary Method Invocation in SpEL Expressions",
+      "severity": "LOW",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "6.1.0"
+            },
+            {
+              "last_affected": "6.1.21"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-41852"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/spring-projects/spring-framework"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-framework/releases/tag/v6.2.19"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-framework/releases/tag/v7.0.8"
+        },
+        {
+          "type": "WEB",
+          "url": "https://spring.io/security/cve-2026-41852"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "org.springframework.data:spring-data-commons",
+      "version": "3.3.13",
+      "scope": "compile",
+      "id": "GHSA-9fw2-h3hf-293r",
+      "aliases": [
+        "CVE-2026-41716"
+      ],
+      "summary": "Spring Data Commons: Heap exhaustion from unbounded property-lookup cache retaining crafted string keys",
+      "severity": "HIGH",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "3.3.0"
+            },
+            {
+              "last_affected": "3.3.16"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-41716"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/spring-projects/spring-data-commons"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-data-commons/releases/tag/3.5.12"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-data-commons/releases/tag/4.0.6"
+        },
+        {
+          "type": "WEB",
+          "url": "https://spring.io/security/cve-2026-41716"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "org.xmlunit:xmlunit-core",
+      "version": "2.9.1",
+      "scope": "test",
+      "id": "GHSA-chfm-68vv-pvw5",
+      "aliases": [
+        "CVE-2024-31573"
+      ],
+      "summary": "XMLUnit for Java has Insecure Defaults when Processing XSLT Stylesheets",
+      "severity": "LOW",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "0"
+            },
+            {
+              "fixed": "2.10.0"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "WEB",
+          "url": "https://github.com/xmlunit/xmlunit/security/advisories/GHSA-chfm-68vv-pvw5"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/xmlunit/xmlunit/issues/264"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/xmlunit/xmlunit/commit/b81d48b71dfd2868bdfc30a3e17ff973f32bc15b"
+        },
+        {
+          "type": "WEB",
+          "url": "https://docs.oracle.com/en/java/javase/22/security/java-api-xml-processing-jaxp-security-guide.html#GUID-E345AA09-801E-4B95-B83D-7F0C452538AA"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/xmlunit/xmlunit"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "org.springframework:spring-webmvc",
+      "version": "6.1.21",
+      "scope": "compile",
+      "id": "GHSA-cjpg-rgq5-fr37",
+      "aliases": [
+        "CVE-2026-41853"
+      ],
+      "summary": "Spring Framework Multipart Request Smuggling in Spring MVC and WebFlux",
+      "severity": "MODERATE",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "6.1.0"
+            },
+            {
+              "last_affected": "6.1.21"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-41853"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/spring-projects/spring-framework"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-framework/releases/tag/v6.2.19"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-framework/releases/tag/v7.0.8"
+        },
+        {
+          "type": "WEB",
+          "url": "https://spring.io/security/cve-2026-41853"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "org.springframework.security:spring-security-oauth2-jose",
+      "version": "6.3.10",
+      "scope": "compile",
+      "id": "GHSA-cvc6-q2cp-2xhw",
+      "aliases": [
+        "CVE-2026-22748"
+      ],
+      "summary": "Spring Security has Potential Security Misconfiguration when Using withIssuerLocation",
+      "severity": "MODERATE",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "6.3.0"
+            },
+            {
+              "last_affected": "6.3.14"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-22748"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/spring-projects/spring-security"
+        },
+        {
+          "type": "WEB",
+          "url": "https://spring.io/security/cve-2026-22748"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "org.springframework.boot:spring-boot-autoconfigure",
+      "version": "3.3.13",
+      "scope": "compile",
+      "id": "GHSA-ggg2-9786-hwc8",
+      "aliases": [
+        "CVE-2026-41001"
+      ],
+      "summary": "Spring Boot: Predictable Temp Directory in Artemis Auto-configuration",
+      "severity": "MODERATE",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "3.3.0"
+            },
+            {
+              "last_affected": "3.3.19"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-41001"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-boot/commit/4218bd76e934e5cf9e3fd3997c67b8a6b0d0c111"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/spring-projects/spring-boot"
+        },
+        {
+          "type": "WEB",
+          "url": "https://spring.io/security/cve-2026-41001"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "org.springframework:spring-webmvc",
+      "version": "6.1.21",
+      "scope": "compile",
+      "id": "GHSA-h3qp-gqrc-q736",
+      "aliases": [
+        "CVE-2026-41844"
+      ],
+      "summary": "Spring Framework Open Redirect in Spring MVC and WebFlux",
+      "severity": "MODERATE",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "6.1.0"
+            },
+            {
+              "last_affected": "6.1.21"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-41844"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-framework/commit/3aaec987651cf82fd4ed7e0ed9b3deddcdf58853"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-framework/commit/7add5243b9db13a9f8e765c8ab8545c8e8fe606b"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/spring-projects/spring-framework"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-framework/releases/tag/v6.2.19"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-framework/releases/tag/v7.0.8"
+        },
+        {
+          "type": "WEB",
+          "url": "https://spring.io/security/cve-2026-41844"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "com.fasterxml.jackson.core:jackson-databind",
+      "version": "2.17.3",
+      "scope": "compile",
+      "id": "GHSA-hgj6-7826-r7m5",
+      "aliases": [
+        "CVE-2026-54514"
+      ],
+      "summary": "jackson-databind: InetSocketAddress deserialization triggers eager DNS resolution (SSRF)",
+      "severity": "MODERATE",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "2.0.0"
+            },
+            {
+              "fixed": "2.18.8"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "WEB",
+          "url": "https://github.com/FasterXML/jackson-databind/security/advisories/GHSA-hgj6-7826-r7m5"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-54514"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/FasterXML/jackson-databind/pull/5951"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/FasterXML/jackson-databind/commit/1f5a1037b1e9e05920e755cb35f198bcd46667e4"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/FasterXML/jackson-databind"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "org.apache.commons:commons-lang3",
+      "version": "3.14.0",
+      "scope": "compile",
+      "id": "GHSA-j288-q9x7-2f5v",
+      "aliases": [
+        "CVE-2025-48924"
+      ],
+      "summary": "Apache Commons Lang is vulnerable to Uncontrolled Recursion when processing long inputs",
+      "severity": "MODERATE",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "3.0"
+            },
+            {
+              "fixed": "3.18.0"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-48924"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/apache/commons-lang/commit/b424803abdb2bec818e4fbcb251ce031c22aca53"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/apache/commons-lang"
+        },
+        {
+          "type": "WEB",
+          "url": "https://lists.apache.org/thread/bgv0lpswokgol11tloxnjfzdl7yrc1g1"
+        },
+        {
+          "type": "WEB",
+          "url": "https://lists.debian.org/debian-lts-announce/2025/08/msg00000.html"
+        },
+        {
+          "type": "WEB",
+          "url": "https://lists.debian.org/debian-lts-announce/2025/08/msg00026.html"
+        },
+        {
+          "type": "WEB",
+          "url": "https://lists.debian.org/debian-lts-announce/2025/09/msg00032.html"
+        },
+        {
+          "type": "WEB",
+          "url": "https://lists.debian.org/debian-lts-announce/2025/09/msg00036.html"
+        },
+        {
+          "type": "WEB",
+          "url": "http://www.openwall.com/lists/oss-security/2025/07/11/1"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "com.fasterxml.jackson.core:jackson-databind",
+      "version": "2.17.3",
+      "scope": "compile",
+      "id": "GHSA-j3rv-43j4-c7qm",
+      "aliases": [
+        "CVE-2026-54512"
+      ],
+      "summary": "jackson-databind has a PolymorphicTypeValidator bypass via generic type parameters that allows arbitrary class instantiation",
+      "severity": "HIGH",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "2.10.0"
+            },
+            {
+              "fixed": "2.18.8"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "WEB",
+          "url": "https://github.com/FasterXML/jackson-databind/security/advisories/GHSA-j3rv-43j4-c7qm"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-54512"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/FasterXML/jackson-databind/issues/5988"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/FasterXML/jackson-databind/commit/434d6c511de7fdd9872f29157aafb6162d12d8d5"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/FasterXML/jackson-databind"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "ch.qos.logback:logback-core",
+      "version": "1.5.18",
+      "scope": "compile",
+      "id": "GHSA-jhq6-gfmj-v8fx",
+      "aliases": [
+        "CVE-2026-10532"
+      ],
+      "summary": "Logback vulnerable to Object Injection through HardenedObjectInputStream modules",
+      "severity": "LOW",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "0"
+            },
+            {
+              "fixed": "1.5.34"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-10532"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/qos-ch/logback"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/qos-ch/logback/releases/tag/v_1.5.34"
+        },
+        {
+          "type": "WEB",
+          "url": "https://logback.qos.ch/news.html#1.5.34"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "org.springframework:spring-core",
+      "version": "6.1.21",
+      "scope": "compile",
+      "id": "GHSA-jmp9-x22r-554x",
+      "aliases": [
+        "CVE-2025-41249"
+      ],
+      "summary": "Spring Framework annotation detection mechanism may result in improper authorization",
+      "severity": "HIGH",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "6.0.0"
+            },
+            {
+              "last_affected": "6.1.22"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-41249"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-framework/issues/35342"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-framework/commit/6d710d482a6785b069e35022e81758953afc21ff"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/spring-projects/spring-framework"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-framework/releases/tag/v6.2.11"
+        },
+        {
+          "type": "WEB",
+          "url": "https://spring.io/security/cve-2025-41249"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "org.springframework.security:spring-security-web",
+      "version": "6.3.10",
+      "scope": "compile",
+      "id": "GHSA-mf92-479x-3373",
+      "aliases": [
+        "CVE-2026-22732"
+      ],
+      "summary": "Spring Security HTTP Headers Are not Written Under Some Conditions",
+      "severity": "CRITICAL",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "6.0.0"
+            },
+            {
+              "last_affected": "6.3.10"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-22732"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/spring-projects/spring-security"
+        },
+        {
+          "type": "WEB",
+          "url": "https://spring.io/security/cve-2026-22732"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "org.springframework:spring-webmvc",
+      "version": "6.1.21",
+      "scope": "compile",
+      "id": "GHSA-mq64-j8f9-9gcj",
+      "aliases": [
+        "CVE-2026-41841"
+      ],
+      "summary": "Spring Framework Information Disclosure via Static Resource Cache in Spring MVC and WebFlux",
+      "severity": "MODERATE",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "6.1.0"
+            },
+            {
+              "last_affected": "6.1.21"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-41841"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/spring-projects/spring-framework"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-framework/releases/tag/v6.2.19"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-framework/releases/tag/v7.0.8"
+        },
+        {
+          "type": "WEB",
+          "url": "https://spring.io/security/cve-2026-41841"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "ch.qos.logback:logback-core",
+      "version": "1.5.18",
+      "scope": "compile",
+      "id": "GHSA-p47f-322f-whfh",
+      "aliases": [
+        "CVE-2026-9828"
+      ],
+      "summary": "QOS.CH Sarl logback logback-core has a deserialization of untrusted data vulnerability",
+      "severity": "LOW",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "0"
+            },
+            {
+              "fixed": "1.5.33"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9828"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/qos-ch/logback"
+        },
+        {
+          "type": "WEB",
+          "url": "https://logback.qos.ch/news.html#1.5.33"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "ch.qos.logback:logback-core",
+      "version": "1.5.18",
+      "scope": "compile",
+      "id": "GHSA-qqpg-mvqg-649v",
+      "aliases": [
+        "CVE-2026-1225"
+      ],
+      "summary": "Logback allows an attacker to instantiate classes already present on the class path",
+      "severity": "LOW",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "0"
+            },
+            {
+              "fixed": "1.5.25"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-1225"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/qos-ch/logback/issues/997"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/qos-ch/logback/commit/1f97ae1844b1be8486e4e9cade98d7123d3eded5"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/qos-ch/logback"
+        },
+        {
+          "type": "WEB",
+          "url": "https://logback.qos.ch/news.html#1.5.25"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "org.apache.logging.log4j:log4j-api",
+      "version": "2.23.1",
+      "scope": "compile",
+      "id": "GHSA-qv9r-c865-cp47",
+      "aliases": [
+        "CVE-2026-49844"
+      ],
+      "summary": "Apache Log4j API: Improper encoding of non-finite floating-point values during MapMessage JSON serialization",
+      "severity": "MODERATE",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "2.13.1"
+            },
+            {
+              "fixed": "2.25.5"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-49844"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/apache/logging-log4j2/pull/4163"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/apache/logging-log4j2/commit/19edb23e162d6c728a8c2221a240037d389ed300"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/apache/logging-log4j2/commit/feadf8eb0b4acb6ddfa4c0ab2bbc6d88b8e12d82"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/apache/logging-log4j2"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/apache/logging-log4j2/releases/tag/rel/2.25.5"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/apache/logging-log4j2/releases/tag/rel/2.26.1"
+        },
+        {
+          "type": "WEB",
+          "url": "https://logging.apache.org/cyclonedx/vdr.xml"
+        },
+        {
+          "type": "WEB",
+          "url": "https://logging.apache.org/log4j/2.x/manual/json-template-layout.html#event-template-resolver-message"
+        },
+        {
+          "type": "WEB",
+          "url": "https://logging.apache.org/security.html#CVE-2026-49844"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "org.springframework:spring-expression",
+      "version": "6.1.21",
+      "scope": "compile",
+      "id": "GHSA-r5w3-xv2f-j59q",
+      "aliases": [
+        "CVE-2026-41850"
+      ],
+      "summary": "Spring Framework Algorithmic Denial of Service via SpEL Expressions",
+      "severity": "HIGH",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "6.1.0"
+            },
+            {
+              "last_affected": "6.1.21"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-41850"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/spring-projects/spring-framework"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-framework/releases/tag/v6.2.19"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-framework/releases/tag/v7.0.8"
+        },
+        {
+          "type": "WEB",
+          "url": "https://spring.io/security/cve-2026-41850"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "com.fasterxml.jackson.core:jackson-core",
+      "version": "2.17.3",
+      "scope": "compile",
+      "id": "GHSA-r7wm-3cxj-wff9",
+      "aliases": [],
+      "summary": "jackson-core: Async parser maxNumberLength bypass via chunked digit accumulation (incomplete fix for GHSA-72hv-8253-57qq)",
+      "severity": "HIGH",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "0"
+            },
+            {
+              "fixed": "2.18.8"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "WEB",
+          "url": "https://github.com/FasterXML/jackson-core/security/advisories/GHSA-r7wm-3cxj-wff9"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/FasterXML/jackson-core/pull/1611"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/FasterXML/jackson-core/commit/050b429804dce2a7e08f0be1b0b4c3d040fdb9cd"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/FasterXML/jackson-core/commit/4cdd529749da396cc7edf6d4a2aad41d47902641"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/FasterXML/jackson-core/commit/c5941e5aae7fd5aeac55d66933cfb82b9aabeef8"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/FasterXML/jackson-core"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "org.springframework:spring-webmvc",
+      "version": "6.1.21",
+      "scope": "compile",
+      "id": "GHSA-r936-gwx5-v52f",
+      "aliases": [
+        "CVE-2025-41242"
+      ],
+      "summary": "Spring Framework MVC Applications Path Traversal Vulnerability",
+      "severity": "MODERATE",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "6.1.0"
+            },
+            {
+              "last_affected": "6.1.21"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-41242"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/spring-projects/spring-framework"
+        },
+        {
+          "type": "WEB",
+          "url": "http://spring.io/security/cve-2025-41242"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "com.fasterxml.jackson.core:jackson-databind",
+      "version": "2.17.3",
+      "scope": "compile",
+      "id": "GHSA-rmj7-2vxq-3g9f",
+      "aliases": [
+        "CVE-2026-54513"
+      ],
+      "summary": "jackson-databind has an array subtype allowlist bypass in BasicPolymorphicTypeValidator (allowIfSubTypeIsArray)",
+      "severity": "HIGH",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "2.10.0"
+            },
+            {
+              "fixed": "2.18.8"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "WEB",
+          "url": "https://github.com/FasterXML/jackson-databind/security/advisories/GHSA-rmj7-2vxq-3g9f"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-54513"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/FasterXML/jackson-databind/issues/5983"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/FasterXML/jackson-databind/issues/5981"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/FasterXML/jackson-databind/pull/5984"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/FasterXML/jackson-databind/commit/24529da29fdf46ff94ca38de9ebf31cd188f5e8e"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/FasterXML/jackson-databind/commit/01d1692c8d0ed03e51a0e3c4f8a9e6908e4931e5"
+        },
+        {
+          "type": "WEB",
+          "url": "https://access.redhat.com/errata/RHSA-2026:50849"
+        },
+        {
+          "type": "WEB",
+          "url": "https://access.redhat.com/errata/RHSA-2026:54435"
+        },
+        {
+          "type": "WEB",
+          "url": "https://access.redhat.com/errata/RHSA-2026:54622"
+        },
+        {
+          "type": "WEB",
+          "url": "https://access.redhat.com/errata/RHSA-2026:62260"
+        },
+        {
+          "type": "WEB",
+          "url": "https://access.redhat.com/errata/RHSA-2026:66488"
+        },
+        {
+          "type": "WEB",
+          "url": "https://access.redhat.com/errata/RHSA-2026:66545"
+        },
+        {
+          "type": "WEB",
+          "url": "https://access.redhat.com/security/cve/CVE-2026-54513"
+        },
+        {
+          "type": "WEB",
+          "url": "https://bugzilla.redhat.com/show_bug.cgi?id=2492010"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/FasterXML/jackson-databind"
+        },
+        {
+          "type": "WEB",
+          "url": "https://security.access.redhat.com/data/csaf/v2/vex/2026/cve-2026-54513.json"
+        },
+        {
+          "type": "WEB",
+          "url": "https://access.redhat.com/errata/RHSA-2026:36839"
+        },
+        {
+          "type": "WEB",
+          "url": "https://access.redhat.com/errata/RHSA-2026:40895"
+        },
+        {
+          "type": "WEB",
+          "url": "https://access.redhat.com/errata/RHSA-2026:41951"
+        },
+        {
+          "type": "WEB",
+          "url": "https://access.redhat.com/errata/RHSA-2026:43218"
+        },
+        {
+          "type": "WEB",
+          "url": "https://access.redhat.com/errata/RHSA-2026:43400"
+        },
+        {
+          "type": "WEB",
+          "url": "https://access.redhat.com/errata/RHSA-2026:44061"
+        },
+        {
+          "type": "WEB",
+          "url": "https://access.redhat.com/errata/RHSA-2026:44062"
+        },
+        {
+          "type": "WEB",
+          "url": "https://access.redhat.com/errata/RHSA-2026:44063"
+        },
+        {
+          "type": "WEB",
+          "url": "https://access.redhat.com/errata/RHSA-2026:44064"
+        },
+        {
+          "type": "WEB",
+          "url": "https://access.redhat.com/errata/RHSA-2026:44065"
+        },
+        {
+          "type": "WEB",
+          "url": "https://access.redhat.com/errata/RHSA-2026:44066"
+        },
+        {
+          "type": "WEB",
+          "url": "https://access.redhat.com/errata/RHSA-2026:44271"
+        },
+        {
+          "type": "WEB",
+          "url": "https://access.redhat.com/errata/RHSA-2026:48095"
+        },
+        {
+          "type": "WEB",
+          "url": "https://access.redhat.com/errata/RHSA-2026:48151"
+        },
+        {
+          "type": "WEB",
+          "url": "https://access.redhat.com/errata/RHSA-2026:50846"
+        },
+        {
+          "type": "WEB",
+          "url": "https://access.redhat.com/errata/RHSA-2026:50847"
+        },
+        {
+          "type": "WEB",
+          "url": "https://access.redhat.com/errata/RHSA-2026:50848"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "org.assertj:assertj-core",
+      "version": "3.25.3",
+      "scope": "test",
+      "id": "GHSA-rqfh-9r24-8c9r",
+      "aliases": [
+        "CVE-2026-24400"
+      ],
+      "summary": "AssertJ has XML External Entity (XXE) vulnerability when parsing untrusted XML via isXmlEqualTo assertion",
+      "severity": "HIGH",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "1.4.0"
+            },
+            {
+              "fixed": "3.27.7"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "WEB",
+          "url": "https://github.com/assertj/assertj/security/advisories/GHSA-rqfh-9r24-8c9r"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-24400"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/assertj/assertj/commit/85ca7eb6609bb179c043b85ae7d290523b1ba79a"
+        },
+        {
+          "type": "WEB",
+          "url": "https://cheatsheetseries.owasp.org/cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.html"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/assertj/assertj"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/assertj/assertj/releases/tag/assertj-build-3.27.7"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "org.springframework.security:spring-security-core",
+      "version": "6.3.10",
+      "scope": "compile",
+      "id": "GHSA-vxf7-qj7q-83fh",
+      "aliases": [
+        "CVE-2026-22746"
+      ],
+      "summary": "Spring Security Vulnerable to User Attribute Enumeration when Using DaoAuthenticationProvider",
+      "severity": "LOW",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "6.3.0"
+            },
+            {
+              "last_affected": "6.3.15"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-22746"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/spring-projects/spring-security"
+        },
+        {
+          "type": "WEB",
+          "url": "https://spring.io/security/cve-2026-22746"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "org.springframework:spring-webmvc",
+      "version": "6.1.21",
+      "scope": "compile",
+      "id": "GHSA-wg35-8jpf-2xv3",
+      "aliases": [
+        "CVE-2026-22741"
+      ],
+      "summary": "Spring MVC and WebFlux applications are vulnerable to cache poisoning when resolving static resources.",
+      "severity": "LOW",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "6.1.0"
+            },
+            {
+              "last_affected": "6.1.26"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-22741"
+        },
+        {
+          "type": "WEB",
+          "url": "https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-config/static-resources.html#page-title"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/spring-projects/spring-framework"
+        },
+        {
+          "type": "WEB",
+          "url": "https://spring.io/security/cve-2026-22741"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "org.springframework.boot:spring-boot",
+      "version": "3.3.13",
+      "scope": "compile",
+      "id": "GHSA-wwpq-f5c3-7hvx",
+      "aliases": [
+        "CVE-2026-40973"
+      ],
+      "summary": "Spring Boot accepts predictable temp directory without ownership verification",
+      "severity": "HIGH",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "3.3.0"
+            },
+            {
+              "last_affected": "3.3.18"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-40973"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/spring-projects/spring-boot"
+        },
+        {
+          "type": "WEB",
+          "url": "https://spring.io/security/cve-2026-40973"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "org.springframework:spring-expression",
+      "version": "6.1.21",
+      "scope": "compile",
+      "id": "GHSA-wxpp-56q6-5pcg",
+      "aliases": [
+        "CVE-2026-41851"
+      ],
+      "summary": "Spring Framework Denial of Service via Unbounded Cache in SpEL",
+      "severity": "MODERATE",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "6.1.0"
+            },
+            {
+              "last_affected": "6.1.21"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-41851"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-framework/commit/2c18c33ce0f89bf718c184190cfb7ed49b4276fb"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-framework/commit/76a36dfd707cddbe7118a81c2e055b36501d2cff"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/spring-projects/spring-framework"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-framework/releases/tag/v6.2.19"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-framework/releases/tag/v7.0.8"
+        },
+        {
+          "type": "WEB",
+          "url": "https://spring.io/security/cve-2026-41851"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "org.springframework:spring-webmvc",
+      "version": "6.1.21",
+      "scope": "compile",
+      "id": "GHSA-x23c-287f-qqv5",
+      "aliases": [
+        "CVE-2026-41842"
+      ],
+      "summary": "Spring Framework Denial of Service via Versioned Resources in Spring MVC and WebFlux",
+      "severity": "HIGH",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "6.1.0"
+            },
+            {
+              "last_affected": "6.1.21"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-41842"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/spring-projects/spring-framework"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-framework/releases/tag/v6.2.19"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-framework/releases/tag/v7.0.8"
+        },
+        {
+          "type": "WEB",
+          "url": "https://spring.io/security/cve-2026-41842"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "org.springframework.security:spring-security-web",
+      "version": "6.3.10",
+      "scope": "compile",
+      "id": "GHSA-x2r2-rvhq-2mqv",
+      "aliases": [
+        "CVE-2026-41706"
+      ],
+      "summary": "Spring Security: Open Redirect via Unvalidated Post-Login Redirect URL Stored in CookieRequestCache",
+      "severity": "MODERATE",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "6.3.0"
+            },
+            {
+              "last_affected": "6.3.16"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-41706"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/spring-projects/spring-security"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-security/releases/tag/6.5.11"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/spring-projects/spring-security/releases/tag/7.0.6"
+        },
+        {
+          "type": "WEB",
+          "url": "https://spring.io/security/cve-2026-41706"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "com.nimbusds:nimbus-jose-jwt",
+      "version": "9.37.3",
+      "scope": "compile",
+      "id": "GHSA-xwmg-2g98-w7v9",
+      "aliases": [
+        "CVE-2025-53864"
+      ],
+      "summary": "Nimbus JOSE + JWT is vulnerable to DoS attacks when processing deeply nested JSON",
+      "severity": "MODERATE",
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "0"
+            },
+            {
+              "fixed": "9.37.4"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-53864"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/google/gson/commit/1039427ff0100293dd3cf967a53a55282c0fef6b"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://bitbucket.org/connect2id/nimbus-jose-jwt"
+        },
+        {
+          "type": "WEB",
+          "url": "https://bitbucket.org/connect2id/nimbus-jose-jwt/commits/f7fb882cc08f027c9ceb874acec3b51c6222861c"
+        },
+        {
+          "type": "WEB",
+          "url": "https://bitbucket.org/connect2id/nimbus-jose-jwt/issues/583/stackoverflowerror-due-to-deeply-nested"
+        },
+        {
+          "type": "WEB",
+          "url": "https://bitbucket.org/connect2id/nimbus-jose-jwt/issues/593/back-port-cve-2025-53864-fix-to-9x-branch"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/google/gson/compare/gson-parent-2.11.0...gson-parent-2.12.0"
+        }
+      ]
+    }
+  ],
+  "limits": "Version-range matches, not exploitability. No outbound package queries. Public catalog records may be incomplete."
+}

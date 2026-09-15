@@ -193,25 +193,25 @@ T013 permite preparar un resultado local candidato. T014 no aplica por DEC-004 y
 - Dependencias: T017.
 - Handoff: H006.
 - Aceptación: Inventario antes/después, avisos aplicables tratados o descartados con evidencia, BOM compatible, pruebas seguridad/Oracle/WAR correctas.
-- Situación: parcial, mitigación anticipada de cabeceras y Tomcat10.1.59 verificados de forma dirigida; resto pendiente de análisis final. Usuario mantiene stack obligatorio (DEC-019).
+- Situación: parcial, mitigación anticipada de cabeceras y Tomcat10.1.59 verificados de forma dirigida; 29 avisos pendientes,13 no aplicables a esta configuración con evidencia y1 mitigado de43 coincidencias restantes. Usuario mantiene stack obligatorio (DEC-019); docs/TRATAMIENTO_DEPENDENCIAS_T018.md.
 - Evidencia de origen: AUD-01, DEC-015; docs/PLAN_CORRECCIONES_AUDITORIA.md.
 
 ## T019 Rechazar coerción decimal de identificadores y ocurrencias
 
-- [ ] T019 Rechazar coerción decimal de identificadores y ocurrencias.
+- [x] T019 Rechazar coerción decimal de identificadores y ocurrencias.
 - Dependencias: T017.
 - Handoff: H006.
 - Aceptación: Dos regresiones decimales devuelven400 sin escritura; enteros válidos mantienen comportamiento.
-- Situación: implementada, en verificación; 12 casos dirigidos pasan, pendiente HTTP/WAR nuevo y suite final, DEC-017.
+- Situación: completada; suite completa88/88 y HTTP real contra WAR e859c80, DEC-017. Evidencia en docs/CIERRE_CORRECCIONES_AUDITORIA.md.
 - Evidencia de origen: AUD-02, DEC-015; docs/PLAN_CORRECCIONES_AUDITORIA.md.
 
 ## T020 Preservar estados HTTP de errores MVC
 
-- [ ] T020 Preservar estados HTTP de errores MVC.
+- [x] T020 Preservar estados HTTP de errores MVC.
 - Dependencias: T017.
 - Handoff: H006.
 - Aceptación: Tres regresiones400/404/405 pasan, 500solo inesperados, cuerpo redactado y Allow apropiado.
-- Situación: implementada, en verificación; 12 casos dirigidos pasan, pendiente HTTP/WAR nuevo y suite final, DEC-017.
+- Situación: completada; suite completa88/88 y HTTP real contra WAR e859c80, DEC-017. Evidencia en docs/CIERRE_CORRECCIONES_AUDITORIA.md.
 - Evidencia de origen: AUD-03, DEC-015; docs/PLAN_CORRECCIONES_AUDITORIA.md.
 
 ## T021 Completar contrato OpenAPI real
@@ -220,16 +220,16 @@ T013 permite preparar un resultado local candidato. T014 no aplica por DEC-004 y
 - Dependencias: T020.
 - Handoff: H007.
 - Aceptación: Seguridad Basic/CSRF y respuestas reales documentadas, prueba OpenAPI y uso Swagger verificados.
-- Situación: contrato y protección implementados, pruebas dirigidas pasan; pendiente Swagger interactivo/WAR nuevo, DEC-020.
+- Situación: implementada y pruebas OpenAPI/HTTP del WAR nuevo correctas; pendiente verificación interactiva de Swagger por autenticación nativa que debe completar el usuario. No cerrada, DEC-020.
 - Evidencia de origen: AUD-04, DEC-015; docs/PLAN_CORRECCIONES_AUDITORIA.md.
 
 ## T022 Alinear Dev Container restaurado y mensajes de verificación
 
-- [ ] T022 Alinear Dev Container restaurado y mensajes de verificación.
+- [x] T022 Alinear Dev Container restaurado y mensajes de verificación.
 - Dependencias: T017.
 - Handoff: H007.
 - Aceptación: Ambos Compose con imágenes importadas, apertura real sin pérdida de datos/credenciales y JDBC read; sonda sin afirmaciones obsoletas.
-- Situación: autorizada por DEC-016; pendiente de implementación y verificación.
+- Situación: completada para reapertura local con CLI up/exec, toolchain/compilación/app/JDBC read verificados, DEC-021. Bootstrap nuevo documentado y guardado; no se acredita instalación limpia ni apertura visual VS Code.
 - Evidencia de origen: AUD-05, DEC-015; docs/PLAN_CORRECCIONES_AUDITORIA.md.
 
 ## T023 Evaluar permisos mínimos de ejecución Oracle

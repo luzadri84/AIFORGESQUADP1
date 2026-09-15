@@ -1,0 +1,24 @@
+{
+  "worktreeFilesChecked": 184,
+  "incrementalHistoryBlobs": 35,
+  "warOwnEntriesChecked": 132,
+  "knownSecretMatches": 0,
+  "ignoredFiles": 5,
+  "localhostOnly": true,
+  "oracleHealthy": true,
+  "oracleVolume": [
+    "booking-local_oracle-data"
+  ],
+  "limit": "Known local secret values; third-party JAR content and unknown secrets not exhaustively scanned.",
+  "originalBookingRowsUnchanged": 17,
+  "visualFixtureIds": [
+    256,
+    257,
+    258,
+    259
+  ],
+  "visualFixturesFinalStatus": "CANCELLED",
+  "baselineSecretFilesUnchanged": 5,
+  "originalPersistenceMarker": "read matches original file",
+  "oracleRestartThisPhase": false
+}

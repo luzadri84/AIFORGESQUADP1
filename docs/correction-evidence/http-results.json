@@ -1,0 +1,91 @@
+{
+  "checks": [
+    {
+      "method": "GET",
+      "path": "/api/csrf",
+      "status": 200,
+      "securityHeaders": true,
+      "allow": null
+    },
+    {
+      "method": "GET",
+      "path": "/api/bookings",
+      "status": 200,
+      "securityHeaders": true,
+      "allow": null
+    },
+    {
+      "method": "GET",
+      "path": "/api/bookings",
+      "status": 401,
+      "securityHeaders": true,
+      "allow": null
+    },
+    {
+      "method": "POST",
+      "path": "/api/bookings",
+      "status": 403,
+      "securityHeaders": true,
+      "allow": null
+    },
+    {
+      "method": "POST",
+      "path": "/api/bookings",
+      "status": 400,
+      "securityHeaders": true,
+      "allow": null
+    },
+    {
+      "method": "POST",
+      "path": "/api/bookings",
+      "status": 400,
+      "securityHeaders": true,
+      "allow": null
+    },
+    {
+      "method": "GET",
+      "path": "/api/bookings",
+      "status": 200,
+      "securityHeaders": true,
+      "allow": null
+    },
+    {
+      "method": "GET",
+      "path": "/api/route-that-does-not-exist",
+      "status": 404,
+      "securityHeaders": true,
+      "allow": null
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/bookings/not-a-number",
+      "status": 400,
+      "securityHeaders": true,
+      "allow": null
+    },
+    {
+      "method": "PUT",
+      "path": "/api/bookings/99999999",
+      "status": 405,
+      "securityHeaders": true,
+      "allow": "DELETE"
+    },
+    {
+      "method": "GET",
+      "path": "/api/bookings/99999999",
+      "status": 405,
+      "securityHeaders": true,
+      "allow": "DELETE"
+    },
+    {
+      "method": "GET",
+      "path": "/v3/api-docs",
+      "status": 200,
+      "securityHeaders": true,
+      "allow": null
+    }
+  ],
+  "fractionalRequests": 2,
+  "newActiveBookings": 0,
+  "openApiAndSecurity": true
+}

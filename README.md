@@ -1,6 +1,6 @@
 # Booking de espacios físicos
 
-> Auditoría T017: hay seis regresiones pendientes; verify falla actualmente. Consultar [dictamen y límites](docs/AUDITORIA_CUMPLIMIENTO_Y_SEGURIDAD.md) antes de interpretar las verificaciones históricas como cumplimiento integral.
+> Correcciones T018–T022: suite Java88/88 y frontend13/13/build verificadas sobre WAR nuevo. T018 sigue parcial por avisos pendientes y stack obligatorio (DEC-019); T015/WebLogic independiente. Véase [cierre y límites](docs/CIERRE_CORRECCIONES_AUDITORIA.md).
 
 Aplicación local funcional sobre el repositorio definitivo (DEC-004): crear reservas,
 consultar las propias activas, cancelarlas y solicitar de 1 a 12 ocurrencias semanales
@@ -36,8 +36,8 @@ pwsh -NoProfile -File scripts/app.ps1 stop
 pwsh -NoProfile -File scripts/app.ps1 start
 ```
 
-`start` reutiliza el WAR; lo empaqueta si falta. Tras cambiar Java, usar `verify` para
-reconstruirlo. Angular se sirve en modo desarrollo con vigilancia por polling para
+`start` comprueba hashes de fuentes y WAR; si falta o está obsoleto, lo reconstruye
+con pruebas antes de iniciar. `verify` siempre ejecuta una construcción limpia completa. Angular se sirve en modo desarrollo con vigilancia por polling para
 el montaje Windows. `verify` detiene temporalmente los procesos de la aplicación,
 ejecuta Maven/Angular y vuelve a iniciarlos si pasa; un fallo requiere corregirlo y
 repetir el comando. Logs privados en `.local/runtime/backend.log` y `frontend.log`.
@@ -57,6 +57,18 @@ la lectura anterior. `pwsh -NoProfile -File scripts/booking-db.ps1 status` consu
 Para otra máquina, importar primero datos y credenciales siguiendo
 [TRANSFERIR_EQUIPO](docs/TRANSFERIR_EQUIPO.md) y
 [TRANSFERENCIA_VERIFICADA](docs/TRANSFERENCIA_VERIFICADA.md).
+
+## Dev Container y checkout nuevo
+
+Abrir la raíz en VS Code → **Dev Containers: Reopen in Container**.
+[Procedimiento completo](docs/DEV_CONTAINER.md): reapertura con imágenes importadas,
+inicialización sin regenerar claves y bootstrap protegido para una instalación nueva
+con imágenes públicas. Se comprobó CLI up/exec, no apertura visual de VS Code ni
+instalación limpia en otra máquina. Los commits de corrección son locales, sin push.
+
+Swagger: abrir la URL protegida, autenticarse en el diálogo Basic, usar Authorize
+para Basic, ejecutar GET /api/csrf y copiar token a Authorize csrfToken; conservar la
+cookie del mismo navegador. [Contrato y pasos](docs/CONTRATO_API.md).
 
 ## Arquitectura y evidencia
 
@@ -91,6 +103,6 @@ previas de [H001](docs/INTEGRACION_H001.md), [T003](docs/VERIFICACION_T003.md) y
 
 ## Auditoría posterior — T017 / DEC-015
 
-La auditoría T017 conserva seis regresiones fallidas. El entorno local funciona con el WAR existente, pero verify falla hasta corregir los hallazgos y puede requerir app.ps1 start después. No se acredita entrega WebLogic ni Dev Container completo.
+Registro histórico: T017 conservó seis regresiones fallidas contra47a6af4. Esa situación queda superada por la ejecución corregida88/88; no se reescribe el informe original. El nuevo cierre acredita Dev Container CLI y distingue los pendientes de seguridad, Swagger y WebLogic.
 
 [Diagnóstico y evidencia](docs/AUDITORIA_CUMPLIMIENTO_Y_SEGURIDAD.md) · [Plan de correcciones](docs/PLAN_CORRECCIONES_AUDITORIA.md).

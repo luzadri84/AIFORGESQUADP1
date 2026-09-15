@@ -95,3 +95,11 @@ arrancarlo directamente con app-process.sh backend/frontend; identificar su revi
 anterior y no presentarlo como corrección verificada. start detectará su hash obsoleto.
 
 Detener/reabrir sin borrar datos: app.ps1 stop / app.ps1 start. Nunca down -v.
+
+## Bundle local de la revisión corregida
+
+La entrega local `.local/delivery/booking-corrections.bundle` contiene historial Git,
+sin .local/secretos. Verificar con `git bundle verify RUTA_AL_BUNDLE`, luego
+`git clone RUTA_AL_BUNDLE BookingEvaluacion` y trabajar desde esa raíz. No clonar
+encima del entorno existente. Bootstrap sigue requiriendo una máquina sin su proyecto
+Compose/volumen Oracle; la validación del bundle no significa instalación limpia.

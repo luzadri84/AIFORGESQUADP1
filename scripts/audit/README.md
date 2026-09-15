@@ -1,4 +1,11 @@
-# Reproducir T017 / DEC-015
+# Reproducir auditoría y correcciones
+
+Estado vigente: docs/CIERRE_CORRECCIONES_AUDITORIA.md. La ejecución corregida incluye
+88 casos Java y pasa; T018 sigue parcial. El procedimiento T017 inferior es histórico
+y sus afirmaciones de fallo/76 casos se refieren exclusivamente a47a6af4/e170418.
+Para verificación actual: pwsh -NoProfile -File scripts/app.ps1 verify.
+
+## Procedimiento histórico T017 / DEC-015
 
 Desde C:\PruebaAIFORGESQUAD, PowerShell7, con entorno/restauración y secretos ya preparados. No ejecutar prepare/import ni escribir el marcador. Se requiere Oracle real y los dos Compose. No reemplazar credenciales. Los fixtures automáticos son transaccionales o se limpian por su propio ID. Los tests usan contraseñas sintéticas aleatorias, no imprimen las operativas.
 

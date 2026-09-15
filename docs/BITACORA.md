@@ -627,3 +627,26 @@ postCreate ya intentado, por ello se ejecuta explícitamente el script corregido
 Dev Container up/exec: éxito; sonda completa, compilación Angular de infraestructura
 y lectura del marcador original correctas. Bootstrap nuevo rechaza .local existente
 antes de generar nada. Pendiente compilación final/aplicación desde devcontainer exec.
+
+## Verificación de DEC-017–021 — resultado real
+
+2026-09-14 America/Bogota. Fuentes e859c80 limpias; clean verify desde Dev Container
+produjo WAR nuevo a2ab5fe1a6d301d45a94fc7f26415326b7e1fdfbc2567e37f527e269a7d13aa5:
+88tests/0fallos/0errores/0omitidos en una ejecución, incluidas seis regresiones originales
+y espera Oracle. Frontend13/13/build strict, comparador3/3, HTTP real12comprobaciones.
+T019/T020 verificadas; T018 parcial:43coincidencias,1mitigada/13noaplicablescon evidencia/
+29pendientes. No se atribuye aceptación del riesgo al usuario que mantiene stack.
+
+Navegador creó#256 y rechazó duplicado; segunda identidad tuvo3+1 (#257–259). Listados
+propios y cancelaciones comprobados; hubo dos avisos de acceso inválido al alternar
+pestañas, resueltos mediante reingreso, sin atribuir una causa no trazada. Las cuatro
+filas quedan CANCELLED;17filas anteriores idénticas. Secretos/clave/marcador5archivos
+con hashes iniciales; JDBCreadcorrecto y puertos localhost. No reinicioOracle nuevo.
+
+T021: Swagger protegido y contrato pasan HTTP/tests; navegador integrado devuelve
+ERR_BLOCKED_BY_CLIENT al desafío. Chrome no disponible al plugin Browser. Guía de
+computer-use prohíbe automatizar diálogos de autenticación; se pidió al usuario abrir
+y autenticar Swagger, mientras se completan los demás controles. No se declara prueba
+interactiva realizada. T022 CLIup/exec y aplicación verificadas, límites documentados.
+Bundle Git local para transportar corrección sin push; no incluye secretos ignorados.
+Anexo CIERRE_CORRECCIONES_AUDITORIA.md conserva el informe original y sus seis fallos.

@@ -1,0 +1,12 @@
+[
+  {
+    "ecosystem": "Maven",
+    "bytes": 10162648,
+    "sha256": "da0c6159ed1ad4da63f9ef392b79021cd1cd6dfd49115e1d034edc2c2fc9d898"
+  },
+  {
+    "ecosystem": "npm",
+    "bytes": 215008695,
+    "sha256": "ca0ed4a3c45bcf8808692c05c1af56b35d992f4793b4a6b9c47e423873c56e33"
+  }
+]

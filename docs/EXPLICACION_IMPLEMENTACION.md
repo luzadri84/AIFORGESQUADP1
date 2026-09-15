@@ -360,3 +360,56 @@ El audit npm informa sobre el lockfile consultado, no sobre todo el sistema ni g
 La auditoría posterior de la revisión47a6af4 matiza el cumplimiento: código local funcional, seis regresiones de contrato pendientes, dependencias y Dev Container por resolver; WebLogic no acreditado. Esta explicación conserva las preguntas/retos y no certifica por sí sola la entrega.
 
 [Diagnóstico y evidencia](AUDITORIA_CUMPLIMIENTO_Y_SEGURIDAD.md) · [Plan de correcciones](PLAN_CORRECCIONES_AUDITORIA.md).
+
+## Correcciones de auditoría sobre la solución real (DEC-017–021)
+
+El monolito por funcionalidades y sus reglas no cambian. application.properties
+rechaza coerción de float/string a enteros antes de BookingService; ApiErrors clasifica
+excepciones MVC y conserva errores técnicos500/503 redactados. OpenApiConfig declara
+esquemas/respuestas por operación y Basic+csrfToken como AND; SecurityConfig protege
+Swagger con desafío Basic. EagerSecurityHeaders configura el filtro real para
+cabeceras anticipadas; no sustituye un parche de versión para otros avisos.
+Tomcat10.1.59 está en POM, árbol y WAR, incluso core/websocket provided. El bootstrap
+Dev Container conserva secretos, y backend-artifact.sh vincula fuentes/WAR por hash.
+Evidencia nueva: AuditSecurityTest y OracleConcurrencyTest dentro de una ejecución
+completa88/88; frontend13/13/build; HTTP contra WAR e859c80. Véase cierre para límites,
+verificación visual y avisos que continúan pendientes. La auditoría original conserva
+sus seis fallos reales; no se reescribe como si hubieran pasado entonces.
+
+### Preguntas respondidas para sustentación
+
+1. ¿Por qué @Positive no detectaba1.75? Jackson lo truncaba a1 antes de Bean Validation.
+   Rechazar ACCEPT_FLOAT_AS_INT evita perder la información; ALLOW_COERCION_OF_SCALARS
+   también impide "1". BookingRequest sigue recibiendo enteros válidos, dates con offset
+   y occurrences null/ausente=1. AuditSecurityTest comprueba400 sin nuevas filas.
+2. ¿Por qué1.0 tampoco se acepta? El contrato requiere token JSON entero, no solo un
+   valor matemáticamente integral. Se documenta igual para1e0; no redondear en servicio.
+3. ¿Por qué GET /api/bookings/123 devuelve405? La ruta existe paraDELETE, pero GET no.
+   ApiErrors conserva405 y Allow DELETE; una ruta desconocida devuelve404 y un ID no
+   convertible400. La corrección del test se justificó primero en DEC-017.
+4. ¿Una librería vulnerable equivale a un ataque explotable? No: versión/rango es una
+   coincidencia. Hay que comprobar configuración efectiva y entrada alcanzable, incluso
+   usos indirectos por framework. No basta buscar llamadas propias ni ignorar provided.
+5. ¿Mitigación y actualización son lo mismo? No. eager headers aplica una alternativa
+   oficial con efecto medido antes/después; Security6.3.10 sigue en el catálogo. Tomcat
+   sí cambia a una versión corregida. Los demás avisos se analizan individualmente.
+6. ¿Por qué Swagger exige dos autorizaciones? Basic identifica cada solicitud; CSRF
+   relaciona la mutación con la sesión cuyo token se obtuvo por GET/api/csrf. La cookie
+   sola no sustituye Basic y el token solo tampoco. Ambos esquemas en un mismo objeto
+   OpenAPI significan AND. El mecanismo real y la política de sesión permanecen.
+7. ¿Cómo se sabe qué WAR está corriendo? La construcción limpia registra commit de
+   fuentes, hash, fecha y estado; start comprueba fuentes y artefacto. Un WAR anterior
+   recuperado manualmente no valida el código corregido, aunque vuelva el servicio.
+8. ¿Qué acredita Dev Container? CLI up/exec y compilación/pruebas en ese entorno.
+   No prueba una instalación limpia del evaluador ni apertura visual de VS Code.
+
+### Ejercicios de análisis, no funcionalidades implementadas
+
+- Predecir qué cambia si solo se permite float-as-int manteniendo validación @Positive;
+  identificar qué regresión vuelve a fallar y por qué una validación posterior no basta.
+- Analizar el efecto de agregar GET porID al contrato:405 dejaría de ser correcto, y
+  habría que diseñar autorización propia. No implementar esa ruta en esta fase.
+- Evaluar activar caché compartida de recursos o JWT: qué estados "no aplicable" del
+  informe T018 requieren reevaluación y qué nuevas pruebas serían necesarias.
+- Explicar por qué reemplazar Cache-Control después del filtro eager no elimina otras
+  cabeceras ya escritas; diseñar mentalmente una prueba que distinga antes/después.

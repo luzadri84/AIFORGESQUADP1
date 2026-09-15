@@ -91,3 +91,13 @@ El criterio de terminado exige evidencia real de FR001–FR011 y resolver el com
 
 Evidencia local de estos resultados en VERIFICACION_FINAL; T015 sigue independiente. No se inventan metas de latencia,
 usuarios concurrentes, implementación ni rendimiento para llenar una plantilla.
+
+## Correcciones vigentes DEC-016–021
+
+La autorización T018–T022 supera la etapa de auditoría sin cambios. Mantener familias
+obligatorias por decisión humana DEC-019; Tomcat10.1.59 y mitigación de cabeceras,
+sin aplicar alternativa Boot3.5/Security6.5/Data3.5. Arquitectura por funcionalidades
+sin cambios. JSON solo tokens enteros (1.0/1e0/"1" se rechazan), MVC400/404/405 con
+Allow, OpenAPI Basic AND CSRF por operación. Dev Container combina imágenes importadas
+sin build; start detecta WAR obsoleto. Estado únicamente en tasks.md y evidencia en
+CIERRE_CORRECCIONES_AUDITORIA.md; no T023/T024 ni atribuir WebLogic a Tomcat local.

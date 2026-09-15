@@ -264,3 +264,12 @@ T015 independiente. Excepciones al stack requieren decisión explícita sobre un
 alternativa exacta; continuar las tareas que no dependan de ella. Preservar informe
 histórico y seis regresiones; justificar semántica de mappings antes de cambiar
 expectativas de tests. Probar WAR nuevo y Dev Container real, no solo configuración.
+
+## Continuidad de correcciones — DEC-019/021
+
+El usuario mantiene el stack obligatorio; la alternativa excepcional de T018 no se
+aplica. No aceptar riesgo en su nombre. Las seis regresiones históricas se conservan
+y pasan en suite completa88/88 sobre fuentes e859c80. start ahora detecta obsolescencia
+por hashes y recompila con pruebas; la frase histórica "start reutiliza WAR" queda
+superada. Dev Container CLI up/exec real; docs/DEV_CONTAINER.md distingue reapertura
+y base nueva. Resultados/límites en CIERRE_CORRECCIONES_AUDITORIA.md, estados en tasks.

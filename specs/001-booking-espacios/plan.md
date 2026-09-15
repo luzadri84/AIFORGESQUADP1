@@ -115,3 +115,13 @@ No se altera API/SQL/seguridad; no atribuir sin evidencia la espera a extensione
 T017 no reinicia la implementación: registra diagnóstico y regresiones del estado47a6af4. Los pendientes nuevos están en tasks.md; no se ejecutan correcciones con esta autorización.
 
 [Diagnóstico y evidencia](../../docs/AUDITORIA_CUMPLIMIENTO_Y_SEGURIDAD.md) · [Plan de correcciones](../../docs/PLAN_CORRECCIONES_AUDITORIA.md).
+
+## Correcciones vigentes DEC-016–021
+
+La autorización T018–T022 supera la etapa de auditoría sin cambios. Mantener familias
+obligatorias por decisión humana DEC-019; Tomcat10.1.59 y mitigación de cabeceras,
+sin aplicar alternativa Boot3.5/Security6.5/Data3.5. Arquitectura por funcionalidades
+sin cambios. JSON solo tokens enteros (1.0/1e0/"1" se rechazan), MVC400/404/405 con
+Allow, OpenAPI Basic AND CSRF por operación. Dev Container combina imágenes importadas
+sin build; start detecta WAR obsoleto. Estado únicamente en tasks.md y evidencia en
+CIERRE_CORRECCIONES_AUDITORIA.md; no T023/T024 ni atribuir WebLogic a Tomcat local.

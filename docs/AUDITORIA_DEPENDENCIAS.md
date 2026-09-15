@@ -85,3 +85,7 @@ Se contrastaron, entre otros, los prerrequisitos de [métodos protegidos](https:
 Para Spring, preferir un conjunto BOM soportado y coherente, no forzar JPA/Hibernate antiguos sobre Boot nuevo. Parches de ramas 3.3/6.1/6.3 pueden requerir soporte Enterprise; Boot 3.5 gestiona familias Security/Data distintas de algunas exigencias originales. Resolver esa discrepancia con el evaluador en T018 antes de elegir el conjunto final, conservando T015 independiente. No se propone bajar versiones para aparentar cumplimiento. No se instalaron ni actualizaron dependencias.
 
 No se analizaron plugins del build Maven por separado ni exhaustivamente CVE de paquetes del sistema operativo, Docker Desktop, JDK, Node u Oracle. El resultado npm significa ausencia de coincidencias en este catálogo/fecha, no ausencia total de vulnerabilidades. El comparador es una herramienta de auditoría por versiones, no análisis de alcanzabilidad.
+
+## Enlace posterior (el informe precedente conserva su revisión y resultados)
+
+Correcciones posteriores: [anexo y verificaciones](CIERRE_CORRECCIONES_AUDITORIA.md). No modifica los hallazgos históricos de47a6af4.

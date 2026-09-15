@@ -65,3 +65,15 @@ Coerción numérica deshabilitada y excepciones MVC específicas, mensajes redac
 12 pruebas dirigidas correctas; la ruta DELETE/{id} da405 ante GET, corregido el
 supuesto del test antes de implementar sin ocultar el500. Pendiente HTTP con WAR
 nuevo y suite completa; siguiente T018 mitigación/parches y H007/OpenAPI.
+
+## Resultado de correcciones — DEC-017–021
+
+Fuentes e859c80: una suite88/88, frontend13/13/build, HTTP al WAR nuevo y recorrido
+visual de creación/listado/colisión/recurrencia parcial/cancelación. Originales17filas
+y5archivos secretos intactos. T018 parcial por decisión humana de mantener stack;
+no se aplica alternativa. Dev Container CLI up/exec acreditado; no VS Code visual ni
+instalación nueva. Contrato Swagger probado, falta escritura UI tras diálogo Basic
+manual. Estado único tasks.md; evidencias docs/CIERRE_CORRECCIONES_AUDITORIA.md.
+Siguiente: completar autenticación y prueba interactiva T021; T018/T015 pendientes
+independientes. No nuevas funcionalidades, T023/T024, push ni repetir suite ya verificada
+sin cambios productivos. Bundle local permite entregar revisión sin publicar.

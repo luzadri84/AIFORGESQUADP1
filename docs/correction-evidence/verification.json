@@ -1,0 +1,88 @@
+{
+  "javaSuites": [
+    {
+      "name": "local.booking.booking.AuditSecurityTest",
+      "tests": "37",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "24.188"
+    },
+    {
+      "name": "local.booking.booking.BookingApiTest",
+      "tests": "4",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "3.148"
+    },
+    {
+      "name": "local.booking.booking.OracleConcurrencyTest",
+      "tests": "3",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "14.754"
+    },
+    {
+      "name": "local.booking.booking.OraclePersistenceTest",
+      "tests": "23",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "1.812"
+    },
+    {
+      "name": "local.booking.booking.TimeRangeTest",
+      "tests": "10",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.02"
+    },
+    {
+      "name": "local.booking.booking.WeeklyRecurrenceTest",
+      "tests": "5",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.006"
+    },
+    {
+      "name": "local.booking.security.HttpSecurityTest",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "2.523"
+    },
+    {
+      "name": "local.booking.security.JwtValidationTest",
+      "tests": "2",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.036"
+    },
+    {
+      "name": "local.booking.security.SecurityContractTest",
+      "tests": "3",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "2.6"
+    }
+  ],
+  "javaTotal": 88,
+  "frontendTests": 13,
+  "frontendStrictBuild": "passed",
+  "build": {
+    "source_hash": "87e9ea249b7ec0d8bb0275b433b7c56a4a8e4cf9cf2c86f7583793c4e176785b",
+    "war_hash": "a2ab5fe1a6d301d45a94fc7f26415326b7e1fdfbc2567e37f527e269a7d13aa5",
+    "source_revision": "e859c802d2c66967b4f3d5aa571575929cefcad1",
+    "source_dirty": "0",
+    "built_at_utc": "2026-09-14T23:52:53Z"
+  },
+  "devcontainer": "CLI up/exec on existing container; no visual VS Code",
+  "http": "http-results.json"
+}

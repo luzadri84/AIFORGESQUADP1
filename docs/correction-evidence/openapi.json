@@ -1,0 +1,628 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Booking local",
+    "description": "Basic en cada operaci\u00f3n protegida. GET /api/csrf entrega token y headerName; conserve la cookie de sesi\u00f3n del mismo navegador y env\u00ede X-CSRF-TOKEN en POST/DELETE. En Swagger: Authorize Basic, ejecutar GET /api/csrf, copiar token en Authorize csrfToken. El token no sustituye Basic; no se guarda la autorizaci\u00f3n al recargar. GET/PUT sobre /api/bookings/{id} no est\u00e1n implementados: 405 con Allow DELETE; ruta inexistente: 404.",
+    "version": "1"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/api/bookings": {
+      "get": {
+        "tags": [
+          "booking-controller"
+        ],
+        "operationId": "own",
+        "responses": {
+          "200": {
+            "description": "Consulta autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BookingView"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Identidad ausente o incorrecta",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Acceso a datos no disponible; consultar antes de reintentar",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error inesperado sin detalles internos",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "booking-controller"
+        ],
+        "operationId": "create",
+        "requestBody": {
+          "description": "spaceId positivo y occurrences 1\u201312 deben ser tokens JSON enteros; 1.0, 1e0 y cadenas se rechazan. occurrences ausente/null equivale a 1. Fechas ISO8601 con offset, inicio anterior a fin.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BookingRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Todas las ocurrencias creadas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookingResult"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Aceptaci\u00f3n parcial: creadas y rechazos espec\u00edficos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookingResult"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Ninguna ocurrencia disponible; created vac\u00edo",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookingResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Campos, tokens num\u00e9ricos o fechas inv\u00e1lidos",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Espacio inexistente",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Tipo de contenido no soportado",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Identidad ausente o incorrecta",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Token CSRF ausente, inv\u00e1lido o de otra sesi\u00f3n",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Acceso a datos no disponible; consultar antes de reintentar",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error inesperado sin detalles internos",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": [],
+            "csrfToken": []
+          }
+        ]
+      }
+    },
+    "/api/spaces": {
+      "get": {
+        "tags": [
+          "space-controller"
+        ],
+        "operationId": "list",
+        "responses": {
+          "200": {
+            "description": "Consulta autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SpaceView"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Identidad ausente o incorrecta",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Acceso a datos no disponible; consultar antes de reintentar",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error inesperado sin detalles internos",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/api/me": {
+      "get": {
+        "tags": [
+          "identity-controller"
+        ],
+        "operationId": "me",
+        "responses": {
+          "200": {
+            "description": "Consulta autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "required": [
+                    "username"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "username": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Identidad ausente o incorrecta",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error inesperado sin detalles internos",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/api/csrf": {
+      "get": {
+        "tags": [
+          "identity-controller"
+        ],
+        "operationId": "csrf",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/CsrfToken"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Token CSRF enmascarado; conservar cookie de sesi\u00f3n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "required": [
+                    "token",
+                    "headerName"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string"
+                    },
+                    "headerName": {
+                      "type": "string",
+                      "example": "X-CSRF-TOKEN"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error inesperado sin detalles internos",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/bookings/{id}": {
+      "delete": {
+        "tags": [
+          "booking-controller"
+        ],
+        "operationId": "cancel",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Propia cancelada; tambi\u00e9n si ya estaba cancelada"
+          },
+          "400": {
+            "description": "Identificador mal formado",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Reserva ajena o inexistente; respuesta indistinguible",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Identidad ausente o incorrecta",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Token CSRF ausente, inv\u00e1lido o de otra sesi\u00f3n",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Acceso a datos no disponible; consultar antes de reintentar",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error inesperado sin detalles internos",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiProblem"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": [],
+            "csrfToken": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BookingRequest": {
+        "required": [
+          "endsAt",
+          "spaceId",
+          "startsAt"
+        ],
+        "type": "object",
+        "properties": {
+          "spaceId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "startsAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endsAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "occurrences": {
+            "maximum": 12,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "BookingResult": {
+        "type": "object",
+        "properties": {
+          "created": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BookingView"
+            }
+          },
+          "rejected": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Rejected"
+            }
+          }
+        }
+      },
+      "BookingView": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "spaceId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "spaceName": {
+            "type": "string"
+          },
+          "startsAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endsAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "CANCELLED"
+            ]
+          }
+        }
+      },
+      "Rejected": {
+        "type": "object",
+        "properties": {
+          "startsAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endsAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "reason": {
+            "type": "string"
+          }
+        }
+      },
+      "SpaceView": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "ROOM",
+              "AUDITORIUM",
+              "COWORKING"
+            ]
+          },
+          "capacity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "site": {
+            "type": "string"
+          }
+        }
+      },
+      "CsrfToken": {
+        "type": "object",
+        "properties": {
+          "parameterName": {
+            "type": "string"
+          },
+          "token": {
+            "type": "string"
+          },
+          "headerName": {
+            "type": "string"
+          }
+        }
+      },
+      "ApiProblem": {
+        "required": [
+          "status",
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "title": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "instance": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "basicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      },
+      "csrfToken": {
+        "type": "apiKey",
+        "description": "Token de GET /api/csrf, ligado a la cookie de sesi\u00f3n del mismo navegador.",
+        "name": "X-CSRF-TOKEN",
+        "in": "header"
+      }
+    }
+  }
+}

@@ -221,3 +221,7 @@ El análisis remoto de paquetes OSV fue rechazado por la revisión automática d
 Siguiente acción propuesta: T018 para resolver avisos aplicables y estrategia compatible de parches; T019–T022 son correcciones locales acotadas; T015 requiere aclaración externa independiente. T023–T024 son opcionales, no obligaciones inventadas. El [plan de correcciones](PLAN_CORRECCIONES_AUDITORIA.md) enlaza el único estado en tasks.md. Ninguna corrección productiva fue ejecutada durante T017.
 
 La aplicación queda iniciada con el WAR existente y Oracle saludable. `pwsh -NoProfile -File scripts/app.ps1 stop` detiene la app; `pwsh -NoProfile -File scripts/app.ps1 start` la inicia con ambos Compose y --no-build. `verify` ahora **debe fallar** por las seis regresiones pendientes y puede dejar la app detenida: usar start después. No borrar el WAR para eludir ese resultado ni excluir las pruebas.
+
+## Enlace posterior (el informe precedente conserva su revisión y resultados)
+
+Correcciones posteriores: [anexo y verificaciones](CIERRE_CORRECCIONES_AUDITORIA.md). No modifica los hallazgos históricos de47a6af4.
