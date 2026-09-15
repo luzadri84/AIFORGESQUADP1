@@ -269,3 +269,44 @@ redundantes se retiran del árbol después de su respaldo; Git conserva toda su 
 Para consultar un original sin restaurarlo sobre el checkout: `git show eee557b:RUTA`.
 La ruta/versión exacta de cada archivo consta en el inventario externo de consolidación;
 no se necesita ese material personal para ejecutar o evaluar los requisitos actuales.
+
+## DEC-024 — Recuperar verify en un clon nuevo, 2026-09-15
+
+Origen humano: el usuario clonó el repositorio, completó prepare-new/images/up/schema/seed
+y reportó el fallo de verify. El diagnóstico y los ajustes mínimos los eligió el agente.
+El log muestra ORA-01017 y fallos derivados al cargar ApplicationContext. SQL*Plus
+conecta como BOOKING/FREEPDB1; ambos contenedores montan el mismo secreto de 52 bytes,
+sin espacios. La sonda JDBC de solo lectura falla con 21.9.0.0 y conecta con
+23.26.3.0.0 usando exactamente esa misma configuración. Oracle documenta el soporte
+de claves de más de 30 bytes en JDBC 23; versión confirmada en Maven Central.
+
+Se fija ojdbc11 23.26.3.0.0 en backend/pom.xml e infra/checks/pom.xml. Se conserva
+la contraseña existente en lugar de rotarla o regenerar el entorno. No se cambia
+Spring Boot, el modelo ni el SQL. La elección de versión es del agente, no una
+petición literal del usuario. No constituye el cierre de la auditoría T018.
+
+También se reproduce el rechazo Git por propiedad del montaje Windows /workspace.
+backend-artifact.sh establece la excepción limitada a esa ruta dentro de Docker
+antes de registrar metadatos; verify-local.sh ya la aplicaba, pero demasiado tarde
+para el primer build. Se conserva su comportamiento idempotente y no se usa '*'.
+
+Validación final y límites: véase docs/VERIFICACION.md, sección DEC-024. Cambios
+locales; sin publicación. Los resultados anteriores siguen siendo históricos.
+
+Fuentes: [Oracle JDBC, soporte de contraseñas largas](https://docs.oracle.com/en/database/oracle/oracle-database/23/jjdbc/jdbc-developers-guide.pdf),
+[artefacto oficial en Maven Central](https://repo.maven.apache.org/maven2/com/oracle/database/jdbc/ojdbc11/23.26.3.0.0/).
+
+## DEC-025 — Guía Docker Windows/Linux, 2026-09-15
+
+El usuario pidió ampliar README.md para futuras instalaciones Docker en Windows y
+Linux, incluyendo los fallos encontrados y otros puntos útiles. El agente añadió
+preparación por plataforma, comprobaciones previas, acceso GitHub con código,
+requisitos de la revisión DEC-024, resultados esperados, puertos, persistencia y
+recuperación de errores, y captura de logs en PowerShell/Bash. Se verificaron las
+instrucciones contra scripts/Compose/Dockerfile y documentación oficial de Docker
+y GitHub. El UID1000 sigue siendo una restricción del bootstrap Linux.
+
+Cambio documental: no reinstalar, reiniciar ni repetir pruebas funcionales. La
+verificación real DEC-024 en Windows se conserva separada de la guía para host
+Linux aún no probado. No se publica código ni se cambia estado de T018/T021/T015.
+Validación: revisión de comandos/enlaces y git diff --check.

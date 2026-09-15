@@ -111,3 +111,26 @@ es certificación absoluta de seguridad ni despliegue.
 Documentación extensa fuera del repositorio: técnica con 16 secciones y diagramas;
 guía con 25 respuestas y ocho ejercicios progresivos. Ningún ejercicio fue implementado.
 Estados T018/T021/T015 conservados; no T023/T024. Commits locales, sin push.
+
+## DEC-024 — Verificación del clon nuevo, 2026-09-15
+
+Entorno: clon Windows con Docker Linux amd64, base inicializada por el usuario con
+prepare-new/images/up/schema/seed. Revisión base effd3ab y cambios locales descritos
+en BITACORA.md. No se recrearon volúmenes ni se modificaron las credenciales.
+
+- Diagnóstico: SQL*Plus conectó como BOOKING/FREEPDB1; secretos montados idénticos,
+  52 bytes sin espacios. La sonda JdbcCheck en modo check devolvió ORA-01017 con
+  ojdbc11 21.9.0.0 y conectó con 23.26.3.0.0, usando la misma base y contraseña.
+- Recorrido final: `node scripts/environment.mjs verify`, salida 0. Maven clean
+  verify: 88 pruebas, 0 fallos/errores/omitidas, WAR generado. Angular build y
+  comprobación ngc correctos; 13 pruebas, 13 pasan. Sonda de infraestructura ngc
+  correcta y JDBC 23.26.3.0.0 confirma BOOKING/FREEPDB1.
+- Git: se retiró únicamente la excepción /workspace del contenedor antes del
+  recorrido final. backend-artifact.sh la creó automáticamente antes del build;
+  el registro de revisión/estado del WAR y verify-local.sh terminaron correctamente.
+- Aplicación iniciada por verify; HTTP host 4200/ y 8080/api/csrf devuelven 200.
+  `bash scripts/backend-artifact.sh current` confirma correspondencia fuentes/WAR.
+- Registro local completo, ignorado por Git: .local/runtime/verify-jdbc23-final.log.
+  El agente no repitió prepare-new/images/schema/seed; la evidencia de esos pasos
+  es la ejecución reportada por el usuario. No acredita un nuevo host Linux,
+  Swagger interactivo, Azure, WebLogic ni una nueva auditoría de dependencias.

@@ -170,3 +170,12 @@ Fechas históricas2026-09-14; desarrollo por etapas, descrito en BITACORA con co
 - Fuentes/estado/verificaciones autocontenidos en README, BITACORA, docs/VERIFICACION.md
   y docs/TRATAMIENTO_DEPENDENCIAS_T018.md. Nunca exigir una carpeta personal de apoyo
   para instalar o evaluar el checkout. Respaldo documental previo y trazabilidad en Git.
+
+## Corrección de instalación nueva — DEC-024, 2026-09-15
+
+La aplicación y la sonda usan ojdbc11 23.26.3.0.0 explícito: las contraseñas de
+52 caracteres de prepare-new fallan con JDBC 21.9. La corrección conserva secretos,
+volúmenes y SQL existentes. Mantener alineados backend/pom.xml e infra/checks/pom.xml.
+backend-artifact.sh confía solo en /workspace dentro de Docker antes de usar Git.
+La evidencia anterior conserva sus versiones y fechas; la nueva verificación se
+registra en BITACORA.md y docs/VERIFICACION.md.

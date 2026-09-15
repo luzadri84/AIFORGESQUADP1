@@ -20,7 +20,7 @@ contra la ejecución; la versión inicial y sus propuestas permanecen en Git/bit
 | Java / Maven | Temurin 21.0.10+7 / Maven 3.9.9, Wrapper 3.3.4 |
 | Boot / Framework / Security | BOM 3.3.13 / 6.1.21 / 6.3.10 |
 | Data JPA / Hibernate / SpringDoc | 3.3.13 / 6.5.3.Final / 2.6.0 |
-| Oracle / JDBC | 23.26.3, BOOKING/FREEPDB1 / ojdbc11 21.9.0.0 |
+| Oracle / JDBC | 23.26.3, BOOKING/FREEPDB1 / ojdbc11 23.26.3.0.0 (DEC-024) |
 | Node / npm | 22.22.0 / 10.9.4 |
 | Angular core/compiler / CLI / CDK | 20.3.31 / 20.3.37 / 20.2.0 |
 | PrimeNG / Tailwind / RxJS | 20.0.0 / 3.4.17 / 7.8.2 |

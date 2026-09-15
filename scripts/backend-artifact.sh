@@ -14,6 +14,11 @@ case "${1:-current}" in
     [[ "$(value source_hash)" == "$(source_hash)" && "$(value war_hash)" == "$(sha256sum "$war" | cut -d ' ' -f1)" ]]
     ;;
   build|verify)
+    # Trust only the known container bind mount before recording Git metadata.
+    if [[ -f /.dockerenv && "$PWD" == /workspace ]]; then
+      git config --global --fixed-value --get-all safe.directory /workspace >/dev/null ||
+        git config --global --add safe.directory /workspace
+    fi
     before=$(source_hash)
     # Both goals execute tests. Never bless a skipped-test artifact as verified.
     goal=package; [[ "$1" == verify ]] && goal=verify
