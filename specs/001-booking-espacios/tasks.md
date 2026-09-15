@@ -251,3 +251,14 @@ T013 permite preparar un resultado local candidato. T014 no aplica por DEC-004 y
 - Evidencia de origen: AUD-08, DEC-015; docs/PLAN_CORRECCIONES_AUDITORIA.md.
 
 T013 conserva la ejecución histórica local; su criterio de Dev Container queda matizado por AUD-05/T022. T012 conserva su revisión de dependencias anterior, cuyo alcance no era auditoría integral Java. T014 permanece No aplica; T015 conserva su texto y bloqueo independiente.
+
+## T025 Consolidar entrega y estudio, operación Windows/Linux
+
+- [ ] T025 Consolidar documentos y preparar instrucciones portables.
+- Dependencias: T013, T022; no depende del cierre T018/T021/T015.
+- Handoff: H007.
+- Aceptación: respaldo íntegro verificado, inventario externo, README/AGENTS/BITACORA
+  canónicos, dos documentos de estudio externos, enlaces válidos y operaciones probadas
+  con límites explícitos, sin negocio ni push.
+- Situación: en curso, DEC-022/023. Operador portable y pruebas4/4 por runtime comprobados;
+  falta consolidación documental y revisión final.

@@ -11,10 +11,9 @@
   "shutdownAction": "stopCompose",
   "overrideCommand": false,
   "initializeCommand": [
-    "pwsh",
-    "-NoProfile",
-    "-File",
-    "scripts/devcontainer-initialize.ps1"
+    "node",
+    "scripts/environment.mjs",
+    "check"
   ],
   "postCreateCommand": "bash scripts/verify-local.sh",
   "customizations": {
@@ -24,5 +23,6 @@
         "terminal.integrated.defaultProfile.linux": "bash"
       }
     }
-  }
+  },
+  "updateRemoteUserUID": false
 }

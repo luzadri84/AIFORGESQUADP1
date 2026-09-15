@@ -650,3 +650,41 @@ y autenticar Swagger, mientras se completan los demás controles. No se declara 
 interactiva realizada. T022 CLIup/exec y aplicación verificadas, límites documentados.
 Bundle Git local para transportar corrección sin push; no incluye secretos ignorados.
 Anexo CIERRE_CORRECCIONES_AUDITORIA.md conserva el informe original y sus seis fallos.
+
+## DEC-022 — Consolidación documental autorizada por el usuario
+
+2026-09-14 America/Bogota, instrucción humana posterior al push de eee557b: preparar
+entrega mínima README/AGENTS/BITACORA, respaldar antes de retirar documentos, mover
+estudio a apoyo y documentar instalación nueva Windows/Linux. Autoriza ajustes
+operativos mínimos, no negocio/arquitectura/push. T025/H007 registra este trabajo;
+T018/T021/T015 conservan sus pendientes reales. El usuario abrió Swagger después,
+pero el control de Windows se detuvo por no poder verificar la URL: no se ejecutó
+la escritura interactiva y esa apertura no cierra T021. Push solicitado aparte:
+cinco commits e170418..eee557b subidos y HEAD remoto/local comprobados iguales.
+
+Respaldo anterior a retirar archivos: respaldo-documental-20260914-192850 en apoyo,
+60archivos (41Markdown propios y19anexos), hashes verificados; siete sin copia previa
+idéntica. No se copiaron .local, secretos, dependencias ni terceros. Copias anteriores
+conservadas. Inventario externo registrará destino final y relación con Git eee557b.
+
+## DEC-023 — Entrada Docker portable y límite de comprobación
+
+Decisión técnica del agente para T025: scripts/environment.mjs usa Node>=18 del host
+(con Node22 de la app dentro de dev), Docker y argv sin shell para llamadas host.
+Alternativa: exigir instalar pwsh en Linux o mantener otra implementación Bash;
+no elegidas por duplicación/requisito adicional. Tradeoff: Node en host es requisito
+explícito; Linux nuevo requiere propietario UID1000 compatible con node del contenedor.
+No se modifica negocio, stack Java/Angular ni arquitectura. initialize de Dev Container
+usa el mismo check; nunca regenera credenciales ni reconstruye imágenes restauradas.
+
+prepare-new rechaza .local/proyecto/volúmenes existentes; images requiere marcador de
+instalación nueva y usa imágenes públicas fijadas. SQL por stdin, contraseñas dentro
+del contenedor; start coteja WAR/fuentes mediante script previo. Pruebas:4/4 en Node
+Windows18.19.1 y4/4 en Node Linux22.22.0 del contenedor, Docker simulado solo en estos
+tests aislados. Generación/conservación de archivos sí real en fixtures temporales.
+Windows real: check/start y db-status BOOKING/FREEPDB1 correctos; bootstrap rechaza
+entorno existente. Dev Container CLIup exitoso con nuevo initialize. No instalación
+limpia ni Docker sobre host Linux acreditados. Primer db-status falló por dosSELECT
+en una línea SQL*Plus; separado con salto real y consulta correcta. Test aislado de
+start se detuvo por intentar espera HTTP en host; stub acotado al transporte Docker,
+sin presentar ese fallo del test como defecto funcional de Booking.
