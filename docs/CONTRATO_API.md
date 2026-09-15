@@ -34,7 +34,7 @@ su lista antes de reintentar. No hay clave de idempotencia para POST.
 
 OpenAPI autenticado: `/v3/api-docs`, `/swagger-ui/index.html`. El modo JWT alternativo
 está condicionado por configuración; Basic es el modo ejecutado. Los detalles y
-límites de identidad empresarial están en [la explicación](EXPLICACION_IMPLEMENTACION.md).
+límites de identidad empresarial están en [README](../README.md).
 
 ## Precisión de entrada y routing — DEC-017
 

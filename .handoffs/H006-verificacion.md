@@ -9,7 +9,7 @@ Trabajar exclusivamente T011, T012. Los criterios, dependencias y estados están
 
 H005 y dependencias concretas en tasks.md. Leer [AGENTS](../AGENTS.md), [constitución](../.specify/memory/constitution.md),
 [spec](../specs/001-booking-espacios/spec.md), [plan](../specs/001-booking-espacios/plan.md)
-y [bitácora](../docs/BITACORA.md), especialmente DEC-002/DEC-003 y decisiones posteriores.
+y [historia consolidada](../BITACORA.md), especialmente DEC-002/DEC-003 y decisiones posteriores.
 Inspeccionar Git/código antes de actuar: aprovechar lo existente, no repetir trabajo.
 
 ## Límites y evidencia exigida
@@ -42,8 +42,8 @@ Angular build/test correctos. Siguiente H007: operación, prueba final y explica
 
 ## Auditoría posterior T017 — DEC-015, 2026-09-14
 
-La auditoría de main 47a6af4 no corrige producción. [Informe](../docs/AUDITORIA_CUMPLIMIENTO_Y_SEGURIDAD.md)
-y [plan](../docs/PLAN_CORRECCIONES_AUDITORIA.md); estados solo en tasks.md. Se conservan
+La auditoría de main 47a6af4 no corrige producción. [verificación consolidada](../docs/VERIFICACION.md)
+y [historia consolidada](../BITACORA.md); estados solo en tasks.md. Se conservan
 las ejecuciones históricas anteriores, sin usarlas como certificación integral.
 76 casos Java distintos:70 pasan/6 fallan (dos ejecuciones), frontend 13/13/build y comparador 3/3.
 Regresiones rojas deliberadamente conservadas. Dependencias:65 coincidencias Maven/0 npm,
@@ -73,7 +73,7 @@ visual de creación/listado/colisión/recurrencia parcial/cancelación. Original
 y5archivos secretos intactos. T018 parcial por decisión humana de mantener stack;
 no se aplica alternativa. Dev Container CLI up/exec acreditado; no VS Code visual ni
 instalación nueva. Contrato Swagger probado, falta escritura UI tras diálogo Basic
-manual. Estado único tasks.md; evidencias docs/CIERRE_CORRECCIONES_AUDITORIA.md.
+manual. Estado único tasks.md; evidencias docs/VERIFICACION.md.
 Siguiente: completar autenticación y prueba interactiva T021; T018/T015 pendientes
 independientes. No nuevas funcionalidades, T023/T024, push ni repetir suite ya verificada
 sin cambios productivos. Bundle local permite entregar revisión sin publicar.

@@ -10,7 +10,7 @@ Trabajar exclusivamente T003, T004, T005. Los criterios, dependencias y estados 
 H001 realizado; continuación a T003 autorizada por DEC-004, arquitectura por
 funcionalidades elegida por el usuario en DEC-005. No hay dependencia del starter. Leer [AGENTS](../AGENTS.md), [constitución](../.specify/memory/constitution.md),
 [spec](../specs/001-booking-espacios/spec.md), [plan](../specs/001-booking-espacios/plan.md)
-y [bitácora](../docs/BITACORA.md), especialmente DEC-002/DEC-003 y decisiones posteriores.
+y [historia consolidada](../BITACORA.md), especialmente DEC-002/DEC-003 y decisiones posteriores.
 Inspeccionar Git/código antes de actuar: aprovechar lo existente, no repetir trabajo.
 
 ## Límites y evidencia exigida
@@ -24,7 +24,7 @@ resultados, pruebas omitidas/fallidas y alcance real; no inferir aprobación hum
 
 H001 no ejecutó este bloque. Continuación real T003 el 2026-09-14, America/Bogota,
 por Codex tras DEC-004/005; detalle técnico DEC-006. Commit documental previo
-`75af194`. [Informe T003](../docs/VERIFICACION_T003.md): archivos, comandos, primer
+`75af194`. [verificación consolidada](../docs/VERIFICACION.md): archivos, comandos, primer
 fallo de aserción corregido, 12 pruebas Oracle correctas y WAR base generado.
 Las transacciones de prueba se revirtieron; hay tres espacios y ninguna reserva.
 Esquema V001 ya aplicado: no reaplicar ni borrar objetos. Marcador/secretos conservados.

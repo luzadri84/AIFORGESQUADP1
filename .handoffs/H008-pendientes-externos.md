@@ -10,13 +10,14 @@ histórica, No aplica por cambio de alcance (DEC-004), sin implementación. Los 
 
 Al recibir insumos, sin esperar al final de otros bloques. Leer [AGENTS](../AGENTS.md), [constitución](../.specify/memory/constitution.md),
 [spec](../specs/001-booking-espacios/spec.md), [plan](../specs/001-booking-espacios/plan.md)
-y [bitácora](../docs/BITACORA.md), especialmente DEC-002/DEC-003 y decisiones posteriores.
+y [historia consolidada](../BITACORA.md), especialmente DEC-002/DEC-003 y decisiones posteriores.
 Inspeccionar Git/código antes de actuar: aprovechar lo existente, no repetir trabajo.
 
 ## Límites y evidencia exigida
 
-Los nueve pasos de recepción de [ENTREGA_Y_STARTER.md](../docs/ENTREGA_Y_STARTER.md)
-son un procedimiento histórico superado por DEC-004: no ejecutarlos, no migrar ni
+Los nueve pasos originales de recepción están preservados en Git
+(`git show eee557b:docs/ENTREGA_Y_STARTER.md`); su decisión se resume en
+[BITACORA](../BITACORA.md). Son un procedimiento histórico superado por DEC-004: no ejecutarlos, no migrar ni
 inventar un defecto equivalente. Mantener exclusivamente la aceptación de T015:
 aclaración del runtime y evidencia exigida, sin declarar WebLogic validado por un WAR.
 La compatibilidad de despliegue permanece independiente; no publicar.
@@ -33,7 +34,7 @@ Siguiente bloque orientativo: verificaciones afectadas y cierre de requisitos, s
 
 ## Contexto recibido tras H007 — 2026-09-14
 
-La solución local y su WAR se verificaron; ver [VERIFICACION_FINAL](../docs/VERIFICACION_FINAL.md).
+La solución local y su WAR se verificaron; ver [verificación consolidada](../docs/VERIFICACION.md).
 No se recibió aclaración del evaluador ni se probó WebLogic. Se mantiene literalmente
 la aceptación/bloqueo T015 en tasks.md; no trasladar a ella las pruebas Tomcat como
 certificación del runtime objetivo. T014 sigue No aplica por cambio de alcance.

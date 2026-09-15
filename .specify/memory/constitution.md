@@ -55,7 +55,11 @@ no aprueba automáticamente cada detalle de contrato o propuesta funcional. Camb
 más pruebas afectadas; conservar la justificación anterior. Las instrucciones
 expresas posteriores pueden cambiar alcance, dejando su trazabilidad.
 
-**Version**: 1.1.1 | **Ratified**: 2026-09-14 (reglas operativas solicitadas) | **Last Amended**: 2026-09-14
+**Version**: 1.1.2 | **Ratified**: 2026-09-14 (reglas operativas solicitadas) | **Last Amended**: 2026-09-14
 
 Aclaración editorial DEC-013: referencias a implementación actualizadas tras DEC-007;
 no se cambian los principios ni se atribuye aprobación individual de detalles.
+
+Aclaración editorial DEC-022: bitácora canónica [BITACORA.md](../../BITACORA.md),
+instrucciones comunes en README y estudio extenso externo. Versión 1.1.2 actualiza
+referencias sin modificar principios ni atribuir nuevas aprobaciones.

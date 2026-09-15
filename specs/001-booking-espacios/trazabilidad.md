@@ -17,4 +17,4 @@ Esta tabla mapea cobertura; no refleja estado de ejecución. Consultar tasks.md 
 | FR011 Pruebas y evidencia IA | T001, T002 y verificaciones/cierre de todos los bloques |
 | FR012 Runtime vigente; starter histórico excluido por DEC-004 | T015; T014 No aplica por cambio de alcance (no implementada) |
 
-Fuentes, adaptación y evidencia en [INTEGRACION_H001.md](../../docs/INTEGRACION_H001.md).
+Fuentes, adaptación y evidencia en [historia consolidada](../../BITACORA.md).

@@ -1,7 +1,7 @@
 # Implementation Plan: Booking
 
 **Feature**: 001-booking-espacios | **Git al inicio**: main, 5dcdb7c | **Date**: 2026-09-14
-**Spec**: [spec.md](spec.md) | **Estado de decisiones**: [DEC-003/DEC-005](../../docs/BITACORA.md)
+**Spec**: [spec.md](spec.md) | **Estado de decisiones**: [historia consolidada](../../BITACORA.md)
 
 ## Summary
 
@@ -28,8 +28,8 @@ contra la ejecución; la versión inicial y sus propuestas permanecen en Git/bit
 
 Fuentes locales: [POM](../../infra/checks/pom.xml),
 [lockfile](../../infra/checks/frontend/package-lock.json),
-[Dockerfile](../../.devcontainer/Dockerfile), [verificación previa](../../docs/VERIFICACION_LOCAL.md)
-y [evidencia H001](../../docs/INTEGRACION_H001.md). Las sondas conservan esas versiones;
+[Dockerfile](../../.devcontainer/Dockerfile), [verificación consolidada](../../docs/VERIFICACION.md)
+y [historia consolidada](../../BITACORA.md). Las sondas conservan esas versiones;
 [backend/pom.xml](../../backend/pom.xml) y [frontend/package-lock.json](../../frontend/package-lock.json)
 resuelven la aplicación real con estas versiones. No reinstalar herramientas ni volver a Angular 20.3.0.
 
@@ -42,7 +42,7 @@ resuelven la aplicación real con estas versiones. No reinstalar herramientas ni
   servicios HTTP próximos, identidad en memoria y UI de resultado parcial.
 - `backend/src/main/resources/db/oracle`: V001 explícito y seed insert-only, ya aplicados;
   Hibernate validate, sin create-drop. Dos tablas/dos secuencias, sin entidad Serie.
-- `scripts/app.ps1`, `app-process.sh`: operación local con ambos Compose y --no-build.
+- `scripts/environment.mjs` (host Node), `app.ps1` (Windows) y `app-process.sh`: operación local con ambos Compose y --no-build.
   Se conservan Compose, devcontainer, wrapper, infra/checks y scripts anteriores.
 - `.specify`, `.agents/skills`, `.handoffs`: integración H001 conservada, sin regeneración.
 
@@ -83,9 +83,10 @@ Pruebas parametrizadas de intervalos y expansión, API MockMvc con Oracle, HTTP 
 para sesión y carrera, rollback técnico tras flush y navegador para US1–US3.
 No se usa H2 ni mocks como evidencia de persistencia. Fixtures transaccionales o
 limpieza limitada a IDs creados por la propia prueba. Sin rendimiento medido.
-Resultados reales en [VERIFICACION_FINAL](../../docs/VERIFICACION_FINAL.md); fuente de
-estado única [tasks.md](tasks.md). [Explicación](../../docs/EXPLICACION_IMPLEMENTACION.md)
-cubre doce contenidos, quince preguntas y seis ejercicios solo de análisis.
+Resultados reales en [verificación consolidada](../../docs/VERIFICACION.md); fuente de
+estado única [tasks.md](tasks.md). T013 produjo una explicación con doce contenidos, quince preguntas y seis ejercicios.
+DEC-022 migra el estudio fuera del repositorio; README/BITACORA/VERIFICACION conservan
+la información evaluable y operativa. T025 registra la nueva entrega documental.
 
 ## Pendientes independientes
 
@@ -114,7 +115,7 @@ No se altera API/SQL/seguridad; no atribuir sin evidencia la espera a extensione
 
 T017 no reinicia la implementación: registra diagnóstico y regresiones del estado47a6af4. Los pendientes nuevos están en tasks.md; no se ejecutan correcciones con esta autorización.
 
-[Diagnóstico y evidencia](../../docs/AUDITORIA_CUMPLIMIENTO_Y_SEGURIDAD.md) · [Plan de correcciones](../../docs/PLAN_CORRECCIONES_AUDITORIA.md).
+[verificación consolidada](../../docs/VERIFICACION.md) · [historia consolidada](../../BITACORA.md).
 
 ## Correcciones vigentes DEC-016–021
 
@@ -124,4 +125,12 @@ sin aplicar alternativa Boot3.5/Security6.5/Data3.5. Arquitectura por funcionali
 sin cambios. JSON solo tokens enteros (1.0/1e0/"1" se rechazan), MVC400/404/405 con
 Allow, OpenAPI Basic AND CSRF por operación. Dev Container combina imágenes importadas
 sin build; start detecta WAR obsoleto. Estado únicamente en tasks.md y evidencia en
-CIERRE_CORRECCIONES_AUDITORIA.md; no T023/T024 ni atribuir WebLogic a Tomcat local.
+docs/VERIFICACION.md; no T023/T024 ni atribuir WebLogic a Tomcat local.
+
+## Consolidación vigente DEC-022/023 — T025
+
+Documentación canónica README/AGENTS/BITACORA. Historias de H001–H007 y auditoría
+se preservan en Git; sus enlaces llevan al resumen consolidado, no a una repetición
+de los informes. Operador Node/Docker común; host Node>=18, Linux nuevo UID 1000.
+No requiere pwsh en Linux ni cambia negocio. El estudio extenso es externo y no es
+prerrequisito de operación. Pruebas y límites en docs/VERIFICACION.md (raíz del repo).

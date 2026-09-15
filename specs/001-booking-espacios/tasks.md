@@ -2,12 +2,16 @@
 
 H001 reconcilió el repositorio main/5dcdb7c el 2026-09-14; T003 añadió persistencia y
 DEC-007 autorizó T004–T013. API/UI/Oracle y pruebas actuales en
-[VERIFICACION_FINAL](../../docs/VERIFICACION_FINAL.md). Una sola feature; IDs T001–T015 conservados, T016 añadida para el fallo reportado.
+[verificación consolidada](../../docs/VERIFICACION.md). Una sola feature; IDs T001–T015 conservados, T016 añadida para el fallo reportado.
 
 **Alcance vigente:** base definitiva DEC-004; arquitectura humana DEC-005 por
 funcionalidades. DEC-007 autoriza la solución local sin pausas entre handoffs;
 DEC-008–013 registran concreciones técnicas. T014 no aplica; T015 conserva bloqueo
 independiente. No reiniciar integración ni repetir trabajo ya verificado.
+
+Los enlaces históricos retirados se consolidaron por DEC-022: BITACORA conserva
+DEC/commits, VERIFICACION resume resultados y T018 conserva el detalle de avisos.
+Los originales siguen disponibles con `git show eee557b:RUTA`; no repetirlos.
 
 ## Convención de estado
 
@@ -23,7 +27,7 @@ No duplicar estados en índices de handoffs. Conservar IDs y añadir los nuevos 
 - Handoff: H001.
 - Aceptación: CLI/integración identificados, diff preserva entorno, evidencia de los tres commits y reporte previo clasificada; no repetir instalaciones.
 - Situación: completada; integración local y diagnóstico reconciliados.
-- Evidencia: specify 0.8.1/check/integration list, manifests SHA-256, nueve skills habilitadas descubiertas por Codex skills/list. Commit b977ca3, DEC-001 y DEC-002; detalle en docs/INTEGRACION_H001.md.
+- Evidencia: specify 0.8.1/check/integration list, manifests SHA-256, nueve skills habilitadas descubiertas por Codex skills/list. Commit b977ca3, DEC-001 y DEC-002; detalle en BITACORA.md.
 
 ## T002 Reconciliar constitución, spec, plan, backlog y reglas de handoff
 
@@ -33,7 +37,7 @@ No duplicar estados en índices de handoffs. Conservar IDs y añadir los nuevos 
 - Handoff: H001.
 - Aceptación: Referencias válidas, versiones reales, criterios del evaluador preservados y bitácora enlazada.
 - Situación: completada; documentos y reglas fusionados sin implementar negocio.
-- Evidencia: 20 documentos/100 enlaces locales y referencias T/FR/H validados; 15 IDs únicos; precondiciones Spec Kit correctas; JDBC read/ngc correctos; infraestructura sin diff; AGENTS y bitácora originales conservados. DEC-002/DEC-003 y docs/INTEGRACION_H001.md.
+- Evidencia: 20 documentos/100 enlaces locales y referencias T/FR/H validados; 15 IDs únicos; precondiciones Spec Kit correctas; JDBC read/ngc correctos; infraestructura sin diff; AGENTS y bitácora originales conservados. DEC-002/DEC-003 y BITACORA.md.
 
 ## T003 Preparar entidades Oracle, esquema y espacios semilla idempotentes
 
@@ -43,7 +47,7 @@ No duplicar estados en índices de handoffs. Conservar IDs y añadir los nuevos 
 - Handoff: H002.
 - Aceptación: Conexión con usuario de aplicación, FK/check/estados, semillas repetibles y round trip temporal sin pérdida de instante.
 - Situación: completada; autorización DEC-004, arquitectura DEC-005, detalle técnico DEC-006.
-- Evidencia: docs/VERIFICACION_T003.md; Maven verify genera WAR y pasa 12 pruebas Oracle reales, seed repetido sin duplicar/sobrescribir, 3 espacios/0 reservas al finalizar; marcador original conservado.
+- Evidencia: docs/VERIFICACION.md; Maven verify genera WAR y pasa 12 pruebas Oracle reales, seed repetido sin duplicar/sobrescribir, 3 espacios/0 reservas al finalizar; marcador original conservado.
 
 ## T004 Implementar identidad Basic, CSRF y manejo seguro de credenciales
 
@@ -137,13 +141,22 @@ No duplicar estados en índices de handoffs. Conservar IDs y añadir los nuevos 
 
 ## T013 Construir WAR y cerrar verificación local y documentación candidata
 
-- [x] T013 Construir WAR y cerrar verificación local y documentación candidata en backend build, README, AGENTS, bitácora, docs/EXPLICACION_IMPLEMENTACION.md e informes existentes.
+- [x] T013 Construir WAR y cerrar verificación local y documentación candidata.
 
 - Dependencias: T011, T012.
 - Handoff: H007.
-- Aceptación: WAR generado y evidencia disponible de ejecución; flujo limpio devcontainer+Oracle+Angular; historial y secretos revisados; bloqueos externos visibles; docs/EXPLICACION_IMPLEMENTACION.md explica archivos y flujos reales, incluye al menos 12 preguntas respondidas y 6 retos con impacto en código, riesgos y pruebas; no implementar esos retos como ampliación del MVP. Cumplir íntegramente las 12 secciones y el contenido por reto de docs/ENTREGA_Y_STARTER.md (sección T013).
-- Situación: completada; entrega local operable, DEC-013.
-- Evidencia: docs/VERIFICACION_FINAL.md; app.ps1 verify pasa 50 tests Java, ngc/build y npm test; stop/start reales, Oracle healthy, marcador/credenciales originales intactos y login navegador posterior. WAR ejecutable, secretos excluidos, 12 secciones/15 preguntas/6 retos analíticos. WebLogic no acreditado.
+- Aceptación histórica DEC-013: WAR, ejecución Dev Container/Oracle/Angular, historial,
+  secretos y bloqueos visibles; explicación de archivos/flujos reales con 12 secciones,
+  al menos 12 preguntas y 6 retos analíticos. Original completo conservado en Git
+  (`git show eee557b:docs/ENTREGA_Y_STARTER.md` y `git show eee557b:docs/EXPLICACION_IMPLEMENTACION.md`).
+- Ubicación vigente por DEC-022: README/BITACORA/VERIFICACION en el repositorio; estudio
+  extenso externo. T025 amplía la guía a 20 preguntas y 8 ejercicios como mínimo.
+  No convertir estos ejercicios en funcionalidades ni reabrir T013 por la migración.
+- Situación: completada en su etapa; matiz posterior Dev Container AUD-05 resuelto
+  para reapertura CLI por T022, sin afirmar instalación limpia ni editor visual.
+- Evidencia: BITACORA DEC-013 y docs/VERIFICACION.md; etapa original 50 tests Java,
+  ngc/build y npm test, stop/start reales, Oracle healthy, marcador/credenciales intactos,
+  login posterior y WAR. La evidencia funcional posterior es 88/13, no retroactiva.
 
 ## T014 Inspeccionar starter recibido e integrar su defecto y regresión
 
@@ -151,7 +164,7 @@ No duplicar estados en índices de handoffs. Conservar IDs y añadir los nuevos 
 
 - Dependencias: sin dependencia interna.
 - Handoff: H008.
-- Aceptación histórica, sin vigencia por DEC-004: Reproducción demostrada, causa y fix mínimos, prueba apropiada antes/después e historial conservado; si llega tarde comparar sin reescribir trabajo; inspeccionar en carpeta separada, conservar el punto previo e historiales, documentar procedencia del portado y actualizar explicación final y pruebas afectadas. Seguir los nueve pasos de docs/ENTREGA_Y_STARTER.md (sección T014); mantener T015 separada.
+- Aceptación histórica, sin vigencia por DEC-004: Reproducción demostrada, causa y fix mínimos, prueba apropiada antes/después e historial conservado; si llega tarde comparar sin reescribir trabajo; inspeccionar en carpeta separada, conservar el punto previo e historiales, documentar procedencia del portado y actualizar explicación final y pruebas afectadas. Los nueve pasos originales permanecen en Git (`git show eee557b:docs/ENTREGA_Y_STARTER.md`, sección T014), superados por DEC-004; mantener T015 separada.
 - Situación: **No aplica por cambio de alcance** — DEC-004, decisión del usuario del 2026-09-14. No implementada; se conserva solo para trazabilidad.
 - Evidencia: instrucción explícita del usuario recogida en DEC-004; sin recepción, migración ni prueba de defecto ejecutadas.
 
@@ -172,7 +185,7 @@ No duplicar estados en índices de handoffs. Conservar IDs y añadir los nuevos 
 - Handoff: H004, seguimiento posterior a la entrega.
 - Aceptación: igualdad/rango inverso se señalan junto a Fin sin POST; corregir fechas permite reservar; errores/timeout liberan el formulario sin reintento automático; navegador y regresiones pertinentes.
 - Situación: completada; corrección y recuperación verificadas, DEC-014.
-- Evidencia: 13 tests frontend y build strict correctos; navegador muestra aviso/inhabilita igualdad, permite corregir/crear #157, rechaza duplicado y cancela #157. Timeout probado con tiempo virtual sobre BookingApi real (HTTP simulado), sin reintentos. API directa/proxy 400; causa de espera inicial no confirmada. Ver seguimiento T016 en docs/VERIFICACION_FINAL.md.
+- Evidencia: 13 tests frontend y build strict correctos; navegador muestra aviso/inhabilita igualdad, permite corregir/crear #157, rechaza duplicado y cancela #157. Timeout probado con tiempo virtual sobre BookingApi real (HTTP simulado), sin reintentos. API directa/proxy 400; causa de espera inicial no confirmada. Ver seguimiento T016 en docs/VERIFICACION.md.
 
 ## Regla de cierre de la prueba
 
@@ -185,7 +198,7 @@ T013 permite preparar un resultado local candidato. T014 no aplica por DEC-004 y
 - Handoff: H006 y H007.
 - Aceptación: fuentes originales distinguidas A/B/C/D, matriz, pruebas adversas/Oracle/navegador, dependencias y secretos, informes y propuesta mínima; conservar regresiones fallidas.
 - Situación: completada la auditoría disponible; **no equivale a aprobación de entrega**, DEC-015.
-- Evidencia: docs/AUDITORIA_CUMPLIMIENTO_Y_SEGURIDAD.md y docs/AUDITORIA_DEPENDENCIAS.md. 75 Java (69 pasan/6 fallan) + espera Oracle1/1; frontend13/13/build; comparador3/3. Seis fixtures visuales/HTTP CANCELLED, marcador original intacto. WebLogic/Dev Container completo/correo no verificables según informe.
+- Evidencia: docs/VERIFICACION.md y docs/TRATAMIENTO_DEPENDENCIAS_T018.md. 75 Java (69 pasan/6 fallan) + espera Oracle1/1; frontend13/13/build; comparador3/3. Seis fixtures visuales/HTTP CANCELLED, marcador original intacto. WebLogic/Dev Container completo/correo no verificables según informe.
 
 ## T018 Resolver avisos de dependencias aplicables y acordar parches compatibles
 
@@ -194,7 +207,7 @@ T013 permite preparar un resultado local candidato. T014 no aplica por DEC-004 y
 - Handoff: H006.
 - Aceptación: Inventario antes/después, avisos aplicables tratados o descartados con evidencia, BOM compatible, pruebas seguridad/Oracle/WAR correctas.
 - Situación: parcial, mitigación anticipada de cabeceras y Tomcat10.1.59 verificados de forma dirigida; 29 avisos pendientes,13 no aplicables a esta configuración con evidencia y1 mitigado de43 coincidencias restantes. Usuario mantiene stack obligatorio (DEC-019); docs/TRATAMIENTO_DEPENDENCIAS_T018.md.
-- Evidencia de origen: AUD-01, DEC-015; docs/PLAN_CORRECCIONES_AUDITORIA.md.
+- Evidencia de origen: AUD-01, DEC-015; BITACORA.md.
 
 ## T019 Rechazar coerción decimal de identificadores y ocurrencias
 
@@ -202,8 +215,8 @@ T013 permite preparar un resultado local candidato. T014 no aplica por DEC-004 y
 - Dependencias: T017.
 - Handoff: H006.
 - Aceptación: Dos regresiones decimales devuelven400 sin escritura; enteros válidos mantienen comportamiento.
-- Situación: completada; suite completa88/88 y HTTP real contra WAR e859c80, DEC-017. Evidencia en docs/CIERRE_CORRECCIONES_AUDITORIA.md.
-- Evidencia de origen: AUD-02, DEC-015; docs/PLAN_CORRECCIONES_AUDITORIA.md.
+- Situación: completada; suite completa88/88 y HTTP real contra WAR e859c80, DEC-017. Evidencia en docs/VERIFICACION.md.
+- Evidencia de origen: AUD-02, DEC-015; BITACORA.md.
 
 ## T020 Preservar estados HTTP de errores MVC
 
@@ -211,8 +224,8 @@ T013 permite preparar un resultado local candidato. T014 no aplica por DEC-004 y
 - Dependencias: T017.
 - Handoff: H006.
 - Aceptación: Tres regresiones400/404/405 pasan, 500solo inesperados, cuerpo redactado y Allow apropiado.
-- Situación: completada; suite completa88/88 y HTTP real contra WAR e859c80, DEC-017. Evidencia en docs/CIERRE_CORRECCIONES_AUDITORIA.md.
-- Evidencia de origen: AUD-03, DEC-015; docs/PLAN_CORRECCIONES_AUDITORIA.md.
+- Situación: completada; suite completa88/88 y HTTP real contra WAR e859c80, DEC-017. Evidencia en docs/VERIFICACION.md.
+- Evidencia de origen: AUD-03, DEC-015; BITACORA.md.
 
 ## T021 Completar contrato OpenAPI real
 
@@ -221,7 +234,7 @@ T013 permite preparar un resultado local candidato. T014 no aplica por DEC-004 y
 - Handoff: H007.
 - Aceptación: Seguridad Basic/CSRF y respuestas reales documentadas, prueba OpenAPI y uso Swagger verificados.
 - Situación: implementada y pruebas OpenAPI/HTTP del WAR nuevo correctas; pendiente verificación interactiva de Swagger por autenticación nativa que debe completar el usuario. No cerrada, DEC-020.
-- Evidencia de origen: AUD-04, DEC-015; docs/PLAN_CORRECCIONES_AUDITORIA.md.
+- Evidencia de origen: AUD-04, DEC-015; BITACORA.md.
 
 ## T022 Alinear Dev Container restaurado y mensajes de verificación
 
@@ -230,7 +243,7 @@ T013 permite preparar un resultado local candidato. T014 no aplica por DEC-004 y
 - Handoff: H007.
 - Aceptación: Ambos Compose con imágenes importadas, apertura real sin pérdida de datos/credenciales y JDBC read; sonda sin afirmaciones obsoletas.
 - Situación: completada para reapertura local con CLI up/exec, toolchain/compilación/app/JDBC read verificados, DEC-021. Bootstrap nuevo documentado y guardado; no se acredita instalación limpia ni apertura visual VS Code.
-- Evidencia de origen: AUD-05, DEC-015; docs/PLAN_CORRECCIONES_AUDITORIA.md.
+- Evidencia de origen: AUD-05, DEC-015; BITACORA.md.
 
 ## T023 Evaluar permisos mínimos de ejecución Oracle
 
@@ -239,7 +252,7 @@ T013 permite preparar un resultado local candidato. T014 no aplica por DEC-004 y
 - Handoff: H006.
 - Aceptación: Propuesta opcional aprobada antes de migrar permisos; CRUD verificado y separación de aprovisionamiento justificada.
 - Situación: opcional, pendiente de decisión; no implementada.
-- Evidencia de origen: AUD-07, DEC-015; docs/PLAN_CORRECCIONES_AUDITORIA.md.
+- Evidencia de origen: AUD-07, DEC-015; BITACORA.md.
 
 ## T024 Evaluar límites y endurecimiento según exposición y volumen
 
@@ -248,17 +261,21 @@ T013 permite preparar un resultado local candidato. T014 no aplica por DEC-004 y
 - Handoff: H006.
 - Aceptación: Medición acotada y decisión justificada sobre consultas/listado/cabeceras; sin nuevas obligaciones o funcionalidades inventadas.
 - Situación: opcional, pendiente de decisión; no implementada.
-- Evidencia de origen: AUD-08, DEC-015; docs/PLAN_CORRECCIONES_AUDITORIA.md.
+- Evidencia de origen: AUD-08, DEC-015; BITACORA.md.
 
 T013 conserva la ejecución histórica local; su criterio de Dev Container queda matizado por AUD-05/T022. T012 conserva su revisión de dependencias anterior, cuyo alcance no era auditoría integral Java. T014 permanece No aplica; T015 conserva su texto y bloqueo independiente.
 
 ## T025 Consolidar entrega y estudio, operación Windows/Linux
 
-- [ ] T025 Consolidar documentos y preparar instrucciones portables.
+- [x] T025 Consolidar documentos y preparar instrucciones portables.
 - Dependencias: T013, T022; no depende del cierre T018/T021/T015.
 - Handoff: H007.
 - Aceptación: respaldo íntegro verificado, inventario externo, README/AGENTS/BITACORA
   canónicos, dos documentos de estudio externos, enlaces válidos y operaciones probadas
   con límites explícitos, sin negocio ni push.
-- Situación: en curso, DEC-022/023. Operador portable y pruebas4/4 por runtime comprobados;
-  falta consolidación documental y revisión final.
+- Situación: completada, DEC-022/023. Respaldo e inventario externos; 23 Markdown propios
+  retenidos (más herramientas de terceros intactas), 25 preguntas y 8 ejercicios externos.
+  137 enlaces locales válidos; requisitos originales preservados literalmente.
+- Evidencia: docs/VERIFICACION.md; operador 4/4 en Windows y 4/4 en runtime Linux con
+  Docker simulado; ciclo real stop/start, HTTP, Oracle/JDBC y conservación de 22 filas
+  y 5 archivos sensibles. Sin instalación limpia acreditada, sin negocio ni push.

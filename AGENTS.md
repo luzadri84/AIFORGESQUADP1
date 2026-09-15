@@ -1,23 +1,21 @@
-# AGENTS.md — Especificación inicial del proyecto "Booking de Espacios Físicos"
+# AGENTS.md — Booking de espacios físicos
 
-## Alcance vigente — DEC-004, 2026-09-14
+## Alcance vigente — consolidación DEC-022/023
 
-Por instrucción explícita del usuario, este repositorio y su entorno local son la
-base definitiva. El starter no llegará y queda fuera del alcance: no recibir,
-comparar, migrar ni investigar su supuesto defecto; no inventar uno equivalente.
-T014 conserva su descripción como **No aplica por cambio de alcance**, no implementada.
-Los registros anteriores se conservan como historia; sus dependencias del starter y
-el límite temporal de ejecutar solo H001 quedaron superados por esta instrucción.
-El usuario autoriza continuar con la siguiente tarea pendiente, T003, sin reiniciar
-Spec Kit ni repetir trabajo verificado. DEC-005 registra la decisión humana de
-monolito por funcionalidades: booking, space, security y errors solo si se comparte;
-controlador–servicio–repositorio dentro de booking. Angular: acceso y reservas.
-T015/WebLogic permanece sin cambios y no condiciona trabajos locales independientes.
+El repositorio actual es la base definitiva (DEC-004). Arquitectura humana DEC-005:
+monolito por funcionalidades, con controlador/servicio/repositorio dentro de booking;
+space, security y errors compartido; Angular acceso/reservas. No starter, migración
+ni defecto equivalente. T014 conserva "No aplica por cambio de alcance", no implementada.
+El usuario autoriza consolidar documentación/estudio y ajustes operativos mínimos para
+Windows/Linux; no negocio, arquitectura, push ni publicación. T018 parcial, T021 escritura
+Swagger pendiente y T015/WebLogic independiente. No ejecutar T023/T024.
 
-Mantener Spec Kit, .handoffs, tasks.md como único estado, commits incrementales y
-la bitácora real. docs/EXPLICACION_IMPLEMENTACION.md describe únicamente código y
-pruebas existentes, con preguntas respondidas y ejercicios de análisis, nunca
-funcionalidades extra ejecutadas para resolver esos ejercicios.
+README.md, AGENTS.md y BITACORA.md son los documentos principales. Esta instrucción
+posterior migra la bitácora desde docs y retira la explicación extensa del checkout.
+No mantener dos bitácoras activas. El historial original de extensiones se conserva en
+Git; la consolidación no convierte propuestas del agente en decisiones del usuario.
+
+## Requisitos originales de la prueba (texto conservado)
 
 ## Rol de este archivo
 
@@ -112,164 +110,63 @@ Antes de programar, añade bajo cada sección las decisiones concretas que tomes
 - Este archivo AGENTS.md, extendido con tus decisiones.
 - Instrucciones claras de ejecución.
 
-## Decisiones de infraestructura local — 2026-09-14 (registro histórico; alcance actualizado por DEC-004)
 
-Esta especificación se recuperó del adjunto original. No se ha recibido el starter:
-la carpeta inicial contenía solo documentos y no tenía historial Git.
-La autorización actual se limita a infraestructura provisional, sin negocio ni publicación.
+## Evolución de la especificación — hechos y decisiones
 
-- Docker Desktop/WSL2 y VS Code Dev Containers existentes se reutilizan.
-- Entorno dev con JDK 21.0.10+7, Node 22.22.0 e imágenes por digest; Maven Wrapper
-  3.3.4 y Maven 3.9.9 verificado por checksum. Detalles: docs/ENTORNO_LOCAL.md.
-- Oracle Free 23.26.3-slim por digest, servicio oracle:1521/FREEPDB1, schema BOOKING,
-  secretos locales ignorados, healthcheck y volumen persistente. No exponer Oracle.
-- Las dependencias exactas están en infra/checks: BOM Boot 3.3.13, SpringDoc 2.6.0,
-  Angular core/compiler 20.3.31 y CLI 20.3.37, CDK 20.2.0, PrimeNG 20.0.0, RxJS 7.8.2, Tailwind 3.4.17,
-  MSAL Angular 3.1.0 / Browser 3.28.1, TypeScript 5.9.2. No forzar peers ni relajar strict.
-- Las sondas no constituyen la aplicación. packaging=war, arranque del backend,
-  seguridad Basic/CSRF, pruebas de negocio y defecto sembrado quedan pendientes del starter.
-  Su futura incorporación debe conservar requisitos e historial original.
-- No desactivar CSRF, generar reservas ficticias, usar H2 ni afirmar compatibilidad
-  Boot 3/WebLogic 12.2.1.4. La incompatibilidad del runtime sigue abierta.
-- Comandos reales: pwsh -NoProfile -File scripts/local.ps1
-  con acciones diagnose, prepare, up, verify, status y stop.
-  Dentro de dev: bash scripts/verify-local.sh.
-- Consultar docs/VERIFICACION_LOCAL.md para resultados; no inferir éxito de la configuración.
-  El historial nuevo solo registra trabajo ocurrido aquí.
+Las ampliaciones no sustituyen el stack original ni ocultan sus contradicciones.
+Fechas históricas2026-09-14; desarrollo por etapas, descrito en BITACORA con commits.
 
-## Transferencia solicitada — 2026-09-14
+| Etapa | Ampliación real |
+|---|---|
+| Infraestructura, antes de DEC-001 | Docker/WSL existentes; JDK21/Node22, OracleFree23.26.3, secretos ignorados, sondas JDBC/ngc. Aún no aplicación/WAR. |
+| Transferencia31782c5 | Imágenes y estado Oracle cifrado; credenciales conservadas, clave separada, marcador leído tras restauración. |
+| DEC-001/002, H001 | Specify0.8.1 existente; fusión selectiva de recursos, feature001-booking-espacios, tareas/handoffs. Sin copiar overlay encima. |
+| DEC-003 | Propuesta de monolito simple frente a puertos/adaptadores; pendiente de decisión entonces. |
+| DEC-004/005 | Usuario excluye starter y elige organización por funcionalidades; T015 no cambia. |
+| DEC-006/007 | Oracle/JPA/WAR y autorización de completar T004–T013; SQL explícito, validate, sin H2. |
+| DEC-008–013 | Basic+CSRF, dueño del principal, bloqueo por espacio, recurrencias parciales, Angular y WAR local; Azure preparado/inactivo. |
+| DEC-014/015 | Reporte de fechas/espera, corrección UI; auditoría posterior descubre seis regresiones reales y avisos de dependencias. |
+| DEC-016–021 | Usuario autoriza T018–T022 y mantiene stack: coerción/MVC/OpenAPI corregidos, Tomcat10.1.59 y eager headers, Dev Container/artefacto verificable. |
+| DEC-022/023 | Consolidar entrega/estudio; operador Node/Docker portable, sin cambiar negocio ni cerrar pendientes por inferencia. |
 
-El usuario autorizo preparar la subida del historial a luzadri84/AIFORGESQUADP1
-y exportar las imagenes para otro Windows 10. Esta instruccion posterior amplia
-el alcance a respaldo/transferencia del repositorio; no autoriza un despliegue web.
-No incluir .env, secretos, correo, volumenes o archivos de imagen en Git.
-El estado real de subida, visibilidad y autenticacion debe verificarse antes de
-confirmar que GitHub ya contiene los cambios.
+## Decisiones implementadas y garantías que deben conservarse
 
+- API/DTO, respuestas y Basic+CSRF en docs/CONTRATO_API.md. Instantes con offset;
+  Oracle TIMESTAMP(9) WITH TIME ZONE, Hibernate NATIVE, ddl-auto=validate, sin create-drop.
+- Intervalos semiabiertos, mismo espacio ACTIVE; PESSIMISTIC_WRITE sobre Espacio bajo
+  READ_COMMITTED para crear/cancelar. Una transacción por pedido semanal1–12.
+  Conflicto parcial es negocio; error técnico revierte todo. No confiar solo en UI.
+- Propietario del principal, cancelación propia idempotente, ajena/ausente indistinguible;
+  consultas propias activas cuyo fin no ha pasado. No añadir reglas ni rutas no pedidas.
+- Basic en memoria del cliente; sesión solo CSRF. No desactivar CSRF para Swagger.
+  JWT/MSAL preparados pero no identidad empresarial acreditada. No revelar secretos.
+- Stack efectivo en README/POM/lock. DEC-019 mantiene familias obligatorias: alternativa
+  Boot3.5/Security6.5/Data3.5 no aplicada. Tomcat local no resuelve WebLogic/Jakarta.
+- Operación portable: node scripts/environment.mjs desde el host. Reutilizar .local,
+  imágenes y volúmenes existentes; --no-build. prepare-new/images/schema solo instalación
+  nueva explícita. No jdbc write para comprobar restauración ni down -v.
 
-## Integración SDD y reglas vigentes — H001, 2026-09-14
+## Reglas de continuidad y herramientas
 
-Esta ampliación registra las reglas de H001. Su límite temporal H001/T001–T002 y
-la dependencia del starter fueron superados por DEC-004; no autoriza publicación. Requisitos
-del evaluador e instrucciones humanas expresas prevalecen sobre ejemplos de skills,
-plantillas y documentos propuestos. La propuesta DEC-003 fue concretada por la
-decisión humana DEC-005: organización por funcionalidades.
-
-- Feature única: `specs/001-booking-espacios`. Leer spec.md, plan.md, tasks.md y el
-  handoff solicitado antes de trabajar. tasks.md es la única lista de tareas/estados;
-  `.handoffs/` conserva objetivo, contexto, evidencia, T/DEC y siguiente paso.
-- Specify 0.8.1 ya funciona; configuración y comandos en docs/SPECKIT.md. Integración
-  Codex en `.agents/skills/`. Desde main usar el selector de sesión soportado
-  `SPECIFY_FEATURE=001-booking-espacios` antes de los scripts oficiales; no crear otra
-  feature ni sobrescribir spec/plan/tasks con generadores. No renumerar IDs existentes.
-- Limitar skills al bloque autorizado. H001 se ejecutó con instrucciones directas;
-  no lanzar speckit-implement sobre todo el backlog. Si una skill no permite limitar
-  tareas, usar instrucciones directas con los artefactos. No workflows, agentes
-  paralelos, issues ni automatización por la mera existencia de handoffs.
-- Reutilizar entorno, código y configuración. En este equipo restaurado usar ambos
-  Compose con imágenes importadas y `--no-build` según README. No invocar local.ps1
-  up (reconstruye) ni verify (escribe otro marcador) como comprobación rutinaria de H001.
-  Conservar credenciales/volúmenes y leer el marcador original con jdbc-check.sh read.
-- La directriz de simplicidad exige justificar cada interfaz, capa o dependencia
-  por un problema actual; comparar con una solución menor. Conservar validación del
-  servidor, propiedad, CSRF, concurrencia y pruebas críticas. No inferir garantías
-  de rendimiento de un diseño; no usar H2 o mocks como evidencia de Oracle real.
-- Mantener la bitácora existente `docs/BITACORA.md`, sin crear otra. Conservar entradas
-  previas; usar DEC-001 y siguientes para decisiones nuevas sin renumerar historia.
-  Registrar problema/requisito, origen de propuesta, alternativa cuando sea útil,
-  intervención humana real o su ausencia, decisor, motivos/compensaciones y vínculos T.
-- Separar aceptación de decisión, implementación y verificación. Identificar pruebas
-  del agente como tales. Una propuesta del plan previo no es aprobación humana;
-  el silencio tampoco. No inventar discusiones, rechazos, defectos, métricas o pruebas.
-- Registrar fecha/zona de la entrada y del hecho si difieren. Las reconstrucciones
-  retrospectivas citan Git/log/mensaje y límites; una prueba actual no certifica cuándo
-  se hizo una anterior. No repetir pruebas para fabricar historia de los 37 minutos.
-- Durante el trabajo registrar fallos y correcciones pertinentes; al cambiar decisión
-  conservar el motivo anterior y enlazar la nueva. Evitar logs masivos y secretos.
-- Verificar criterios antes de marcar tareas; probar solo lo pertinente al riesgo.
-  Al cerrar/interrumpir: actualizar tasks, evidencia/handoff y DEC, preservar diff y
-  siguiente paso. No reset/stash/borrado automático ni reaplicar trabajo ya terminado.
-- Crear commits coherentes durante el trabajo, con T/DEC pertinentes; revisar diff y
-  secretos. No amend/rebase/fechas ficticias ni partición retrospectiva artificial.
-  Vincular por DEC en mensaje; incluir hashes solo después de leerlos de Git real.
-- T013/H007 exige los doce apartados, al menos doce preguntas respondidas y seis retos
-  analizados de docs/ENTREGA_Y_STARTER.md en docs/EXPLICACION_IMPLEMENTACION.md contra
-  código real. No completar ahora un documento de implementación inexistente ni
-  implementar los retos como alcance extra.
-- T014/H008 no se ejecuta: No aplica por cambio de alcance (DEC-004). Sus nueve
-  pasos se conservan como procedimiento histórico sin vigencia.
-  T015/WebLogic es independiente. No bloquear trabajo independiente ya autorizado,
-  ni declarar cumplimiento completo sin resolver obligaciones externas.
-- Pedir intervención solo para decisiones materiales no resueltas o alcance nuevo;
-  continuar lo rutinario autorizado. Presentar recomendación y alternativa sin
-  atribuir al usuario elecciones autónomas del agente. La siguiente fase requiere
-  la decisión de arquitectura prevista en Prompt A, ya recibida en DEC-005. La
-  continuación a T003 fue autorizada por el cambio de alcance DEC-004.
-
-## Base implementada T003 — 2026-09-14 (histórico, ampliado por DEC-007–013)
-
-DEC-006 concreta la persistencia de DEC-005: backend/pom.xml (WAR, Boot 3.3.13,
-Java 21), paquetes local.booking.booking y local.booking.space, entidades/repositorios,
-OffsetDateTime/NATIVE y TIMESTAMP(9) WITH TIME ZONE. SQL V001 aplicado explícitamente,
-semillas insert-only, Hibernate validate y SQL automático desactivado. Pruebas
-transaccionales con Oracle existente, sin H2 ni create-drop. No reaplicar V001
-ni resetear datos/marker; ver docs/VERIFICACION_T003.md y scripts/booking-db.ps1.
-No existen todavía controladores, servicios de reservas, configuración Basic/CSRF
-propia ni UI. Security en el POM no completa T004; el WAR base no completa T013/T015.
-La primera tarea pendiente es T004. Mantener todos los estados en tasks.md.
-
-## Continuación integral local — DEC-007, 2026-09-14
-
-La instrucción adjunta del usuario autoriza T004–T013 sin pausas entre handoffs;
-supera el límite anterior de ejecutar solo T003. Mantener el monolito por funciones,
-criterios existentes y Spec Kit sin regenerarlo. Implementar la recurrencia semanal
-finita/aceptación parcial de las tareas existentes; registrar elecciones de detalle
-como decisiones del agente, no aprobaciones individuales del usuario. Ejecución local
-con WAR ejecutable y Tomcat administrado por Boot, sin afirmar WebLogic. T014 no aplica,
-T015 permanece independiente. No push, publicación, agentes paralelos ni funciones extra.
-
-## Implementación local entregable — DEC-008–013, 2026-09-14
-
-API y UI existen: backend por booking/space/security/errors, frontend acceso/reservas.
-Contrato vigente en docs/CONTRATO_API.md. Basic por petición, sesión solo CSRF,
-propietario del principal, bloqueo Espacio READ_COMMITTED para crear/cancelar,
-recurrencia semanal 1–12 con resultado parcial y rollback ante error técnico.
-No repetir H001, reaplicar V001 ni instalar otra vez herramientas. Versiones y pruebas
-actuales en docs/VERIFICACION_FINAL.md; tareas únicamente en tasks.md. Operación:
-`pwsh -NoProfile -File scripts/app.ps1 start|verify|stop|status` (elegir una acción).
-verify reconstruye/prueba y deja la app iniciada; start reutiliza WAR. Nunca usar
-jdbc write para validar la restauración. Conservar secretos y registros CANCELLED
-creados por verificación visual; los fixtures automáticos están aislados.
-MSAL/JWT preparados y desactivados en Basic; no afirmar Azure real. T015 requiere
-aclaración externa y T014 no aplica. docs/EXPLICACION_IMPLEMENTACION.md describe
-la solución actual; sus retos solo son ejercicios de análisis. No push ni publicación.
-
-## Auditoría T017 — DEC-015, 2026-09-14
-
-Autorización vigente de esta fase: inspección, pruebas e informes, sin corregir aún
-producción/dependencias/configuración. Diagnóstico en docs/AUDITORIA_CUMPLIMIENTO_Y_SEGURIDAD.md.
-T018–T022 proponen correcciones, T023–T024 mejoras opcionales; estados en tasks.md.
-No interpretar esas propuestas como autorización de implementación. Las seis regresiones
-fallidas se conservan y hacen fallar verify; el WAR existente sigue operativo mediante start.
-T013 conserva evidencia histórica local, pero Dev Container completo sigue no acreditado.
-No reabrir H001, starter/T014 ni confundir WAR/Tomcat con WebLogic/T015.
-
-## Correcciones autorizadas — DEC-016, 2026-09-14
-
-La instrucción humana posterior autoriza implementar y verificar T018–T022 según
-09_Prompt_Corregir_Auditoria_y_Verificar_Entrega.md. Supera el límite de auditoría
-sin cambios de DEC-015. Conservar arquitectura, datos, credenciales e historial;
-commits incrementales locales, sin push/publicación. No implementar T023/T024.
-T015 independiente. Excepciones al stack requieren decisión explícita sobre una
-alternativa exacta; continuar las tareas que no dependan de ella. Preservar informe
-histórico y seis regresiones; justificar semántica de mappings antes de cambiar
-expectativas de tests. Probar WAR nuevo y Dev Container real, no solo configuración.
-
-## Continuidad de correcciones — DEC-019/021
-
-El usuario mantiene el stack obligatorio; la alternativa excepcional de T018 no se
-aplica. No aceptar riesgo en su nombre. Las seis regresiones históricas se conservan
-y pasan en suite completa88/88 sobre fuentes e859c80. start ahora detecta obsolescencia
-por hashes y recompila con pruebas; la frase histórica "start reutiliza WAR" queda
-superada. Dev Container CLI up/exec real; docs/DEV_CONTAINER.md distingue reapertura
-y base nueva. Resultados/límites en CIERRE_CORRECCIONES_AUDITORIA.md, estados en tasks.
+- Leer specs/001-booking-espacios/spec.md, plan.md, tasks.md y handoff pertinente.
+  tasks.md es la única lista de estados; .handoffs mantiene contexto, DEC/T y próximo paso.
+- Mantener .specify, .agents/skills y plantillas oficiales. No regenerar ni iniciar otra
+  feature. docs/SPECKIT.md fija selector de sesión y versión; no reinstalar herramientas
+  que funcionan. Las plantillas no anulan decisiones humanas ni AGENTS.
+- No lanzar workflows, issues ni agentes paralelos por existir handoffs. Si una skill
+  no puede limitarse al bloque autorizado, trabajar directamente con esos artefactos.
+- Simplicidad: justificar capas/interfaces/dependencias por una necesidad actual;
+  no prometer rendimiento sin medición. No usar H2/mocks como prueba de Oracle real.
+- BITACORA.md conserva DEC consecutivos, origen humano/agente, alternativas reales,
+  motivo y pruebas. Distinguir propuesta, decisión, implementación y verificación.
+  Registros retrospectivos citan evidencia/fechas; no inventar tiempos, aprobaciones
+  o desacuerdos. Los37minutos antiguos eran un reporte, no cronometraje auditable.
+- Commits incrementales coherentes, sin amend/rebase/reset ni fechas ficticias. Revisar
+  diff/secretos; pedir intervención solo por decisión material o riesgo de datos ajenos.
+- No repetir pruebas funcionales por cambios solo documentales. Cambios operativos
+  requieren probar el recorrido correspondiente y separar mocks de ejecución real.
+- Los ejercicios de estudio son propuestas de análisis, no funcionalidades autorizadas.
+  T013 conserva su evidencia histórica; ubicación externa de estudio por DEC-022.
+- Fuentes/estado/verificaciones autocontenidos en README, BITACORA, docs/VERIFICACION.md
+  y docs/TRATAMIENTO_DEPENDENCIAS_T018.md. Nunca exigir una carpeta personal de apoyo
+  para instalar o evaluar el checkout. Respaldo documental previo y trazabilidad en Git.

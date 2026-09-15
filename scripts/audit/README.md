@@ -1,52 +1,57 @@
-# Reproducir auditoría y correcciones
+# Comparadores locales de avisos y evidencia de seguridad
 
-Estado vigente: docs/CIERRE_CORRECCIONES_AUDITORIA.md. La ejecución corregida incluye
-88 casos Java y pasa; T018 sigue parcial. El procedimiento T017 inferior es histórico
-y sus afirmaciones de fallo/76 casos se refieren exclusivamente a47a6af4/e170418.
-Para verificación actual: pwsh -NoProfile -File scripts/app.ps1 verify.
+Se conserva este documento para ejecutar las herramientas junto a las que está ubicado.
+Estado actual: [tratamiento T018](../../docs/TRATAMIENTO_DEPENDENCIAS_T018.md) y
+[verificación](../../docs/VERIFICACION.md). La auditoría T017 sobre 47a6af4 tuvo seis
+regresiones; las fuentes e859c80 pasan 88 casos Java. Es historia real, no una instrucción
+vigente de esperar fallos. Los anexos anteriores están en Git e170418/eee557b;
+los actuales en docs/correction-evidence. No sobrescribir evidencia histórica al repetir.
 
-## Procedimiento histórico T017 / DEC-015
+## Verificar aplicación
 
-Desde C:\PruebaAIFORGESQUAD, PowerShell7, con entorno/restauración y secretos ya preparados. No ejecutar prepare/import ni escribir el marcador. Se requiere Oracle real y los dos Compose. No reemplazar credenciales. Los fixtures automáticos son transaccionales o se limpian por su propio ID. Los tests usan contraseñas sintéticas aleatorias, no imprimen las operativas.
+Desde raíz, con Oracle ya preparado: `node scripts/environment.mjs verify` en el host.
+Conserva volúmenes/secretos, reconstruye y prueba WAR/Angular, lee JDBC y deja la app
+iniciada si pasa. No ejecutar verificaciones concurrentes contra el mismo esquema.
+Para investigar una prueba dirigida, usar Docker exec dentro de dev y Maven Wrapper;
+registrar comando/resultado/revisión, sin atribuir al total de la suite una ejecución parcial.
 
-## Pruebas
+## Repetir comparación de catálogos (opcional, no arranque normal)
 
-```powershell
-docker compose -f compose.yaml -f .local/transfer/compose.images.yaml exec -T dev bash scripts/app-process.sh stop
-docker compose -f compose.yaml -f .local/transfer/compose.images.yaml exec -T dev bash -c 'bash mvnw -B -ntp -f backend/pom.xml verify'
-# Resultado esperado actual: FALLA por seis regresiones de auditoría. No omitirlas.
-# En T017, 75 casos en la primera ejecución + una prueba nueva de espera después:
-docker compose -f compose.yaml -f .local/transfer/compose.images.yaml exec -T dev bash -c 'bash mvnw -B -ntp -f backend/pom.xml -Dtest=OracleConcurrencyTest#auditLockTimeoutReturns503AndDoesNotCommit test'
-docker compose -f compose.yaml -f .local/transfer/compose.images.yaml exec -T dev bash -c 'cd frontend && npm test && npm run build'
-# Ejecutar incluso cuando Maven haya fallado: restaura la app desde el WAR conservado.
-pwsh -NoProfile -File scripts/app.ps1 start
-docker compose -f compose.yaml -f .local/transfer/compose.images.yaml exec -T dev bash scripts/jdbc-check.sh read
-```
+Además de Node/Docker, estos scripts de auditoría requieren **Python 3.11 o superior en el host**.
+Desde raíz y con dev iniciado; comandos comunes en PowerShell y shell Linux:
 
-No ejecutar `app.ps1 verify` esperando un resultado verde: incluye las nuevas regresiones y puede detener procesos antes del fallo. No borrar WAR/volumen ni saltar tests. Su próximo verify completo descubrirá 76 casos Java. Los logs Surefire nuevos pueden reemplazar los anteriores; extractos de las ejecuciones auditadas se conservan en docs/audit-evidence/executions.txt.
-
-## Dependencias sin enviar inventario a servicios externos
-
-```powershell
-New-Item -ItemType Directory -Force .local/audit | Out-Null
-docker compose -f compose.yaml -f .local/transfer/compose.images.yaml exec -T dev bash -c 'bash mvnw -B -ntp -f backend/pom.xml dependency:tree -DoutputType=text -DoutputFile=/workspace/.local/audit/maven-tree.txt'
-docker compose -f compose.yaml -f .local/transfer/compose.images.yaml exec -T dev bash -c 'bash mvnw -B -ntp -f backend/pom.xml help:active-profiles'
-docker compose -f compose.yaml -f .local/transfer/compose.images.yaml exec -T dev bash -c 'cd frontend && npm ls --all --json > /workspace/.local/audit/npm-tree.json'
-# Descarga catálogos públicos COMPLETOS de Maven/npm, no consultas por paquetes.
+```text
+python -c "from pathlib import Path; Path('.local/audit').mkdir(parents=True, exist_ok=True)"
+docker compose -f compose.yaml -f .local/transfer/compose.images.yaml exec -T dev bash -c "bash mvnw -B -ntp -f backend/pom.xml dependency:tree -DoutputType=text -DoutputFile=/workspace/.local/audit/maven-tree.txt"
 python scripts/audit/prepare_advisories.py --download
-# Si los dos ZIP ya existen, omitir --download para reutilizarlos.
 python -m unittest discover -s scripts/audit -p test_range_match.py
 python scripts/audit/match_advisories.py
 ```
 
-Prepare extrae coordenadas del árbol Maven real y del lock npm (incluye opcionales/dev), descarta avisos withdrawn y filtra los catálogos en local. Match usa ComparableVersion de Maven3.9.9 y semver instalado del frontend, evalúa unión de intervalos inclusive/exclusive y versiones explícitas. No usa una comparación lexicográfica de versiones. Los tres tests del comparador comprueban fronteras/intervalos, no certifican exhaustividad del catálogo. Se inspeccionaron tipos ECOSYSTEM/SEMVER; no se afirma soporte para rangos Git. No son pruebas de explotación ni análisis de alcanzabilidad. Scripts sin llamadas de actualización/install/fix; solo --download tiene red hacia catálogos públicos completos.
+Si Python se llama python3 en Linux, sustituir el ejecutable; no instalarlo para operar
+Booking. Si ambos ZIP ya existen en .local/audit, omitir --download para reutilizarlos.
+prepare descarga catálogos públicos completos Maven/npm y filtra localmente contra
+el árbol Maven y lock npm. No envía coordenadas privadas a servicios de consulta.
+match usa ComparableVersion de Maven 3.9.9 y semver del frontend dentro del contenedor;
+requiere haber descargado Wrapper/npm con el procedimiento normal. Evalúa rangos,
+fronteras y versiones explícitas; no compara versiones lexicográficamente.
 
-Hashes de catálogos, inventario y anexo fijan la foto auditada; ejecuciones futuras pueden cambiar. Reporte de trabajo .local/audit/dependency-findings.json. El plugin Maven instalado ignoró outputType=json en la ejecución original y escribió árbol de texto; por eso el procedimiento reproducible pide text. No interpretar ese archivo como JSON.
+Los tres tests del comparador no demuestran exhaustividad del catálogo, explotación ni
+alcanzabilidad. No se afirma soporte de rangos Git. Registrar hash/fecha de catálogos y
+versiones; nuevas fotos pueden cambiar. Salida en .local/audit/dependency-findings.json,
+no en los anexos históricos. Maven produjo texto en la ejecución original pese a pedir
+JSON: por eso se solicita text. No interpretar ese árbol como JSON.
 
 ## Otros controles
 
-Se ejecutaron `git status --short`, `git rev-parse HEAD`, `git log`, `git rev-list --objects --all` y lectura en lote `git cat-file --batch`. La comparación de secretos usa en memoria valores de archivos locales más patrones de credenciales; no imprimir esos valores ni pasar contraseñas como argumentos. No enviar fuentes/inventarios a scanners externos. La cobertura histórica y sus límites están en docs/audit-evidence/secrets-history.json.
+Revisar secretos en memoria, nunca mostrar valores ni pasarlos como argumentos.
+Escanear archivos e historia contra secretos conocidos tiene límites y no certifica
+secretos desconocidos. SQL*Plus usa contraseña dentro del contenedor por stdin;
+`scripts/booking-db.ps1` muestra el patrón. No publicar inspecciones crudas de Docker,
+logs, cookies, headers de autorización ni conexiones Oracle.
 
-Privilegios: consultar desde SQL*Plus BOOKING `USER_ROLE_PRIVS`, `SESSION_ROLES`, `SESSION_PRIVS`, `USER_TS_QUOTAS`; el patrón seguro de conexión por stdin está en scripts/booking-db.ps1. Inventario runtime: Compose ps, docker inspect y docker image inspect/history, siempre redactando env/valores. No publicar salidas crudas de inspección.
-
-E2E manual reproducible: usar dos identidades locales configuradas sin imprimir claves; escoger fechas/espacios libres para fixtures propios, reservar la segunda de cuatro semanas con A, solicitar cuatro con B, comprobar 3+1 y luego 0+4, listados separados, cancelar cada fixture con su dueño y verificar SQL. No cancelar filas preexistentes. Para texto inocuo crear un espacio propio con nombre HTML literal y retirarlo solo cuando no tenga reservas. Teclado: Tab entre controles de acceso. No se exige navegador automatizado instalado fuera de la herramienta ya disponible.
+Las pruebas manuales usan dos identidades y fixtures propios, con IDs registrados.
+Crear/listar, conflicto/adyacencia, serie parcial y cancelar exclusivamente esos fixtures;
+verificar SQL sin modificar filas preexistentes. No reemplazar el marcador de transferencia
+para demostrar persistencia. WebLogic, Swagger interactivo y T018 mantienen los límites
+descritos en los documentos vigentes, aunque los tests automatizados pasen.

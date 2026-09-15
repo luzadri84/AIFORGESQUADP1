@@ -9,7 +9,7 @@ Trabajar exclusivamente T006, T007. Los criterios, dependencias y estados están
 
 H002 y dependencias concretas en tasks.md. Leer [AGENTS](../AGENTS.md), [constitución](../.specify/memory/constitution.md),
 [spec](../specs/001-booking-espacios/spec.md), [plan](../specs/001-booking-espacios/plan.md)
-y [bitácora](../docs/BITACORA.md), especialmente DEC-002/DEC-003 y decisiones posteriores.
+y [historia consolidada](../BITACORA.md), especialmente DEC-002/DEC-003 y decisiones posteriores.
 Inspeccionar Git/código antes de actuar: aprovechar lo existente, no repetir trabajo.
 
 ## Límites y evidencia exigida

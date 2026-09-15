@@ -23,4 +23,4 @@ cd infra/checks/frontend
 npm ls --depth=0 >/dev/null 2>&1 || npm ci --ignore-scripts --no-audit --no-fund
 npm ls --depth=0
 npm run check
-echo "Toolchain and Oracle checks passed. Application build/test: pwsh -File scripts/app.ps1 verify (host)."
+echo "Toolchain and Oracle checks passed. Application build/test: node scripts/environment.mjs verify (host)."

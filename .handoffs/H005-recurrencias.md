@@ -9,7 +9,7 @@ Trabajar exclusivamente T009, T010. Los criterios, dependencias y estados están
 
 H004; confirmar refinamientos de recurrencia. Leer [AGENTS](../AGENTS.md), [constitución](../.specify/memory/constitution.md),
 [spec](../specs/001-booking-espacios/spec.md), [plan](../specs/001-booking-espacios/plan.md)
-y [bitácora](../docs/BITACORA.md), especialmente DEC-002/DEC-003 y decisiones posteriores.
+y [historia consolidada](../BITACORA.md), especialmente DEC-002/DEC-003 y decisiones posteriores.
 Inspeccionar Git/código antes de actuar: aprovechar lo existente, no repetir trabajo.
 
 ## Límites y evidencia exigida

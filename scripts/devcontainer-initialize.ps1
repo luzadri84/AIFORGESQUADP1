@@ -5,7 +5,7 @@ Push-Location (Split-Path $PSScriptRoot -Parent)
 try {
     foreach ($required in @('.local/transfer/compose.images.yaml','.local/secrets/app-password','.local/secrets/oracle-password')) {
         if (-not (Test-Path -LiteralPath $required -PathType Leaf)) {
-            throw "Falta $required. Complete la restauración o el bootstrap NUEVO de docs/DEV_CONTAINER.md antes de abrir. No se generaron credenciales."
+            throw "Falta $required. Complete la restauración o el bootstrap NUEVO de README.md antes de abrir. No se generaron credenciales."
         }
     }
     $files = @('-f','compose.yaml','-f','.local/transfer/compose.images.yaml','-f','.devcontainer/compose.restored.yaml')

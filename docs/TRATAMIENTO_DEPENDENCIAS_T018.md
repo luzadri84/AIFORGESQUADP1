@@ -1,10 +1,10 @@
 # T018: tratamiento posterior a la auditoría
 
-Revisión productiva e859c80; fecha 2026-09-14 America/Bogota. DEC-019 mantiene el stack obligatorio. **T018 parcial**: no se acepta riesgo en nombre del usuario ni se fuerza una familia Spring distinta. La propuesta exacta está en ALTERNATIVA_STACK_T018.md y no se aplicó.
+Revisión productiva e859c80; fecha 2026-09-14 America/Bogota. DEC-019 mantiene el stack obligatorio. **T018 parcial**: no se acepta riesgo en nombre del usuario ni se fuerza una familia Spring distinta. La propuesta exacta está al final de este documento y no se aplicó.
 
 Inventario por rangos antes:65 coincidencias paquete-aviso,65 GHSA distintos,64 CVE distintos. Después:43 coincidencias,43 GHSA distintos,42 CVE distintos (uno sin CVE). Son 41 compile y2 test; los22 provided de Tomcat desaparecen por versión, no por excluir su scope. No hay alias CVE compartidos entre esos registros; se cuentan IDs y alias separados, nunca se suman. Maven112 entradas; npm incluye lock completo y árbol instalado. Withdrawn se descarta; rangos se comparan localmente con ComparableVersion/semver (unión de intervalos).
 
-Catálogos públicos completos descargados en esta fase y filtrados localmente; hashes y resultados en correction-evidence. No se envió el inventario privado a scanners. Ninguna coincidencia equivale por sí sola a explotación. El WAR confirma módulos provided incluidos en WEB-INF/lib-provided, relevantes al java -jar local.
+Catálogos públicos completos descargados en la fase de correcciones y filtrados localmente; hashes y resultados en correction-evidence. No se envió el inventario privado a scanners. Ninguna coincidencia equivale por sí sola a explotación. El WAR confirma módulos provided incluidos en WEB-INF/lib-provided, relevantes al java -jar local.
 
 ## Tomcat: corregido por versión
 
@@ -92,3 +92,53 @@ El estado pendiente conserva incertidumbre sobre alcanzabilidad indirecta: inspe
 `effectiveStaticResourcesHaveNoSharedCachingOrVersionResolvers` inspecciona beans reales, incluidos handlers de Swagger. `multipartResolverExistsButBookingDoesNotAcceptMultipart` reconoce resolver existente y rechaza contenido con cero filas; la ausencia del WAF se comprueba en Compose/proxy actual. Fuentes: [caché compartida](https://spring.io/security/cve-2026-41841/), [multipart](https://spring.io/security/cve-2026-41853/). No extrapolar estas conclusiones al despliegue WebLogic pendiente.
 
 Las respuestas de seguridad/caché y los casos503 por espera/rollback están en AuditSecurityTest y OracleConcurrencyTest. El cierre de correcciones identifica la ejecución completa, WAR y HTTP. Para pendientes, mantener exposición localhost y autenticación reduce superficie pero NO constituye parche del aviso ni aceptación del riesgo.
+
+## Alternativa exacta conservada para una decisión futura
+
+
+Propuesta del agente, 2026-09-14. **No aplicada al backend.** Se resolvió un POM
+separado en .local/corrections/proposal con Maven, sin fuentes ni arranque de la app.
+La configuración productiva continúa en Boot3.3.13/Security6.3.10/DataJPA3.3.13,
+con mitigación de cabeceras y Tomcat10.1.59 autorizados dentro del stack.
+
+| Componente | Propuesta exacta | Requisito original |
+|---|---|---|
+| Java | 21 | Se conserva |
+| Spring Boot | 3.5.16 | 3.3.x o3.5.x permitido |
+| Framework | 6.2.19 (BOM) | 6.1/6.2 permitido |
+| Security | 6.5.11 (BOM) | **Excepción: original6.3/6.4** |
+| Data JPA | 3.5.13 (BOM2025.0.13) | **Excepción: original3.3** |
+| Hibernate | 6.6.53.Final (BOM) | 6.5/6.6 permitido |
+| SpringDoc | 2.8.17 | 2.6/2.8 permitido |
+| Tomcat core/el/websocket | 10.1.59 (propiedad compartida) | Misma familia Servlet6/Jakarta |
+
+Maven Central confirmó artefactos públicos y la resolución transitiva anterior.
+No se necesita comprar soporte para esta alternativa. El BOM3.5.16 por sí solo
+trae Tomcat10.1.55; se mantiene la propiedad10.1.59. No se fijan transitivas antiguas
+para aparentar cumplimiento. Fuentes: [BOM público](https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-dependencies/3.5.16/spring-boot-dependencies-3.5.16.pom),
+[compatibilidad SpringDoc](https://springdoc.org/v2/), [Apache](https://tomcat.apache.org/security-10.html).
+
+Motivo: obtener el conjunto público de parches Spring manteniendo versiones gestionadas.
+En Security6.3, Central llega a6.3.10; varios parches de ramas anteriores requieren
+Enterprise según avisos oficiales. No se ha supuesto acceso/licencia Enterprise.
+La mitigación oficial de CVE-2026-22732 puede mantenerse incluso si cambia el stack,
+pero no se presenta como parche de los restantes avisos.
+
+Riesgos: cambios del framework/ORM/seguridad/documentación pueden alterar transacciones,
+excepciones, consultas y contrato. La resolución de dependencias sola no demuestra
+compatibilidad funcional ni ausencia de avisos aplicables. Se requiere catalogación
+posterior y pruebas; no se promete cierre absoluto de seguridad.
+
+Si se autoriza: cambiar parent/POM SpringDoc únicamente a este conjunto, revisar árbol
+resuelto y avisos, ejecutar suite Java completa con Oracle, frontend strict, generar
+WAR nuevo con hash, probar Basic/CSRF/cabeceras/propiedad/carrera/rollback, OpenAPI/Swagger,
+recurrencia UI y Dev Container. Conservar todas las reservas/credenciales y arquitectura.
+No resuelve WebLogic/T015; no incluye T023/T024 ni push.
+
+Sin autorización: continuar mitigaciones/parches compatibles y T019–T022; T018 conserva
+los puntos no suficientemente tratados como pendientes, sin aceptar riesgo por el usuario.
+
+## Decisión recibida — DEC-019
+
+El usuario decidió mantener el stack obligatorio por ahora, continuar mitigaciones
+y dejar pendiente lo no resuelto. Esta alternativa no está autorizada ni aplicada.

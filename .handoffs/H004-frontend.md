@@ -9,7 +9,7 @@ Trabajar T008 y su corrección posterior T016, según alcance solicitado. Los cr
 
 H003. Leer [AGENTS](../AGENTS.md), [constitución](../.specify/memory/constitution.md),
 [spec](../specs/001-booking-espacios/spec.md), [plan](../specs/001-booking-espacios/plan.md)
-y [bitácora](../docs/BITACORA.md), especialmente DEC-002/DEC-003 y decisiones posteriores.
+y [historia consolidada](../BITACORA.md), especialmente DEC-002/DEC-003 y decisiones posteriores.
 Inspeccionar Git/código antes de actuar: aprovechar lo existente, no repetir trabajo.
 
 ## Límites y evidencia exigida
@@ -53,5 +53,5 @@ ngc/build y 13 tests frontend correctos; tiempo virtual para timeout, no corte d
 real. Navegador verificó igualdad, corrección, creación #157, duplicado y cancelación
 propia; #157 quedó CANCELLED. npm test compila el servicio real antes de probarlo.
 Comando dentro de dev: cd frontend && npm test && npm run build. URL localhost:4200.
-Estado en tasks.md, evidencia en VERIFICACION_FINAL. Commit por T016/DEC-014; sin push.
+Estado en tasks.md, evidencia en docs/VERIFICACION.md (desde raíz). Commit por T016/DEC-014; sin push.
 No quedan tareas locales del reporte; T015 sigue externo, T014 no aplica.

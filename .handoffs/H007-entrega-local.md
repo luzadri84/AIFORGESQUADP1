@@ -2,19 +2,23 @@
 
 ## Objetivo y alcance
 
-Trabajar exclusivamente T013. Los criterios, dependencias y estados están en
+T013 registra la entrega histórica; DEC-022 autoriza T025, consolidación documental y
+operación portable. Trabajar el bloque vigente de la lista canónica. Los criterios, dependencias y estados están en
 [tasks.md](../specs/001-booking-espacios/tasks.md); no mantener otro tablero aquí.
 
 ## Contexto de entrada
 
 H006. Leer [AGENTS](../AGENTS.md), [constitución](../.specify/memory/constitution.md),
 [spec](../specs/001-booking-espacios/spec.md), [plan](../specs/001-booking-espacios/plan.md)
-y [bitácora](../docs/BITACORA.md), especialmente DEC-002/DEC-003 y decisiones posteriores.
+y [historia consolidada](../BITACORA.md), especialmente DEC-002/DEC-003 y decisiones posteriores.
 Inspeccionar Git/código antes de actuar: aprovechar lo existente, no repetir trabajo.
 
 ## Límites y evidencia exigida
 
-WAR, ejecución y documentación candidata. Cumplir las doce secciones, doce preguntas y seis retos de [ENTREGA_Y_STARTER.md](../docs/ENTREGA_Y_STARTER.md), referidas al código real. No implementar los retos como ampliación del MVP.
+Criterio histórico T013: WAR y explicación con doce secciones, doce preguntas y seis
+retos (original en Git eee557b). DEC-022/T025 exige documentación principal compacta
+y dos documentos externos, con al menos veinte preguntas y ocho ejercicios de análisis.
+README no depende del apoyo personal. No implementar los ejercicios.
 
 Los criterios completos se mantienen en las tareas canónicas. Registrar comandos,
 resultados, pruebas omitidas/fallidas y alcance real; no inferir aprobación humana.
@@ -32,7 +36,7 @@ Codex completó T013 bajo DEC-007/013 desde H006/0344b9a. scripts/app.ps1 ofrece
 start/verify/stop/status con ambos Compose --no-build; app-process.sh valida PID
 antes de detener procesos. No modifica credenciales existentes, imágenes ni volúmenes.
 
-Evidencia: [VERIFICACION_FINAL](../docs/VERIFICACION_FINAL.md). verify completo:
+Evidencia: [verificación consolidada](../docs/VERIFICACION.md). verify completo:
 50 tests backend (0 fallos/errores/omitidas), ngc/build strict y npm test 1/1.
 Se añadieron 11 casos Oracle de fronteras/estado/espacio para complementar el helper.
 WAR ejecutable inspeccionado. Stop/start real de ambos contenedores, Oracle healthy,
@@ -52,8 +56,8 @@ T014 no aplica y no se ejecuta. No queda otra tarea local del alcance autorizado
 
 ## Auditoría posterior T017 — DEC-015, 2026-09-14
 
-La auditoría de main 47a6af4 no corrige producción. [Informe](../docs/AUDITORIA_CUMPLIMIENTO_Y_SEGURIDAD.md)
-y [plan](../docs/PLAN_CORRECCIONES_AUDITORIA.md); estados solo en tasks.md. Se conservan
+La auditoría de main 47a6af4 no corrige producción. [verificación consolidada](../docs/VERIFICACION.md)
+y [historia consolidada](../BITACORA.md); estados solo en tasks.md. Se conservan
 las ejecuciones históricas anteriores, sin usarlas como certificación integral.
 76 casos Java distintos:70 pasan/6 fallan (dos ejecuciones), frontend 13/13/build y comparador 3/3.
 Regresiones rojas deliberadamente conservadas. Dependencias:65 coincidencias Maven/0 npm,
@@ -76,7 +80,24 @@ visual de creación/listado/colisión/recurrencia parcial/cancelación. Original
 y5archivos secretos intactos. T018 parcial por decisión humana de mantener stack;
 no se aplica alternativa. Dev Container CLI up/exec acreditado; no VS Code visual ni
 instalación nueva. Contrato Swagger probado, falta escritura UI tras diálogo Basic
-manual. Estado único tasks.md; evidencias docs/CIERRE_CORRECCIONES_AUDITORIA.md.
+manual. Estado único tasks.md; evidencias docs/VERIFICACION.md.
 Siguiente: completar autenticación y prueba interactiva T021; T018/T015 pendientes
 independientes. No nuevas funcionalidades, T023/T024, push ni repetir suite ya verificada
 sin cambios productivos. Bundle local permite entregar revisión sin publicar.
+
+## Consolidación de entrega — DEC-022/023, T025
+
+El usuario pidió respaldo antes de retirar, tres documentos principales y estudio
+externo. Inventario fechado verificado por SHA-256; originales y anexos preservados,
+copias anteriores intactas. Los enlaces anteriores apuntan ahora al resumen vigente;
+las cifras y fallos de cada etapa siguen siendo históricos, no nuevas ejecuciones.
+Operador Node/Docker y initialize portable: commit d6e45ad. Guía externa de 25 preguntas
+y 8 ejercicios, documento técnico con código/modelo/diagramas. Sin negocio ni push.
+Estado y comprobaciones finales: tasks.md y docs/VERIFICACION.md desde raíz.
+Siguiente actuación funcional disponible: completar T021 interactiva cuando exista
+acceso al navegador autenticado; T018 mantiene stack por DEC-019, T015 independiente.
+No volver a integrar H001 ni repetir suites sin cambios que lo justifiquen.
+
+Cierre T025: 137 enlaces válidos, requisitos originales intactos, 60 copias iniciales
+verificadas; parada/arranque reales conservan 22 filas y cinco archivos sensibles,
+JDBC lee el marcador original. Aplicación funcionando; sin negocio ni push.

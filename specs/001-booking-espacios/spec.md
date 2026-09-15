@@ -16,7 +16,7 @@ previa; no se acredita una nueva recepción del starter ni revisión del correo 
 Los FR conservan los IDs de las semillas. DEC-007 autoriza el alcance local existente;
 DEC-008–013 documentan concreciones técnicas del agente sin atribuir aprobación
 individual al usuario. Véanse [plan](plan.md), [trazabilidad](trazabilidad.md),
-[orígenes](../../docs/INTEGRACION_H001.md) y [verificación](../../docs/VERIFICACION_FINAL.md).
+[historia consolidada](../../BITACORA.md) y [verificación consolidada](../../docs/VERIFICACION.md).
 
 ## User Scenarios & Testing
 
@@ -89,7 +89,7 @@ El criterio de terminado exige evidencia real de FR001–FR011 y resolver el com
 - SC005: evidencias vinculadas a FR y pruebas reales, WAR y explicación verificables;
   ninguna afirmación de cumplimiento total mientras T015 siga abierta.
 
-Evidencia local de estos resultados en VERIFICACION_FINAL; T015 sigue independiente. No se inventan metas de latencia,
+Evidencia local de estos resultados en docs/VERIFICACION.md (desde raíz); T015 sigue independiente. No se inventan metas de latencia,
 usuarios concurrentes, implementación ni rendimiento para llenar una plantilla.
 
 ## Correcciones vigentes DEC-016–021
@@ -100,4 +100,4 @@ sin aplicar alternativa Boot3.5/Security6.5/Data3.5. Arquitectura por funcionali
 sin cambios. JSON solo tokens enteros (1.0/1e0/"1" se rechazan), MVC400/404/405 con
 Allow, OpenAPI Basic AND CSRF por operación. Dev Container combina imágenes importadas
 sin build; start detecta WAR obsoleto. Estado únicamente en tasks.md y evidencia en
-CIERRE_CORRECCIONES_AUDITORIA.md; no T023/T024 ni atribuir WebLogic a Tomcat local.
+docs/VERIFICACION.md; no T023/T024 ni atribuir WebLogic a Tomcat local.

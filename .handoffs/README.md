@@ -14,4 +14,4 @@ Estado único en [tasks.md](../specs/001-booking-espacios/tasks.md); leer AGENTS
 | H007 | [Preparar entrega local verificable](H007-entrega-local.md) | T013, T017, T021, T022 |
 | H008 | [Aclarar runtime; starter histórico excluido](H008-pendientes-externos.md) | T014, T015 |
 
-Las decisiones extensas están en [docs/BITACORA.md](../docs/BITACORA.md).
+Las decisiones extensas están en [historia consolidada](../BITACORA.md).

@@ -1,9 +1,0 @@
-{
-  "app-password matches original": true,
-  "oracle-password matches original": true,
-  ".local/restore-key.pem ignored": true,
-  ".local/secrets/app-password ignored": true,
-  ".local/secrets/oracle-password ignored": true,
-  ".local/runtime/booking.properties ignored": true,
-  ".env ignored": true
-}
